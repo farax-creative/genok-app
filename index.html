@@ -1,22 +1,57 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Genok</title>
-<style>
-  html, body { height: 100%; margin: 0; }
-  body { display: grid; place-items: center; background: #0f1012; color: #e9e9ea;
-         font-family: "Pretendard", "Segoe UI", system-ui, sans-serif; }
-  main { text-align: center; padding: 16px; }
-  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 8px; }
-  p { margin: 0; color: #8b8d93; font-size: 15px; }
-</style>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+
+<header class="top">
+  <a class="wordmark" href="./" aria-label="Genok home">Genok</a>
+  <a class="btn btn-quiet" data-download href="https://github.com/farax-creative/genok-app/releases/latest">Download</a>
+</header>
+
 <main>
-  <h1>Genok</h1>
-  <p>준비 중입니다.</p>
+  <!-- Copy marked data-ph is a placeholder until Brand hands over the final text. -->
+  <section class="hero">
+    <h1 data-ph>Headline</h1>
+    <p class="lede" data-ph>One-line introduction.</p>
+    <div class="cta">
+      <a class="btn btn-primary" data-download href="https://github.com/farax-creative/genok-app/releases/latest">Download for Windows</a>
+      <p class="meta"><span data-version></span> Windows 10 and 11, 64-bit</p>
+    </div>
+  </section>
+
+  <section class="shot" aria-label="Screenshot">
+    <div class="shot-frame" data-ph>App screenshot</div>
+  </section>
+
+  <section class="steps" aria-label="How it works">
+    <ol>
+      <li><h2 data-ph>Step one</h2><p data-ph>What happens first.</p></li>
+      <li><h2 data-ph>Step two</h2><p data-ph>What happens next.</p></li>
+      <li><h2 data-ph>Step three</h2><p data-ph>How it ends.</p></li>
+    </ol>
+  </section>
+
+  <section class="price">
+    <h2 data-ph>Pricing line</h2>
+    <a class="btn btn-primary" data-download href="https://github.com/farax-creative/genok-app/releases/latest">Download for Windows</a>
+  </section>
 </main>
+
+<footer class="foot">
+  <span class="wordmark">Genok</span>
+  <a href="https://github.com/farax-creative/genok-app/releases">All releases</a>
+</footer>
+
+<script src="site.js"></script>
 </body>
 </html>

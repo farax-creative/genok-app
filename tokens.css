@@ -1,0 +1,50 @@
+/* Genok design tokens — v1 draft (2026-10-01)
+ * Owner: Genok Brand (68). Screen code is owned by Dev; only this file changes here.
+ * Names follow product/web/v2.css so Dev can swap values without renaming.
+ * Status: draft. Brand values mirror the current site (direction 1 in G-009 v2);
+ * they change only if the user picks another direction.
+ */
+:root {
+  /* surfaces — current product values (v2.css second theme), unchanged */
+  --bg: #0f1012;
+  --card: #16171a;
+  --card-hi: #1d1e22;
+  --btn: #222327;
+  --btn-hi: #2a2b30;
+  --line: rgba(255, 255, 255, .075);
+
+  /* text */
+  --t1: #ececef;
+  --t2: #b0b1b8;
+  --t3: #8c8d95;
+  --t4: #63646b;
+
+  /* state — green means "OK / confirmed" and nothing else */
+  --green: #1fc67a;
+  --red: #f04452;
+  --orange: #fe9800;
+  --yellow: #ffc342;
+
+  /* interactive accent — kept as is (option A) */
+  --blue: #5e6ad2;
+  --blue-t: #8f98ff;
+  --blue-w: rgba(94, 106, 210, .17);
+
+  /* brand — matches site/site.css on g003-genok-rename (brand ivory, dotted-ring mark) */
+  --brand: #efe9dc;        /* mark, wordmark accent, the one chrome accent */
+  --brand-soft: #cfc8b8;
+  --brand-ink: #14130f;    /* text on a brand-colored fill */
+  --brand-tile: #0b0b0c;   /* app icon tile behind the mark */
+
+  /* type */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, "Segoe UI", sans-serif;
+  --font-wordmark: Georgia, "Times New Roman", serif;          /* "Genok" next to the ring mark — Georgia confirmed 2026-10-01 (as in the app). Ring outer diameter = cap height of the G (.69em), centred on it */
+  --font-display: "Instrument Serif", Georgia, serif;          /* headlines, 400 and italic — already loaded on the site */
+  --font-text: "Instrument Sans", var(--font-sans);            /* Latin body and buttons, as on the current site */
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* shape and motion — unchanged */
+  --r-card: 12px;
+  --r-btn: 7px;
+  --ease: cubic-bezier(.2, .9, .25, 1);
+}

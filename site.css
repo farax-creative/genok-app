@@ -1,0 +1,133 @@
+/* genok.app landing page. Colors, fonts and radii come from tokens.css (owned by Brand). */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--t1);
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+h1, h2, p, ol { margin: 0; }
+ol { padding: 0; list-style: none; }
+
+.top, main > section, .foot {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 20px;
+}
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-size: 22px;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: var(--r-btn);
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color .18s var(--ease), transform .18s var(--ease);
+}
+.btn:active { transform: scale(.98); }
+.btn:focus-visible { outline: 2px solid var(--blue-t); outline-offset: 3px; }
+.btn-primary { background: var(--brand); color: var(--brand-ink); }
+.btn-primary:hover { background: var(--brand-soft); }
+.btn-quiet { background: var(--btn); color: var(--t1); min-height: 40px; padding: 0 16px; font-size: 15px; }
+.btn-quiet:hover { background: var(--btn-hi); }
+
+.hero {
+  padding-block: clamp(56px, 12vw, 128px) clamp(40px, 7vw, 72px);
+  text-align: center;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 9vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+.lede {
+  max-width: 34em;
+  margin: 20px auto 0;
+  color: var(--t2);
+  font-size: clamp(17px, 2.2vw, 21px);
+  text-wrap: pretty;
+}
+.cta { margin-top: 36px; }
+.meta { margin-top: 12px; color: var(--t3); font-size: 14px; }
+
+.shot-frame {
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  background: var(--card);
+  color: var(--t4);
+}
+
+.steps { padding-block: clamp(56px, 9vw, 112px); }
+.steps ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+}
+.steps h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+}
+.steps p { margin-top: 8px; color: var(--t2); }
+
+.price {
+  padding-block: clamp(48px, 8vw, 96px);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.price h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 28px 40px;
+  border-top: 1px solid var(--line);
+  color: var(--t3);
+  font-size: 14px;
+}
+.foot .wordmark { font-size: 18px; }
+
+/* Placeholder copy stands out in the preview so nobody mistakes it for final text. */
+[data-ph] { outline: 1px dashed var(--t4); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:active { transform: none; }
+}
