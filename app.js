@@ -13,13 +13,13 @@
 
   const KO = document.documentElement.lang === "ko";
   const PLANS_EN = [
-    { name: "Free", badge: "", price: "$0", per: "", alt: "You don't enter a card",
+    { name: "Lite", badge: "", price: "$0", per: "", alt: "You don't enter a card",
       line: "The full loop works.",
       features: ["Claude Code and Codex", "Unlimited projects", "Every format, every review tool", "View on your PC", "Recent versions kept"],
       cta: "Download", href: "download.html", disabled: false, featured: false },
     { name: "Pro", badge: "", price: "$9", per: "/ month", alt: "or $79 a year",
       line: "Every version kept, and your phone too.",
-      features: ["Everything in Free", "Full version history", "View on your phone", "More than one account"],
+      features: ["Everything in Lite", "Full version history", "View on your phone", "More than one of your own accounts"],
       cta: "Coming soon", href: "", disabled: true, featured: true },
     { name: "Lifetime", badge: "", price: "$149", per: "once", alt: "No subscription",
       line: "Pay once. Every later update included.",
@@ -27,15 +27,15 @@
       cta: "Coming soon", href: "", disabled: true, featured: false, seats: true },
   ];
   const PLANS_KO = [
-    { name: "무료", badge: "", price: "$0", per: "", alt: "카드 입력 없음",
+    { name: "Lite", badge: "", price: "$0", per: "", alt: "카드 입력 없음",
       line: "보고, 코멘트하고, 고쳐 받기까지 됩니다.",
       features: ["Claude Code · Codex 연결", "프로젝트 무제한", "모든 형식 · 모든 리뷰 도구", "PC에서 보기", "최근 버전 보관"],
       cta: "다운로드", href: "download.ko.html", disabled: false, featured: false },
     { name: "Pro", badge: "", price: "$9", per: "/ 월", alt: "또는 연 $79",
       line: "버전을 전부 보관하고, 폰에서도 봅니다.",
-      features: ["무료판 전부 포함", "버전 기록 전부 보관", "폰에서 보기", "여러 계정 연결"],
+      features: ["Lite 전부 포함", "버전 기록 전부 보관", "폰에서 보기", "본인 계정 여러 개 연결"],
       cta: "준비 중", href: "", disabled: true, featured: true },
-    { name: "평생", badge: "", price: "$149", per: "한 번", alt: "구독 없음",
+    { name: "Lifetime", badge: "", price: "$149", per: "한 번", alt: "구독 없음",
       line: "한 번 결제합니다. 이후 업데이트를 모두 포함합니다.",
       features: ["Pro 기능 전부", "한 번 결제", "이후 업데이트 모두, 기간 제한 없음"],
       cta: "준비 중", href: "", disabled: true, featured: false, seats: true },
@@ -47,7 +47,7 @@
     const taken = Math.max(0, Math.min(SEATS_TOTAL, SEATS_TAKEN));
     const pct = Math.round((taken / SEATS_TOTAL) * 100);
     return `<div class="seats">
-      <div class="seatbar" role="progressbar" aria-valuemin="0" aria-valuemax="${SEATS_TOTAL}" aria-valuenow="${taken}" aria-label="${KO ? "평생판 자리" : "Lifetime seats"}">
+      <div class="seatbar" role="progressbar" aria-valuemin="0" aria-valuemax="${SEATS_TOTAL}" aria-valuenow="${taken}" aria-label="${KO ? "Lifetime 자리" : "Lifetime seats"}">
         <div class="seatfill" style="width:${pct}%"></div>
       </div>
       <p class="seat-txt">${KO ? `${SEATS_TOTAL}자리 중 <b>${taken}자리</b> 판매됨` : `<b>${taken}</b> of ${SEATS_TOTAL} seats taken`}</p>
