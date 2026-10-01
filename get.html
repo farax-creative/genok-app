@@ -24,7 +24,8 @@ a.btn:focus-visible{outline:2px solid #efe9dc;outline-offset:3px}
 </main>
 <script>
 // A Windows browser goes straight to the installer; anything else stays on the note above.
-if (/Windows NT/.test(navigator.userAgent)) {
+// (a local preview stays put so the page itself can be checked)
+if (/Windows NT/.test(navigator.userAgent) && /(^|\.)genok\.app$/.test(location.hostname)) {
   document.getElementById('en').textContent = 'Your download is starting. If nothing happens, use the button below.';
   document.getElementById('ko').textContent = '설치 파일을 받는 중입니다. 시작되지 않으면 아래 버튼을 누르세요.';
   location.replace(document.getElementById('dl').href);
