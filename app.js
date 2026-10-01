@@ -449,3 +449,16 @@
 
   versions().then(build).catch(() => {});
 })();
+
+(function () {
+  var v = document.getElementById('loopvid');
+  if (!v) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+  if (!('IntersectionObserver' in window)) { v.play(); return; }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else v.pause();
+    });
+  }, { rootMargin: '300px' }).observe(v);
+})();
