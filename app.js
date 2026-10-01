@@ -124,12 +124,19 @@
   const btn = form.querySelector("button");
   const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
   const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
+  const BADMAIL = KO ? "메일 주소 형식을 확인해 주세요. 예: name@example.com" : "Check the e-mail address. Example: name@example.com";
+  const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
   const say = (html, bad) => { msg.innerHTML = html; msg.classList.toggle("bad", !!bad); };
+  // checked on leaving the field, never while typing
+  input.addEventListener("blur", () => {
+    const v = input.value.trim();
+    if (v && !isMail(v)) { say(BADMAIL, true); input.setAttribute("aria-invalid", "true"); }
+  });
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const v = input.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
-      say(KO ? "메일 주소를 다시 확인해 주세요." : "Check the e-mail address.", true);
+    if (!isMail(v)) {
+      say(BADMAIL, true);
       input.setAttribute("aria-invalid", "true"); input.focus(); return;
     }
     const action = form.getAttribute("action");
@@ -154,9 +161,14 @@
   const btn = form.querySelector('button[type="submit"]');
   const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
   const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
-  const TXT = KO ? { need: "이 항목을 채워 주세요.", pick: "하나 이상 골라 주세요.", mail: "메일 주소를 다시 확인해 주세요.", other: "기타 내용을 적어 주세요." }
-                 : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the e-mail address.", other: "Type what the other one is." };
-  const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const TXT = KO ? { need: "이 항목을 채워 주세요.", pick: "하나 이상 골라 주세요.", mail: "메일 주소 형식을 확인해 주세요. 예: name@example.com", other: "기타 내용을 적어 주세요." }
+                 : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the e-mail address. Example: name@example.com", other: "Type what the other one is." };
+  const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+  // the app opens feedback(.ko).html?v=0.1.46 so the version is already filled in; digits and dots only
+  const ver = new URLSearchParams(location.search).get("v") || "";
+  const verField = form.querySelector('[name="entry.1002962770"]');
+  if (verField && /^[0-9.]{1,12}$/.test(ver)) verField.setAttribute("value", ver);
 
   // the "other" choice opens its own text field
   form.querySelectorAll("input[data-other]").forEach((box) => {
@@ -204,9 +216,28 @@
   });
   form.addEventListener("input", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
   form.addEventListener("change", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
+  // an e-mail field is checked when you leave it; an empty one waits for the submit
+  form.addEventListener("focusout", (e) => {
+    const q = e.target.closest('.gf-q[data-kind="email"]');
+    if (q && e.target.value.trim()) check(q);
+  });
   const again = done.querySelector("[data-again]");
   if (again) again.addEventListener("click", () => {
     form.reset(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
     done.hidden = true; form.hidden = false; form.querySelector("textarea, input").focus();
   });
+})();
+
+(function () {
+  // marks the section being read in the help page's contents list
+  const links = [...document.querySelectorAll(".help .legal-toc a")]; if (!links.length || !("IntersectionObserver" in window)) return;
+  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => a.removeAttribute("aria-current"));
+      byId.get(e.target.id).setAttribute("aria-current", "true");
+    });
+  }, { rootMargin: "-90px 0px -65% 0px" });
+  byId.forEach((a, id) => { const h = document.getElementById(id); if (h) io.observe(h); });
 })();
