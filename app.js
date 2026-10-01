@@ -209,7 +209,19 @@
     btn.disabled = true;
     try {
       // The reply from Google is opaque here: only a network failure can be told apart.
-      await fetch(action, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
+      const data = new URLSearchParams(new FormData(form));
+      // screenshots travel separately; the same id goes into the text so the two can be matched
+      const att = form._attach && form._attach.count() ? form._attach : null;
+      const attId = att ? att.newId() : "";
+      const area = form.querySelector("textarea");
+      if (att && area) data.set(area.name, data.get(area.name) + "\n[" + (KO ? "첨부 " : "Attachments ") + attId + "]");
+      await fetch(action, { method: "POST", mode: "no-cors", body: data });
+      const old = done.querySelector(".gf-att-fail"); if (old) old.remove();
+      if (att && !(await att.send(attId))) {
+        const p = document.createElement("p"); p.className = "gf-att-fail";
+        p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
+        done.querySelector("h2").after(p);
+      }
       form.hidden = true; done.hidden = false; done.focus();
     } catch (err) { msg.innerHTML = FAIL; }
     btn.disabled = false;
@@ -223,7 +235,7 @@
   });
   const again = done.querySelector("[data-again]");
   if (again) again.addEventListener("click", () => {
-    form.reset(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
+    form.reset(); if (form._attach) form._attach.clear(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
     done.hidden = true; form.hidden = false; form.querySelector("textarea, input").focus();
   });
 })();
@@ -240,4 +252,88 @@
     });
   }, { rootMargin: "-90px 0px -65% 0px" });
   byId.forEach((a, id) => { const h = document.getElementById(id); if (h) io.observe(h); });
+})();
+
+(function () {
+  // Screenshots on the feedback page. Stays hidden until the Apps Script address is set.
+  const ATTACH_URL = "";
+  const MAX_FILES = 5, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
+  const box = document.querySelector(".gf-att"), form = document.querySelector("form.gform");
+  if (!box || !form || !ATTACH_URL) return;
+  const KO = document.documentElement.lang === "ko";
+  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 5장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", del: "지우기" }
+               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 5 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", del: "Remove" };
+  const input = box.querySelector(".gf-att-in"), drop = box.querySelector(".gf-drop"), list = box.querySelector(".gf-thumbs"), msg = box.querySelector(".gf-att-msg");
+  const items = [];   // { blob, url, li }
+  box.hidden = false;
+
+  async function shrink(file) {
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, MAX_SIDE / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(bmp.width * k)); c.height = Math.max(1, Math.round(bmp.height * k));
+    const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(bmp, 0, 0, c.width, c.height);
+    for (const type of ["image/webp", "image/jpeg"]) {
+      for (const q of [0.9, 0.8, 0.7, 0.6, 0.5]) {
+        const blob = await new Promise((r) => c.toBlob(r, type, q));
+        if (!blob || blob.type !== type) break;   // this browser cannot write that type
+        if (blob.size <= MAX_BYTES) return blob;
+      }
+    }
+    return null;
+  }
+
+  function render(it) {
+    const li = document.createElement("li");
+    const img = document.createElement("img"); img.src = it.url; img.alt = "";
+    const size = document.createElement("small"); size.textContent = Math.max(1, Math.round(it.blob.size / 1024)) + " KB";
+    const del = document.createElement("button"); del.type = "button"; del.setAttribute("aria-label", T.del);
+    del.innerHTML = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
+    del.addEventListener("click", () => { URL.revokeObjectURL(it.url); items.splice(items.indexOf(it), 1); li.remove(); msg.textContent = ""; });
+    li.append(img, size, del); list.appendChild(li); it.li = li;
+  }
+
+  async function add(files) {
+    msg.textContent = "";
+    for (const f of files) {
+      if (!/^image\/(png|jpeg|webp)$/.test(f.type)) { msg.textContent = T.type; continue; }
+      if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
+      try {
+        const blob = await shrink(f);
+        if (!blob) { msg.textContent = T.big; continue; }
+        if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
+        const it = { blob, url: URL.createObjectURL(blob) }; items.push(it); render(it);
+      } catch (e) { msg.textContent = T.bad; }
+    }
+  }
+
+  box.querySelector(".gf-att-pick").addEventListener("click", () => input.click());
+  input.addEventListener("change", () => { add([...input.files]); input.value = ""; });
+  drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
+  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+  drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); add([...e.dataTransfer.files]); });
+  document.addEventListener("paste", (e) => {
+    if (form.hidden) return;
+    const files = [...(e.clipboardData ? e.clipboardData.files : [])].filter((f) => f.type.startsWith("image/"));
+    if (files.length) { e.preventDefault(); add(files); }
+  });
+
+  const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+
+  // used by the form's submit handler
+  form._attach = {
+    count: () => items.length,
+    newId: () => "G" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(),
+    // true only when the script answered ok; a text/plain body keeps this a simple cross-origin request
+    send: async (id) => {
+      try {
+        const files = [];
+        for (const it of items) files.push({ type: it.blob.type, data: await b64(it.blob) });
+        const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ id, files }) });
+        const out = await res.json();
+        return !!(out && out.ok);
+      } catch (e) { return false; }
+    },
+    clear: () => { items.splice(0).forEach((it) => { URL.revokeObjectURL(it.url); it.li.remove(); }); msg.textContent = ""; },
+  };
 })();

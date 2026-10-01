@@ -808,3 +808,23 @@ html[lang="ko"] .legal-body h2, html[lang="ko"] .help .legal-body h2, html[lang=
 .gf-q textarea { border-radius: var(--ctl-r); font: 500 16px/1.5 var(--font-sans); }
 .gf-hint, .gf-note, .section-head .notify-note { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
 .gf-err, .gf-msg, .gate-msg, .section-head .notify-msg { font-size: 14px; line-height: 1.55; }
+
+/* feedback page: screenshots */
+.gf-att[hidden] { display: none; }
+.gf-att-h { margin: 0; color: var(--ink); font-size: 16px; font-weight: 600; line-height: 1.45; }
+.gf-drop { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; padding: 16px; border: 1px dashed var(--line-2); border-radius: var(--ctl-r); transition: border-color .15s ease, background-color .15s ease; }
+.gf-drop.over { border-color: var(--ink); background: var(--surface); }
+.gf-drop span { color: var(--ink-soft); font-size: 13px; }
+.gf-thumbs { list-style: none; display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0 0; padding: 0; }
+.gf-thumbs:empty { display: none; }
+.gf-thumbs li { position: relative; width: 96px; }
+.gf-thumbs img { display: block; width: 96px; height: 72px; object-fit: cover; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); }
+.gf-thumbs small { display: block; margin-top: 4px; color: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
+.gf-thumbs button { position: absolute; top: -16px; right: -16px; width: 44px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.gf-thumbs button::before { content: ""; grid-area: 1 / 1; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); }
+.gf-thumbs button svg { grid-area: 1 / 1; width: 12px; height: 12px; color: var(--bg); }
+.gf-thumbs button:active::before { transform: scale(.92); }
+.gf-thumbs button:focus-visible { outline: 2px solid var(--ink); outline-offset: -8px; border-radius: 50%; }
+.gf-att-msg, .gf-done .gf-att-fail { margin: 8px 0 0; color: #e09a88; font-size: 14px; line-height: 1.55; }
+.gf-att-msg:empty { display: none; }
+@media (prefers-reduced-motion: reduce) { .gf-drop { transition: none; } .gf-thumbs button:active::before { transform: none; } }
