@@ -769,3 +769,5 @@ h2, h3 { text-wrap: balance; }
   .help .legal-toc a { min-height: 40px; font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { .legal-body a.help-card { transition: none; } .legal-body a.help-card:active { transform: none; } }
+
+.case h3 a { display: inline-block; padding: 10px 0; margin: -10px 0; }
