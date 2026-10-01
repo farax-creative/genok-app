@@ -11,8 +11,8 @@
 /* Only the characters this site uses. Declared last so it is picked first. */
 @font-face {
   font-family: "Pretendard Variable";
-  src: url("assets/fonts/pretendard-site.5c92cced.woff2") format("woff2-variations"),
-       url("assets/fonts/pretendard-site.5c92cced.woff2") format("woff2");
+  src: url("assets/fonts/pretendard-site.44212610.woff2") format("woff2-variations"),
+       url("assets/fonts/pretendard-site.44212610.woff2") format("woff2");
   font-weight: 45 920;
   font-style: normal;
   font-display: swap;
@@ -896,3 +896,5 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
 .plan .price-alt .yr-save { font-size: 12px; font-weight: 600; color: var(--ink); border: 1px solid var(--line-2); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
 .plan .price-alt .yr-note { display: block; margin-top: 6px; color: var(--ink-dim); font-size: 13px; line-height: 1.5; }
 @media (min-width: 900px) { .plan .price-alt { min-height: 72px; } }
+.plan-foot a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+.plan-foot a:hover { color: var(--ink); }
