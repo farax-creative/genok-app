@@ -860,3 +860,11 @@ html[lang="ko"] .legal-body h2, html[lang="ko"] .help .legal-body h2, html[lang=
   .gf-sel-list.open { transition-delay: 0s; }
   .gf-sel-btn svg { transition: none; }
 }
+
+/* pricing: yearly price next to what twelve monthly payments cost */
+.plan .price-alt .yr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; color: var(--ink-soft); font-size: 14px; }
+.plan .price-alt .yr s { color: var(--ink-dim); text-decoration-thickness: 1px; }
+.plan .price-alt .yr b { color: var(--ink); font-weight: 600; font-size: 16px; font-variant-numeric: tabular-nums; }
+.plan .price-alt .yr-save { font-size: 12px; font-weight: 600; color: var(--ink); border: 1px solid var(--line-2); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.plan .price-alt .yr-note { display: block; margin-top: 6px; color: var(--ink-dim); font-size: 13px; line-height: 1.5; }
+@media (min-width: 900px) { .plan .price-alt { min-height: 72px; } }
