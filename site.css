@@ -830,6 +830,7 @@ body:has(> .gf-page) > .gf-page { flex: 1 0 auto; }
 html[lang="ko"] .gf-page .legal-head h1 { letter-spacing: -0.02em; }
 html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: -0.01em; }
 .gf-tag { letter-spacing: 0; vertical-align: 1px; }
+.changelog .cv small { font-size: 12px; }
 .gf-hint, .gf-note, .section-head .notify-note { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
 .gf-err, .gf-msg, .gate-msg, .section-head .notify-msg { font-size: 14px; line-height: 1.55; }
 
