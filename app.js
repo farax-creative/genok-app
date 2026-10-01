@@ -22,8 +22,8 @@
       features: ["Everything in Lite", "Full version history", "View on your phone", "More than one of your own accounts"],
       cta: "Coming soon", href: "", disabled: true, featured: true },
     { name: "Lifetime", badge: "", price: "$149", per: "once", alt: "No subscription",
-      line: "Pay once. Every later update included.",
-      features: ["Every Pro feature", "One payment", "Every later update, no time limit"],
+      line: "Pay once. Updates included while we run Genok.",
+      features: ["Every Pro feature", "One payment", "Updates for as long as we run Genok"],
       cta: "Coming soon", href: "", disabled: true, featured: false, seats: true },
   ];
   const PLANS_KO = [
@@ -36,8 +36,8 @@
       features: ["Lite 전부 포함", "버전 기록 전부 보관", "폰에서 보기", "본인 계정 여러 개 연결"],
       cta: "준비 중", href: "", disabled: true, featured: true },
     { name: "Lifetime", badge: "", price: "$149", per: "한 번", alt: "구독 없음",
-      line: "한 번 결제합니다. 이후 업데이트를 모두 포함합니다.",
-      features: ["Pro 기능 전부", "한 번 결제", "이후 업데이트 모두, 기간 제한 없음"],
+      line: "한 번 결제합니다. 운영하는 동안 업데이트를 포함합니다.",
+      features: ["Pro 기능 전부", "한 번 결제", "Genok을 운영하는 동안 업데이트 포함"],
       cta: "준비 중", href: "", disabled: true, featured: false, seats: true },
   ];
   const PLANS = KO ? PLANS_KO : PLANS_EN;
