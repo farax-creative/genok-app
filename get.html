@@ -4,14 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Genok 0.1.46 installer</title>
-<meta http-equiv="refresh" content="0; url=https://github.com/farax-creative/genok-app/releases/download/v0.1.46/Genok_0.1.46_x64-setup.exe">
+<title>Get Genok for Windows</title>
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0b0c;color:#efe9dc;font:16px/1.6 system-ui,sans-serif;padding:24px;box-sizing:border-box;text-align:center}
-a{color:#efe9dc}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0b0c;color:#efe9dc;font:16px/1.7 system-ui,sans-serif;padding:24px 16px;box-sizing:border-box;text-align:center;word-break:keep-all}
+main{max-width:420px}
+h1{font:400 28px/1.2 Georgia,serif;margin:0 0 20px}
+p{margin:0 0 6px}
+.dim{color:#a8a294;font-size:14.5px}
+a.btn{display:inline-block;margin-top:18px;padding:11px 20px;border:1px solid #efe9dc;border-radius:10px;color:#efe9dc;text-decoration:none}
+a.btn:focus-visible{outline:2px solid #efe9dc;outline-offset:3px}
 </style>
 </head>
 <body>
-<p>Genok 0.1.46 for Windows is downloading.<br>설치 파일을 받는 중입니다.<br><a href="https://github.com/farax-creative/genok-app/releases/download/v0.1.46/Genok_0.1.46_x64-setup.exe">Download again / 다시 받기</a></p>
+<main>
+<h1>Genok</h1>
+<p id="en">Genok runs on Windows. Open this page on a Windows PC to get the installer.</p>
+<p id="ko" lang="ko">Genok은 Windows용입니다. Windows PC에서 이 주소를 열면 설치 파일을 받습니다.</p>
+<a class="btn" id="dl" href="https://github.com/farax-creative/genok-app/releases/download/v0.1.46/Genok_0.1.46_x64-setup.exe">Download for Windows <span lang="ko">· 설치 파일 받기</span></a>
+</main>
+<script>
+// A Windows browser goes straight to the installer; anything else stays on the note above.
+if (/Windows NT/.test(navigator.userAgent)) {
+  document.getElementById('en').textContent = 'Your download is starting. If nothing happens, use the button below.';
+  document.getElementById('ko').textContent = '설치 파일을 받는 중입니다. 시작되지 않으면 아래 버튼을 누르세요.';
+  location.replace(document.getElementById('dl').href);
+}
+</script>
 </body>
 </html>
