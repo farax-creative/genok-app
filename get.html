@@ -1,34 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Get Genok for Windows</title>
+<title>Genok 베타 시작하기</title>
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0b0c;color:#efe9dc;font:16px/1.7 system-ui,sans-serif;padding:24px 16px;box-sizing:border-box;text-align:center;word-break:keep-all}
-main{max-width:420px}
-h1{font:400 28px/1.2 Georgia,serif;margin:0 0 20px}
-p{margin:0 0 6px}
+*{box-sizing:border-box}
+body{margin:0;background:#0b0b0c;color:#efe9dc;font:16px/1.65 'Pretendard Variable',Pretendard,'Segoe UI',system-ui,sans-serif;padding:clamp(32px,8vh,88px) 16px 56px;word-break:keep-all;overflow-wrap:anywhere}
+main{max-width:460px;margin:0 auto}
+h1{font:400 30px/1.2 Georgia,serif;margin:0 0 6px}
+.lead{color:#a8a294;margin:0 0 28px}
+ol{list-style:none;margin:0;padding:0;counter-reset:s}
+li{counter-increment:s;position:relative;padding:20px 0 22px 44px;border-top:1px solid #2a2925}
+li::before{content:counter(s);position:absolute;left:0;top:19px;width:28px;height:28px;border:1px solid #5a564c;border-radius:50%;font:400 15px/26px Georgia,serif;text-align:center}
+h2{font-size:17px;font-weight:600;margin:0 0 4px}
+p{margin:0 0 4px}
 .dim{color:#a8a294;font-size:14.5px}
-a.btn{display:inline-block;margin-top:18px;padding:11px 20px;border:1px solid #efe9dc;border-radius:10px;color:#efe9dc;text-decoration:none}
+[lang=en].dim{font-size:13.5px}
+b{font-weight:600;color:#efe9dc}
+a.btn{display:inline-flex;align-items:center;min-height:44px;margin:10px 0 10px;padding:8px 18px;border:1px solid #efe9dc;border-radius:10px;color:#efe9dc;text-decoration:none}
+a.btn:hover{background:#efe9dc;color:#0b0b0c}
+a.btn:active{transform:scale(.98)}
 a.btn:focus-visible{outline:2px solid #efe9dc;outline-offset:3px}
 </style>
 </head>
 <body>
 <main>
 <h1>Genok</h1>
-<p id="en">Genok runs on Windows. Open this page on a Windows PC to get the installer.</p>
-<p id="ko" lang="ko">Genok은 Windows용입니다. Windows PC에서 이 주소를 열면 설치 파일을 받습니다.</p>
-<a class="btn" id="dl" href="https://github.com/farax-creative/genok-app/releases/download/v0.1.46/Genok_0.1.46_x64-setup.exe">Download for Windows <span lang="ko">· 설치 파일 받기</span></a>
+<p class="lead">베타 시작하기 <span lang="en">· Start the beta</span></p>
+<ol>
+<li>
+<h2>설치 파일 받기</h2>
+<p class="dim" id="ko">Windows PC에서 받으세요. Genok은 Windows용입니다.</p>
+<p class="dim" id="en" lang="en">Genok runs on Windows. Get the installer on a Windows PC.</p>
+<a class="btn" id="dl" href="https://github.com/farax-creative/genok-app/releases/download/v0.1.46/Genok_0.1.46_x64-setup.exe">설치 파일 받기 <span lang="en">· Download for Windows</span></a>
+</li>
+<li>
+<h2>베타 키 받기</h2>
+<p>초대 메일에 적힌 키를 쓰세요.</p>
+<p class="dim" lang="en">Use the key in your invitation e-mail.</p>
+</li>
+<li>
+<h2>키 붙여 넣기</h2>
+<p class="dim">Genok을 열고 설정 › 라이선스에 키를 붙여 넣습니다.</p>
+<p class="dim" lang="en">Open Genok and paste the key under Settings › License.</p>
+</li>
+</ol>
 </main>
 <script>
-// A Windows browser goes straight to the installer; anything else stays on the note above.
-// (a local preview stays put so the page itself can be checked)
+// A Windows browser starts the installer download and stays on this page so the next steps remain visible.
+// (a local preview does nothing so the page itself can be checked)
 if (/Windows NT/.test(navigator.userAgent) && /(^|\.)genok\.app$/.test(location.hostname)) {
-  document.getElementById('en').textContent = 'Your download is starting. If nothing happens, use the button below.';
   document.getElementById('ko').textContent = '설치 파일을 받는 중입니다. 시작되지 않으면 아래 버튼을 누르세요.';
-  location.replace(document.getElementById('dl').href);
+  document.getElementById('en').textContent = 'Your download is starting. If nothing happens, use the button below.';
+  location.href = document.getElementById('dl').href;
 }
 </script>
 </body>
