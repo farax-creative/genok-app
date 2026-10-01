@@ -209,7 +209,19 @@
     btn.disabled = true;
     try {
       // The reply from Google is opaque here: only a network failure can be told apart.
-      await fetch(action, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
+      const data = new URLSearchParams(new FormData(form));
+      // screenshots travel separately; the same id goes into the text so the two can be matched
+      const att = form._attach && form._attach.count() ? form._attach : null;
+      const attId = att ? att.newId() : "";
+      const area = form.querySelector("textarea");
+      if (att && area) data.set(area.name, data.get(area.name) + "\n[" + (KO ? "첨부 " : "Attachments ") + attId + "]");
+      await fetch(action, { method: "POST", mode: "no-cors", body: data });
+      const old = done.querySelector(".gf-att-fail"); if (old) old.remove();
+      if (att && !(await att.send(attId))) {
+        const p = document.createElement("p"); p.className = "gf-att-fail";
+        p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
+        done.querySelector("h2").after(p);
+      }
       form.hidden = true; done.hidden = false; done.focus();
     } catch (err) { msg.innerHTML = FAIL; }
     btn.disabled = false;
@@ -223,7 +235,7 @@
   });
   const again = done.querySelector("[data-again]");
   if (again) again.addEventListener("click", () => {
-    form.reset(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
+    form.reset(); if (form._attach) form._attach.clear(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
     done.hidden = true; form.hidden = false; form.querySelector("textarea, input").focus();
   });
 })();
@@ -240,4 +252,181 @@
     });
   }, { rootMargin: "-90px 0px -65% 0px" });
   byId.forEach((a, id) => { const h = document.getElementById(id); if (h) io.observe(h); });
+})();
+
+(function () {
+  // Screenshots on the feedback page. Stays hidden until the Apps Script address is set.
+  const ATTACH_URL = "";
+  const MAX_FILES = 5, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
+  const box = document.querySelector(".gf-att"), form = document.querySelector("form.gform");
+  if (!box || !form || !ATTACH_URL) return;
+  const KO = document.documentElement.lang === "ko";
+  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 5장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", del: "지우기" }
+               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 5 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", del: "Remove" };
+  const input = box.querySelector(".gf-att-in"), drop = box.querySelector(".gf-drop"), list = box.querySelector(".gf-thumbs"), msg = box.querySelector(".gf-att-msg");
+  const items = [];   // { blob, url, li }
+  box.hidden = false;
+
+  async function shrink(file) {
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, MAX_SIDE / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(bmp.width * k)); c.height = Math.max(1, Math.round(bmp.height * k));
+    const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.drawImage(bmp, 0, 0, c.width, c.height);
+    for (const type of ["image/webp", "image/jpeg"]) {
+      for (const q of [0.9, 0.8, 0.7, 0.6, 0.5]) {
+        const blob = await new Promise((r) => c.toBlob(r, type, q));
+        if (!blob || blob.type !== type) break;   // this browser cannot write that type
+        if (blob.size <= MAX_BYTES) return blob;
+      }
+    }
+    return null;
+  }
+
+  function render(it) {
+    const li = document.createElement("li");
+    const img = document.createElement("img"); img.src = it.url; img.alt = "";
+    const size = document.createElement("small"); size.textContent = Math.max(1, Math.round(it.blob.size / 1024)) + " KB";
+    const del = document.createElement("button"); del.type = "button"; del.setAttribute("aria-label", T.del);
+    del.innerHTML = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
+    del.addEventListener("click", () => { URL.revokeObjectURL(it.url); items.splice(items.indexOf(it), 1); li.remove(); msg.textContent = ""; });
+    li.append(img, size, del); list.appendChild(li); it.li = li;
+  }
+
+  async function add(files) {
+    msg.textContent = "";
+    for (const f of files) {
+      if (!/^image\/(png|jpeg|webp)$/.test(f.type)) { msg.textContent = T.type; continue; }
+      if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
+      try {
+        const blob = await shrink(f);
+        if (!blob) { msg.textContent = T.big; continue; }
+        if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
+        const it = { blob, url: URL.createObjectURL(blob) }; items.push(it); render(it);
+      } catch (e) { msg.textContent = T.bad; }
+    }
+  }
+
+  box.querySelector(".gf-att-pick").addEventListener("click", () => input.click());
+  input.addEventListener("change", () => { add([...input.files]); input.value = ""; });
+  drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
+  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+  drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); add([...e.dataTransfer.files]); });
+  document.addEventListener("paste", (e) => {
+    if (form.hidden) return;
+    const files = [...(e.clipboardData ? e.clipboardData.files : [])].filter((f) => f.type.startsWith("image/"));
+    if (files.length) { e.preventDefault(); add(files); }
+  });
+
+  const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+
+  // used by the form's submit handler
+  form._attach = {
+    count: () => items.length,
+    newId: () => "G" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(),
+    // true only when the script answered ok; a text/plain body keeps this a simple cross-origin request
+    send: async (id) => {
+      try {
+        const files = [];
+        for (const it of items) files.push({ type: it.blob.type, data: await b64(it.blob) });
+        const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ id, files }) });
+        const out = await res.json();
+        return !!(out && out.ok);
+      } catch (e) { return false; }
+    },
+    clear: () => { items.splice(0).forEach((it) => { URL.revokeObjectURL(it.url); it.li.remove(); }); msg.textContent = ""; },
+  };
+})();
+
+(function () {
+  // "App version" on the feedback page: a dropdown. The newest version comes from the app's own
+  // update feed, older ones from the public release list. If neither can be read, the plain text field stays.
+  const RELEASES_URL = "https://api.github.com/repos/farax-creative/genok-app/releases?per_page=12";
+  const LATEST_URL = "https://genok.app/update/latest.json";
+  const input = document.querySelector('form.gform [name="entry.1002962770"]'); if (!input) return;
+  const form = input.form, q = input.closest(".gf-q");
+  const KO = document.documentElement.lang === "ko";
+  const T = KO ? { latest: "최신", unsure: "잘 모르겠어요", pick: "버전 고르기", hint: "설정 화면에 보이는 숫자 · 최신은 " }
+               : { latest: "latest", unsure: "Not sure", pick: "Choose a version", hint: "The number shown in Settings · the latest is " };
+  const num = (v) => v.split(".").map(Number);
+  const newer = (a, b) => { const x = num(a), y = num(b); for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return y[i] - x[i]; return 0; };
+
+  const ver = (t) => (/^v?(\d+\.\d+\.\d+)$/.exec(String(t || "")) || [])[1];
+  async function get(url, opts) {
+    const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 5000);
+    try { const res = await fetch(url, Object.assign({ signal: ctl.signal }, opts)); if (!res.ok) throw new Error(url + " " + res.status); return await res.json(); }
+    finally { clearTimeout(timer); }
+  }
+  async function versions() {
+    try { const c = JSON.parse(sessionStorage.getItem("genok-versions") || "null"); if (c && Array.isArray(c.list) && c.list.length) return c; } catch (e) {}
+    const [feed, rel] = await Promise.allSettled([get(LATEST_URL, { cache: "no-store" }), get(RELEASES_URL, { headers: { Accept: "application/vnd.github+json" } })]);
+    const set = new Set();
+    const fed = feed.status === "fulfilled" ? ver(feed.value && feed.value.version) : "";
+    if (fed) set.add(fed);
+    if (rel.status === "fulfilled" && Array.isArray(rel.value)) rel.value.filter((r) => !r.draft && !r.prerelease).forEach((r) => { const v = ver(r.tag_name); if (v) set.add(v); });
+    const list = [...set].sort(newer);
+    if (!list.length) throw new Error("no versions");
+    const out = { list: list, latest: fed || list[0] };
+    try { sessionStorage.setItem("genok-versions", JSON.stringify(out)); } catch (e) {}
+    return out;
+  }
+
+  function build(found) {
+    const all = found.list, latest = found.latest;
+    const opts = all.slice(0, 5).map((v) => ({ value: v, tag: v === latest ? T.latest : "" }));
+    // the app opens this page with ?v=<its version>; keep it even if it is not in the list yet
+    const given = input.value.trim();
+    if (/^\d+\.\d+\.\d+$/.test(given) && !opts.some((o) => o.value === given)) { opts.push({ value: given, tag: "" }); opts.sort((a, b) => newer(a.value, b.value)); }
+    opts.push({ value: T.unsure, tag: "", sep: true });
+    const first = opts.some((o) => o.value === given) ? given : "";
+
+    const id = input.id;
+    const wrap = document.createElement("div"); wrap.className = "gf-sel";
+    const btn = document.createElement("button"); btn.type = "button"; btn.className = "gf-sel-btn"; btn.id = id + "-btn";
+    btn.setAttribute("aria-haspopup", "listbox"); btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-controls", id + "-list");
+    btn.innerHTML = '<span class="gf-sel-val"></span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6"/></svg>';
+    const val = btn.firstChild;
+    const list = document.createElement("ul"); list.className = "gf-sel-list"; list.id = id + "-list"; list.tabIndex = -1; list.setAttribute("role", "listbox");
+    const label = q.querySelector("label");
+    label.id = id + "-label"; label.htmlFor = btn.id; list.setAttribute("aria-labelledby", label.id);
+    const text = (o) => o.value + (o.tag ? "<small>" + o.tag + "</small>" : "");
+    const items = opts.map((o, i) => {
+      const li = document.createElement("li"); li.id = id + "-o" + i; li.setAttribute("role", "option"); li.innerHTML = text(o);
+      if (o.sep) li.classList.add("gf-sel-sep");
+      li.addEventListener("click", () => { choose(i); close(true); });
+      li.addEventListener("pointermove", () => mark(i));
+      list.appendChild(li); return li;
+    });
+    let at = -1, picked = -1;
+    function mark(i) { at = i; items.forEach((li, k) => li.classList.toggle("on", k === i)); if (i >= 0) { list.setAttribute("aria-activedescendant", items[i].id); items[i].scrollIntoView({ block: "nearest" }); } }
+    function choose(i) {
+      picked = i; items.forEach((li, k) => li.setAttribute("aria-selected", String(k === i)));
+      input.value = i < 0 ? "" : opts[i].value;
+      val.innerHTML = i < 0 ? T.pick : text(opts[i]); btn.toggleAttribute("data-empty", i < 0);
+    }
+    const isOpen = () => list.classList.contains("open");
+    function open() { list.classList.add("open"); btn.setAttribute("aria-expanded", "true"); mark(picked < 0 ? 0 : picked); list.focus({ preventScroll: true }); }
+    function close(back) { list.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); if (back) btn.focus(); }
+    btn.addEventListener("click", () => (isOpen() ? close(true) : open()));
+    btn.addEventListener("keydown", (e) => { if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); open(); } });
+    list.addEventListener("keydown", (e) => {
+      const k = e.key;
+      if (k === "ArrowDown") { e.preventDefault(); mark(Math.min(items.length - 1, at + 1)); }
+      else if (k === "ArrowUp") { e.preventDefault(); mark(Math.max(0, at - 1)); }
+      else if (k === "Home") { e.preventDefault(); mark(0); }
+      else if (k === "End") { e.preventDefault(); mark(items.length - 1); }
+      else if (k === "Enter" || k === " ") { e.preventDefault(); choose(at); close(true); }
+      else if (k === "Escape") { e.preventDefault(); e.stopPropagation(); close(true); }
+      else if (k === "Tab") close(false);
+    });
+    document.addEventListener("pointerdown", (e) => { if (isOpen() && !wrap.contains(e.target)) close(false); });
+    form.addEventListener("reset", () => setTimeout(() => choose(first ? opts.findIndex((o) => o.value === first) : -1)));
+
+    input.type = "hidden"; input.removeAttribute("id");
+    wrap.append(btn, list); input.before(wrap);
+    choose(first ? opts.findIndex((o) => o.value === first) : -1);
+    const hint = q.querySelector(".gf-hint"); if (hint) hint.textContent = T.hint + latest;
+  }
+
+  versions().then(build).catch(() => {});
 })();
