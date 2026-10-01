@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>설치와 연결 - Genok</title>
-<meta name="description" content="Genok을 설치하고, Windows 경고 화면을 넘기고, Claude Code / Codex를 연결해 첫 결과물을 올리는 방법.">
-<meta property="og:title" content="설치와 연결 - Genok">
-<meta property="og:description" content="Genok을 설치하고, Windows 경고 화면을 넘기고, Claude Code / Codex를 연결해 첫 결과물을 올리는 방법.">
+<meta name="robots" content="noindex">
+<title>베타 신청 - Genok</title>
+<meta name="description" content="Genok 클로즈 베타 신청.">
+<meta property="og:title" content="베타 신청 - Genok">
+<meta property="og:description" content="Genok 클로즈 베타 신청.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://genok.app/help.ko.html">
+<meta property="og:url" content="https://genok.app/beta.ko.html">
 <meta property="og:image" content="https://genok.app/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,10 +25,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="canonical" href="https://genok.app/help.ko.html">
-<link rel="alternate" hreflang="en" href="https://genok.app/help.html">
-<link rel="alternate" hreflang="ko" href="https://genok.app/help.ko.html">
-<link rel="alternate" hreflang="x-default" href="https://genok.app/help.html">
+<link rel="canonical" href="https://genok.app/beta.ko.html">
+<link rel="alternate" hreflang="en" href="https://genok.app/beta.html">
+<link rel="alternate" hreflang="ko" href="https://genok.app/beta.ko.html">
+<link rel="alternate" hreflang="x-default" href="https://genok.app/beta.html">
 <meta property="og:locale" content="ko_KR">
 </head>
 <body>
@@ -45,7 +46,7 @@
       <a href="index.ko.html#pricing">가격</a>
       <a href="index.ko.html#faq">FAQ</a>
     </nav>
-    <details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="help.html" lang="en" hreflang="en">English</a><a href="help.ko.html" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
+    <details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="beta.html" lang="en" hreflang="en">English</a><a href="beta.ko.html" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
     <a class="btn btn-primary nav-dl" href="download.ko.html">다운로드</a>
     <button class="burger" id="burger" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
@@ -62,122 +63,27 @@
   </nav>
 </header>
 
-<main id="main" class="legal help">
+<main id="main" class="legal gf-page">
   <div class="wrap">
     <div class="legal-head">
-      <h1>설치와 연결</h1>
-      <p class="updated">베타 · 0.1.44 기준</p>
+      <h1>베타 신청</h1>
+      <p class="gf-lead">Windows용 클로즈 베타입니다. 참가하시면 Pro 1년 이용권을 드립니다. 설치 파일과 키는 적어 주신 메일로 보냅니다.</p>
+      <p class="gf-warn">이미 허브를 따로 쓰고 계신 분은 Genok과 충돌할 수 있으니 설치 전에 먼저 알려 주세요.</p>
     </div>
-
-    <nav class="legal-toc" aria-label="목차">
-      <h2>목차</h2>
-      <ol>
-        <li><a href="#install">설치</a></li>
-        <li><a href="#first">첫 실행</a></li>
-        <li><a href="#connect">Claude Code / Codex 연결</a></li>
-        <li><a href="#push">결과물 올리기</a></li>
-        <li><a href="#update">업데이트</a></li>
-        <li><a href="#remove">제거와 데이터</a></li>
-        <li><a href="#stuck">자주 막히는 곳</a></li>
-      </ol>
-    </nav>
-
-    <div class="legal-body">
-      <p>막히면 아래 순서대로 보세요. 그래도 안 되면 설정의 "문제 진단" 카드에서 <b>진단 묶음 저장</b>으로 만든 파일을 보내 주세요. 이 파일에는 Windows 사용자 이름이 든 폴더 경로와 프로젝트 이름이 들어 있습니다. <span class="tbd">0.1.45에서 바뀔 수 있음</span></p>
-      <p>쓰다가 불편한 것이 있으면 그때 바로 제목 줄의 <b>의견 남기기</b>를 눌러 한 줄 적어 주세요. 창이 좁아 버튼이 안 보이면 설정 › 정보의 <b>양식 열기</b>를 누릅니다. 버튼이 아직 없는 버전에서는 <a href="https://forms.gle/fpbTVC1g6UH4ZqQ59" rel="noopener">의견 양식</a>에 적어 주세요. <span class="tbd">버튼은 0.1.45에 들어갈 예정</span> 그 밖의 문의는 <a href="mailto:support@genok.app">support@genok.app</a>으로 보내 주세요.</p>
-
-      <h2 id="install">1. 설치</h2>
-      <ul>
-        <li><code>Genok_0.1.44_x64-setup.exe</code> 하나만 실행합니다. 관리자 권한은 묻지 않습니다.</li>
-        <li>고를 것이 없습니다. 로고와 가는 진행선만 있는 작은 화면이 잠깐 보이고, 끝나면 Genok이 바로 켜집니다. <span class="tbd">0.1.45에서 확정</span></li>
-        <li><code>%LOCALAPPDATA%\Programs\Genok</code> 폴더에 설치됩니다. 파이썬이나 ffmpeg를 따로 깔 필요는 없습니다.</li>
-      </ul>
-
-      <h3>파란 "Windows의 PC 보호" 창이 뜨면</h3>
-      <p>아직 코드 서명 인증서가 없어서 뜨는 경고입니다. 두 번 누르면 넘어갑니다.</p>
-      <ol>
-        <li><b>추가 정보</b>를 누릅니다.</li>
-        <li>아래에 생기는 <b>실행</b>을 누릅니다.</li>
-      </ol>
-      <div class="shots">
-        <figure class="shot"><div class="shot-box">그림 자리: "Windows의 PC 보호" 창, <b>추가 정보</b> 위치 표시</div><figcaption>1. 추가 정보</figcaption></figure>
-        <figure class="shot"><div class="shot-box">그림 자리: 같은 창, <b>실행</b> 버튼 표시</div><figcaption>2. 실행</figcaption></figure>
-      </div>
-
-      <h3>"Genok을 설치하지 못했어요"가 뜨면</h3>
-      <p>열려 있는 Genok을 트레이에서 종료하고 설치 파일을 다시 실행합니다. 계속 안 되면 <code>%LOCALAPPDATA%\Genok\install.log</code>를 보내 주세요.</p>
-
-      <h3>창이 하얗게만 뜨면</h3>
-      <p>Edge WebView2가 없는 것입니다. Windows 11에는 기본으로 들어 있고, Windows 10에서는 Microsoft에서 "WebView2 런타임"을 받아 설치합니다.</p>
-
-      <h2 id="first">2. 첫 실행</h2>
-      <ul>
-        <li>시작 메뉴나 바탕화면의 Genok을 엽니다. 첫 설정 화면이 순서대로 안내합니다.</li>
-        <li>결과물은 기본으로 <code>문서\Genok</code>에 쌓입니다. 첫 설정에서 다른 폴더로 바꿀 수 있습니다.</li>
-        <li>창을 닫아도 꺼지지 않고 트레이(시계 옆)에 남습니다. 완전히 끄려면 트레이 아이콘에서 <b>종료</b>를 누릅니다.</li>
-      </ul>
-
-      <h3 id="key">베타 키 넣기</h3>
-      <ol>
-        <li>설정 › 라이선스를 열고, 메일로 받은 키를 통째로 복사해 붙여 넣습니다.</li>
-        <li>키가 맞으면 폰에서 보기, 여러 계정 연결, 버전 전부 보관, 폰 알림 같은 Pro 기능이 열립니다.</li>
-        <li>안 되면 키 전체를 다시 복사해 붙여 넣으세요. 그래도 안 되면 키를 받은 메일에 답장해 주세요.</li>
-      </ol>
-
-      <h2 id="connect">3. Claude Code / Codex 연결</h2>
-      <p>첫 설정의 Claude Code 단계에는 셋 중 하나가 보입니다.</p>
-      <ul>
-        <li><b>Claude Code가 없어요</b>: 아래 순서대로 설치한 뒤 <b>다시 확인</b>을 누릅니다.</li>
-        <li><b>로그인이 필요해요</b>: <b>로그인하기</b>를 누르면 검은 터미널 창이 새로 뜨고 Claude Code가 그 안에서 켜집니다. 안내대로 로그인한 뒤 Genok으로 돌아와 <b>다시 확인</b>을 누릅니다. 터미널 창은 닫아도 됩니다.</li>
-        <li><b>Claude Code 연결됨</b>: 그대로 다음으로 갑니다. Genok이 Claude Code 설정에 훅과 스킬을 넣고, 원래 설정은 <code>settings.json.bak-&lt;시각&gt;</code>으로 백업합니다.</li>
-      </ul>
-
-      <h3>Claude Code가 없을 때</h3>
-      <ol>
-        <li>시작 메뉴에서 PowerShell을 열고 아래 한 줄을 붙여 넣은 뒤 Enter를 누릅니다. 관리자 권한은 필요 없습니다.
-          <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre></li>
-        <li>끝나면 PowerShell을 <b>새로</b> 열어 <code>claude</code>를 실행하고 브라우저에서 로그인합니다. Claude Pro·Max·Team 같은 유료 플랜이나 Console 계정이 있어야 합니다. 무료 플랜으로는 안 됩니다.</li>
-        <li>Genok으로 돌아와 <b>다시 확인</b>을 누릅니다. 그래도 "없어요"가 나오면 Genok을 트레이에서 종료했다가 다시 켭니다. <span class="tbd">0.1.45에서 고쳐질 예정</span></li>
-      </ol>
-
-      <div class="callout">
-        <p><b>이미 열려 있던 Claude Code / Codex 창은 새로 열어야</b> 연결이 적용됩니다.</p>
-      </div>
-      <ul>
-        <li>Codex를 쓰면, 연결한 뒤 터미널에서 <code>codex</code>를 열고 <code>/hooks</code>에서 훅을 한 번 허락해야 코멘트가 전달됩니다.</li>
-        <li>Claude 데스크톱 앱과 ChatGPT 데스크톱 앱에서는 올리기와 코멘트 읽기만 됩니다. 세션(Claude Code나 Codex를 켜 둔 작업 창)을 깨워 주지는 않습니다.</li>
-      </ul>
-
-      <h2 id="push">4. 결과물 올리기</h2>
-      <p>Claude Code / Codex에게 "결과물을 Genok에 올려줘"라고 하면 됩니다. 직접 하려면 설정의 "세션에서 올릴 때 쓰는 명령" 카드에 있는 명령을 씁니다.</p>
-      <pre><code>"%LOCALAPPDATA%\Programs\Genok\_internal\loop.exe" push &lt;파일&gt; --item &lt;이름&gt; --note "메모"</code></pre>
-      <ul>
-        <li>같은 <code>--item</code>으로 다시 올리면 v002, v003으로 쌓여 비교할 수 있습니다.</li>
-        <li>올리기가 거절되면 답하지 않은 코멘트가 남아 있는 것입니다. <code>loop.exe todo --item &lt;이름&gt;</code>으로 확인하고, 반영한 것은 <code>--fixed &lt;id&gt;</code>, 미룬 것은 <code>--later &lt;id&gt;</code>를 붙여 다시 올립니다.</li>
-        <li>올라간 뒤 나오는 <code>http://localhost:8777/i/...</code> 주소는 이 PC에서만 열립니다. <span class="tbd">0.1.45에서 바뀔 수 있음</span></li>
-      </ul>
-
-      <h2 id="update">5. 업데이트</h2>
-      <ul>
-        <li>새 버전이 있으면 설정 화면에 <b>지금 업데이트</b> 버튼이 뜹니다. 누르면 받아서 바꾼 뒤 스스로 다시 켜집니다. <span class="tbd">0.1.45에서 확정</span></li>
-        <li>"확인하지 못했어요"가 뜨면 인터넷 연결을 확인하고 <b>다시 시도</b>를 누릅니다.</li>
-        <li>업데이트 뒤 앱이 안 켜지거나 버전이 그대로면 새 설치 파일을 받아 그대로 다시 설치하세요. 데이터와 설정은 남습니다.</li>
-        <li>업데이트 직후 앱이 한 번에 안 뜨면 시작 메뉴에서 Genok을 다시 엽니다.</li>
-      </ul>
-
-      <h2 id="remove">6. 제거와 데이터</h2>
-      <ul>
-        <li>Windows 설정 → 앱 → Genok → 제거. 바로가기, 설치 폴더, 로그인 때 자동 시작이 지워지고 Claude Code와 Codex에 넣었던 연결(훅·스킬)도 같이 빠집니다. <span class="tbd">0.1.45에서 확정</span></li>
-        <li><b>결과물과 코멘트는 지워지지 않습니다.</b> 다 지우려면 <code>문서\Genok</code>(또는 직접 고른 폴더)을 따로 삭제합니다.</li>
-      </ul>
-
-      <h2 id="stuck">7. 자주 막히는 곳</h2>
-      <h3>코멘트를 남겼는데 Claude가 모릅니다</h3>
-      <p>Claude Code / Codex 창을 연결한 뒤에 새로 열었는지, 결과물을 올린 폴더와 같은 폴더에서 일하는 세션인지 확인합니다.</p>
-      <h3>주소가 안 열립니다</h3>
-      <p>트레이에 Genok이 떠 있는지 확인합니다. 다른 프로그램이 8777 포트를 쓰고 있으면 Genok이 8778~8796 중 빈 포트를 고릅니다. 앱 창에서 여는 것이 가장 확실합니다.</p>
-      <h3>폰에서 보고 싶습니다</h3>
-      <p>폰에서 보기는 Pro 기능입니다. 베타에서는 PC에서만 확인해 주세요.</p>
+    <form class="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSfq5Vh1DucD6my1nwPU5FQt4-eUV4dTVTpI31Cnmodh62Qs1Q/formResponse" method="post" novalidate>
+      <div class="gf-q" data-kind="email" data-req="1"><label for="beta-q1">연락받을 이메일<span class="gf-tag">필수</span></label><input id="beta-q1" type="email" name="entry.1786412760" autocomplete="email" inputmode="email" spellcheck="false" placeholder="name@example.com" aria-describedby="beta-q1-err"><p class="gf-err" id="beta-q1-err"></p></div>
+      <fieldset class="gf-q" data-kind="radio" data-req="1" aria-describedby="beta-q2-err"><legend>운영체제<span class="gf-tag">필수</span></legend><div class="gf-opts"><label><input type="radio" name="entry.291280637" value="Windows 11"><span>Windows 11</span></label><label><input type="radio" name="entry.291280637" value="Windows 10"><span>Windows 10</span></label><label><input type="radio" name="entry.291280637" value="macOS"><span>macOS</span></label><label><input type="radio" name="entry.291280637" value="기타"><span>기타</span></label></div><p class="gf-err" id="beta-q2-err"></p></fieldset>
+      <fieldset class="gf-q" data-kind="check" data-req="1" aria-describedby="beta-q3-err"><legend>쓰는 AI 도구<span class="gf-tag">필수</span></legend><span class="gf-hint">여러 개 고를 수 있습니다</span><div class="gf-opts"><label><input type="checkbox" name="entry.1215019715" value="Claude Code"><span>Claude Code</span></label><label><input type="checkbox" name="entry.1215019715" value="Codex"><span>Codex</span></label><label><input type="checkbox" name="entry.1215019715" value="Cursor"><span>Cursor</span></label><label><input type="checkbox" name="entry.1215019715" value="Gemini CLI"><span>Gemini CLI</span></label><label><input type="checkbox" name="entry.1215019715" value="ChatGPT·Claude 같은 채팅 앱"><span>ChatGPT·Claude 같은 채팅 앱</span></label><label><input type="checkbox" name="entry.1215019715" value="__other_option__" data-other="beta-q3-other"><span>기타</span></label></div><input class="gf-other" id="beta-q3-other" type="text" name="entry.1215019715.other_option_response" aria-label="기타" placeholder="직접 입력" autocomplete="off" hidden><p class="gf-err" id="beta-q3-err"></p></fieldset>
+      <fieldset class="gf-q" data-kind="check" data-req="1" aria-describedby="beta-q4-err"><legend>AI로 주로 만드는 것<span class="gf-tag">필수</span></legend><span class="gf-hint">여러 개 고를 수 있습니다</span><div class="gf-opts"><label><input type="checkbox" name="entry.87194362" value="3D·렌더"><span>3D·렌더</span></label><label><input type="checkbox" name="entry.87194362" value="영상·모션"><span>영상·모션</span></label><label><input type="checkbox" name="entry.87194362" value="이미지·디자인"><span>이미지·디자인</span></label><label><input type="checkbox" name="entry.87194362" value="웹·앱 화면"><span>웹·앱 화면</span></label><label><input type="checkbox" name="entry.87194362" value="문서·코드"><span>문서·코드</span></label><label><input type="checkbox" name="entry.87194362" value="__other_option__" data-other="beta-q4-other"><span>기타</span></label></div><input class="gf-other" id="beta-q4-other" type="text" name="entry.87194362.other_option_response" aria-label="기타" placeholder="직접 입력" autocomplete="off" hidden><p class="gf-err" id="beta-q4-err"></p></fieldset>
+      <fieldset class="gf-q" data-kind="check" data-req="1" aria-describedby="beta-q5-err"><legend>AI가 만든 결과물을 지금 어디서 확인하시나요?<span class="gf-tag">필수</span></legend><span class="gf-hint">여러 개 고를 수 있습니다</span><div class="gf-opts"><label><input type="checkbox" name="entry.753540635" value="터미널·채팅창 안에서"><span>터미널·채팅창 안에서</span></label><label><input type="checkbox" name="entry.753540635" value="파일을 직접 열어서"><span>파일을 직접 열어서</span></label><label><input type="checkbox" name="entry.753540635" value="브라우저로"><span>브라우저로</span></label><label><input type="checkbox" name="entry.753540635" value="폰이나 메신저로 보내서"><span>폰이나 메신저로 보내서</span></label><label><input type="checkbox" name="entry.753540635" value="__other_option__" data-other="beta-q5-other"><span>기타</span></label></div><input class="gf-other" id="beta-q5-other" type="text" name="entry.753540635.other_option_response" aria-label="기타" placeholder="직접 입력" autocomplete="off" hidden><p class="gf-err" id="beta-q5-err"></p></fieldset>
+      <p class="gf-msg" role="status" aria-live="polite"></p>
+      <p><button class="btn btn-primary" type="submit">신청 보내기</button></p>
+      <p class="gf-note">답은 구글 폼에 저장하고 베타를 운영하는 데만 씁니다.</p>
+    </form>
+    <div class="gf-done" tabindex="-1" hidden>
+      <h2>보냈습니다.</h2>
+      <p>답을 페이지에서 확인할 수는 없습니다. 며칠 안에 메일이 오지 않으면 support@genok.app으로 알려 주세요.</p>
+      
     </div>
   </div>
 </main>

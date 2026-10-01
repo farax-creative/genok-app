@@ -95,30 +95,7 @@
     }
   }
 
-  /* ---- invite-code gate (MOCK) ---------------------------------------
-     This only shows the flow. A check in the browser is not a lock: the real
-     site must verify the code on a server and hand back the installer link. */
-  function gate() {
-    const form = document.getElementById("gate-form"); if (!form) return;
-    const input = document.getElementById("gate-code");
-    const msg = document.getElementById("gate-msg");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const code = input.value.trim().toUpperCase();
-      if (!code) { msg.textContent = KO ? "베타 키를 입력하세요." : "Enter your beta key."; input.setAttribute("aria-invalid", "true"); input.focus(); return; }
-      // DEMO VALUE ONLY: never put a real beta key in this file, it is public.
-      if (code !== "GENOK-BETA") {
-        msg.textContent = KO ? "키가 맞지 않습니다. 받은 키를 다시 확인해 주세요." : "That key doesn't match. Check the one we sent you.";
-        input.setAttribute("aria-invalid", "true"); input.focus(); return;
-      }
-      document.getElementById("gate").hidden = true;
-      document.getElementById("gate-dl").hidden = false;
-      const dl = document.querySelector("#gate-dl a"); if (dl) dl.focus();
-    });
-    input.addEventListener("input", () => { msg.textContent = ""; input.removeAttribute("aria-invalid"); });
-  }
-
-  function init() { chrome(); renderPlans(); gate(); }
+  function init() { chrome(); renderPlans(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
@@ -137,4 +114,99 @@
   all.forEach((d) => d.addEventListener("toggle", () => { if (d.open) all.forEach((o) => { if (o !== d) o.open = false; }); }));
   document.addEventListener("click", (e) => { if (m.open && !m.contains(e.target)) m.open = false; });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && m.open) { m.open = false; m.querySelector("summary").focus(); } });
+})();
+
+(function () {
+  const form = document.getElementById("notify-form"); if (!form) return;
+  const KO = document.documentElement.lang === "ko";
+  const input = document.getElementById("notify-email");
+  const msg = document.getElementById("notify-msg");
+  const btn = form.querySelector("button");
+  const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
+  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
+  const say = (html, bad) => { msg.innerHTML = html; msg.classList.toggle("bad", !!bad); };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const v = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+      say(KO ? "메일 주소를 다시 확인해 주세요." : "Check the e-mail address.", true);
+      input.setAttribute("aria-invalid", "true"); input.focus(); return;
+    }
+    const action = form.getAttribute("action");
+    if (!action) { say(FAIL, true); return; }
+    btn.disabled = true;
+    try {
+      // The reply from Google is opaque here: only a network failure can be told apart.
+      await fetch(action, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
+      form.reset();
+      say(KO ? "신청됐습니다. 정식으로 열리면 메일로 알려 드립니다." : "You're on the list. We'll e-mail you when Genok opens.");
+    } catch (err) { say(FAIL, true); }
+    btn.disabled = false;
+  });
+  input.addEventListener("input", () => { if (msg.classList.contains("bad")) say(""); input.removeAttribute("aria-invalid"); });
+})();
+
+(function () {
+  const form = document.querySelector("form.gform"); if (!form) return;
+  const KO = document.documentElement.lang === "ko";
+  const done = document.querySelector(".gf-done");
+  const msg = form.querySelector(".gf-msg");
+  const btn = form.querySelector('button[type="submit"]');
+  const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
+  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
+  const TXT = KO ? { need: "이 항목을 채워 주세요.", pick: "하나 이상 골라 주세요.", mail: "메일 주소를 다시 확인해 주세요.", other: "기타 내용을 적어 주세요." }
+                 : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the e-mail address.", other: "Type what the other one is." };
+  const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  // the "other" choice opens its own text field
+  form.querySelectorAll("input[data-other]").forEach((box) => {
+    const field = document.getElementById(box.dataset.other);
+    const sync = () => { field.hidden = !box.checked; field.disabled = !box.checked; if (box.checked) field.focus(); };
+    field.disabled = true;
+    box.closest(".gf-q").addEventListener("change", (e) => { if (e.target === box || e.target.type === "radio") sync(); });
+  });
+
+  function check(q) {
+    const err = q.querySelector(".gf-err");
+    const kind = q.dataset.kind, req = q.dataset.req === "1";
+    let bad = "", focus = null;
+    if (kind === "radio" || kind === "check") {
+      const on = [...q.querySelectorAll(".gf-opts input:checked")];
+      const other = q.querySelector(".gf-other");
+      focus = q.querySelector(".gf-opts input");
+      if (req && !on.length) bad = TXT.pick;
+      else if (other && !other.hidden && !other.value.trim()) { bad = TXT.other; focus = other; }
+    } else {
+      const f = q.querySelector("input, textarea"); focus = f;
+      const v = f.value.trim();
+      if (req && !v) bad = TXT.need;
+      else if (kind === "email" && v && !isMail(v)) bad = TXT.mail;
+      f.toggleAttribute("aria-invalid", !!bad);
+    }
+    err.textContent = bad;
+    return bad ? focus : null;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.innerHTML = "";
+    const firstBad = [...form.querySelectorAll(".gf-q")].map(check).find(Boolean);
+    if (firstBad) { firstBad.focus(); return; }
+    const action = form.getAttribute("action");
+    if (!action) { msg.innerHTML = FAIL; return; }
+    btn.disabled = true;
+    try {
+      // The reply from Google is opaque here: only a network failure can be told apart.
+      await fetch(action, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
+      form.hidden = true; done.hidden = false; done.focus();
+    } catch (err) { msg.innerHTML = FAIL; }
+    btn.disabled = false;
+  });
+  form.addEventListener("input", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
+  form.addEventListener("change", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
+  const again = done.querySelector("[data-again]");
+  if (again) again.addEventListener("click", () => {
+    form.reset(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
+    done.hidden = true; form.hidden = false; form.querySelector("textarea, input").focus();
+  });
 })();

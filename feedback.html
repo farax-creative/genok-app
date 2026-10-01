@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Install and connect - Genok</title>
-<meta name="description" content="How to install Genok, get past the Windows warning, connect Claude Code / Codex and send your first result.">
-<meta property="og:title" content="Install and connect - Genok">
-<meta property="og:description" content="How to install Genok, get past the Windows warning, connect Claude Code / Codex and send your first result.">
+<title>Send feedback - Genok</title>
+<meta name="description" content="Tell the Genok team what got in your way.">
+<meta property="og:title" content="Send feedback - Genok">
+<meta property="og:description" content="Tell the Genok team what got in your way.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://genok.app/help.html">
+<meta property="og:url" content="https://genok.app/feedback.html">
 <meta property="og:image" content="https://genok.app/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,10 +24,10 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
 <script>document.documentElement.classList.add("js")</script>
-<link rel="canonical" href="https://genok.app/help.html">
-<link rel="alternate" hreflang="en" href="https://genok.app/help.html">
-<link rel="alternate" hreflang="ko" href="https://genok.app/help.ko.html">
-<link rel="alternate" hreflang="x-default" href="https://genok.app/help.html">
+<link rel="canonical" href="https://genok.app/feedback.html">
+<link rel="alternate" hreflang="en" href="https://genok.app/feedback.html">
+<link rel="alternate" hreflang="ko" href="https://genok.app/feedback.ko.html">
+<link rel="alternate" hreflang="x-default" href="https://genok.app/feedback.html">
 <meta property="og:locale" content="en_US">
 </head>
 <body>
@@ -45,7 +45,7 @@
       <a href="index.html#pricing">Pricing</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
-    <details class="lang-menu"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="help.html" lang="en" hreflang="en" aria-current="true">English</a><a href="help.ko.html" lang="ko" hreflang="ko">한국어</a></div></details>
+    <details class="lang-menu"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="feedback.html" lang="en" hreflang="en" aria-current="true">English</a><a href="feedback.ko.html" lang="ko" hreflang="ko">한국어</a></div></details>
     <a class="btn btn-primary nav-dl" href="download.html">Download</a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
@@ -62,125 +62,26 @@
   </nav>
 </header>
 
-<main id="main" class="legal help">
+<main id="main" class="legal gf-page">
   <div class="wrap">
     <div class="legal-head">
-      <h1>Install and connect</h1>
-      <p class="updated">Beta · written for 0.1.44</p>
+      <h1>Send feedback</h1>
+      <p class="gf-lead">Tell us what got in your way, in one line, when it happens. Send as many as you like.</p>
     </div>
-
-    <nav class="legal-toc" aria-label="Contents">
-      <h2>Contents</h2>
-      <ol>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#first">First run</a></li>
-        <li><a href="#connect">Connect Claude Code / Codex</a></li>
-        <li><a href="#push">Send a result</a></li>
-        <li><a href="#update">Updates</a></li>
-        <li><a href="#remove">Uninstall and your data</a></li>
-        <li><a href="#stuck">Where people get stuck</a></li>
-      </ol>
-    </nav>
-
-    <div class="legal-body">
-      <p>If you get stuck, work down this page. If that doesn't help, open Settings, find the diagnostics card (문제 진단), choose <b>Save diagnostics</b> (진단 묶음 저장) and send us the file. It contains folder paths that include your Windows user name, and your project names. <span class="tbd">may change in 0.1.45</span></p>
-      <p>If something gets in your way, click <b>Send feedback</b> (의견 남기기) in the title bar and tell us in one line. If the window is too narrow to show the button, use <b>Open form</b> (양식 열기) under Settings › About (정보). If your version doesn't have the button yet, write to us in the <a href="https://forms.gle/fpbTVC1g6UH4ZqQ59" rel="noopener">feedback form</a> (in Korean). <span class="tbd">button coming in 0.1.45</span> For anything else, write to <a href="mailto:support@genok.app">support@genok.app</a>.</p>
-      <div class="callout">
-        <p><b>During the beta the app's screens are in Korean.</b> Button names on this page are given in English, with the Korean label you will see in brackets.</p>
-      </div>
-
-      <h2 id="install">1. Install</h2>
-      <ul>
-        <li>Run <code>Genok_0.1.44_x64-setup.exe</code>. It doesn't ask for administrator rights.</li>
-        <li>There is nothing to choose. A small window with the logo and a thin progress line shows for a moment, then Genok opens. <span class="tbd">to be confirmed in 0.1.45</span></li>
-        <li>It installs to <code>%LOCALAPPDATA%\Programs\Genok</code>. You don't need to install Python or ffmpeg.</li>
-      </ul>
-
-      <h3>If a blue "Windows protected your PC" window appears</h3>
-      <p>The installer isn't code-signed yet, so Windows asks first. Two clicks get you past it.</p>
-      <ol>
-        <li>Click <b>More info</b>.</li>
-        <li>Click <b>Run anyway</b>, which appears below.</li>
-      </ol>
-      <div class="shots">
-        <figure class="shot"><div class="shot-box">Image goes here: the "Windows protected your PC" window with <b>More info</b> marked</div><figcaption>1. More info</figcaption></figure>
-        <figure class="shot"><div class="shot-box">Image goes here: the same window with <b>Run anyway</b> marked</div><figcaption>2. Run anyway</figcaption></figure>
-      </div>
-
-      <h3>If it says Genok couldn't be installed</h3>
-      <p>Quit Genok from the tray (종료) and run the installer again. If it keeps failing, send us <code>%LOCALAPPDATA%\Genok\install.log</code>.</p>
-
-      <h3>If the window stays white</h3>
-      <p>Edge WebView2 is missing. Windows 11 includes it. On Windows 10, install the "WebView2 Runtime" from Microsoft.</p>
-
-      <h2 id="first">2. First run</h2>
-      <ul>
-        <li>Open Genok from the Start menu or the desktop. The setup screen walks you through the steps in order.</li>
-        <li>Results are kept in <code>Documents\Genok</code> unless you pick another folder during setup.</li>
-        <li>Closing the window doesn't quit the app. It stays in the tray, next to the clock. To quit, click the tray icon and choose <b>Quit</b> (종료).</li>
-      </ul>
-
-      <h3 id="key">Enter your beta key</h3>
-      <ol>
-        <li>Open Settings › License (설정 › 라이선스) and paste the whole key from the e-mail.</li>
-        <li>With a valid key, the Pro features open: viewing on your phone, more than one account, full version history, phone notifications.</li>
-        <li>If it is refused, copy the whole key again and paste it once more. If that fails, reply to the e-mail the key came in.</li>
-      </ol>
-
-      <h2 id="connect">3. Connect Claude Code / Codex</h2>
-      <p>The Claude Code step of setup shows one of three things.</p>
-      <ul>
-        <li><b>Claude Code isn't installed</b>: install it with the steps below, then click <b>Check again</b> (다시 확인).</li>
-        <li><b>You need to sign in</b>: click <b>Sign in</b> (로그인하기). A black terminal window opens with Claude Code running in it. Sign in as it asks, come back to Genok and click <b>Check again</b>. You can close the terminal.</li>
-        <li><b>Claude Code connected</b>: go on to the next step. Genok adds a hook and a skill to your Claude Code settings and keeps the original as <code>settings.json.bak-&lt;time&gt;</code>.</li>
-      </ul>
-
-      <h3>If you don't have Claude Code</h3>
-      <ol>
-        <li>Open PowerShell from the Start menu, paste this line and press Enter. You don't need administrator rights.
-          <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre></li>
-        <li>When it finishes, open a <b>new</b> PowerShell window, run <code>claude</code> and sign in through the browser. You need a paid plan such as Claude Pro, Max or Team, or a Console account. The free plan doesn't work.</li>
-        <li>Come back to Genok and click <b>Check again</b>. If it still says Claude Code isn't installed, quit Genok from the tray and open it again. <span class="tbd">to be fixed in 0.1.45</span></li>
-      </ol>
-
-      <div class="callout">
-        <p><b>Claude Code / Codex windows that were already open need to be reopened</b> before the connection takes effect.</p>
-      </div>
-      <ul>
-        <li>If you use Codex: after connecting, open <code>codex</code> in a terminal and allow the hook once under <code>/hooks</code>. Comments aren't delivered until you do.</li>
-        <li>The Claude and ChatGPT desktop apps can send results and read comments, but they don't wake a session (a Claude Code or Codex window you have open and working).</li>
-      </ul>
-
-      <h2 id="push">4. Send a result</h2>
-      <p>Ask Claude Code / Codex to "send the result to Genok". To do it yourself, use the command shown in Settings on the card for sending from a session.</p>
-      <pre><code>"%LOCALAPPDATA%\Programs\Genok\_internal\loop.exe" push &lt;file&gt; --item &lt;name&gt; --note "note"</code></pre>
-      <ul>
-        <li>Send again with the same <code>--item</code> and the versions stack up as v002, v003, so you can compare them.</li>
-        <li>If the send is refused, there are comments you haven't answered. Look at them with <code>loop.exe todo --item &lt;name&gt;</code>, then send again with <code>--fixed &lt;id&gt;</code> for the ones you handled and <code>--later &lt;id&gt;</code> for the ones you put off.</li>
-        <li>The <code>http://localhost:8777/i/...</code> address you get back opens on this PC only. <span class="tbd">may change in 0.1.45</span></li>
-      </ul>
-
-      <h2 id="update">5. Updates</h2>
-      <ul>
-        <li>When a new version is out, an <b>Update</b> (지금 업데이트) button appears in Settings. Click it and Genok downloads the update, swaps it in and reopens. <span class="tbd">to be confirmed in 0.1.45</span></li>
-        <li>If it says it couldn't check, look at your internet connection and click <b>Try again</b> (다시 시도).</li>
-        <li>If the app doesn't open after an update, or the version hasn't changed, download the new installer and run it over the old one. Your data and settings stay.</li>
-        <li>If the app doesn't come up right after an update, open Genok again from the Start menu.</li>
-      </ul>
-
-      <h2 id="remove">6. Uninstall and your data</h2>
-      <ul>
-        <li>Windows Settings → Apps → Genok → Uninstall. This removes the shortcuts, the install folder and the start-at-sign-in entry, and takes the hook and skill back out of Claude Code and Codex. <span class="tbd">to be confirmed in 0.1.45</span></li>
-        <li><b>Your results and comments are not deleted.</b> To remove everything, delete <code>Documents\Genok</code>, or the folder you picked, yourself.</li>
-      </ul>
-
-      <h2 id="stuck">7. Where people get stuck</h2>
-      <h3>I left a comment but Claude doesn't know about it</h3>
-      <p>Check that you reopened the Claude Code / Codex window after connecting, and that the session is working in the same folder the result was sent from.</p>
-      <h3>The address doesn't open</h3>
-      <p>Check that Genok is in the tray. If another program is using port 8777, Genok picks a free one between 8778 and 8796, so opening the result from the app window is the surest way.</p>
-      <h3>I want to look on my phone</h3>
-      <p>Viewing on a phone is a Pro feature. During the beta, please review on your PC.</p>
+    <form class="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSepZ-kk_ea6UTOZF8wLAKQDmLerQ6q0paRk64cOT3u6JwXUGg/formResponse" method="post" novalidate>
+      <div class="gf-q" data-kind="area" data-req="1"><label for="feedback-q1">What were you trying to do, and what got in the way?<span class="gf-tag">Required</span></label><textarea id="feedback-q1" name="entry.42929262" rows="4" aria-describedby="feedback-q1-err"></textarea><p class="gf-err" id="feedback-q1-err"></p></div>
+      <fieldset class="gf-q" data-kind="radio" aria-describedby="feedback-q2-err"><legend>Where was it?<span class="gf-tag">Optional</span></legend><div class="gf-opts"><label><input type="radio" name="entry.1523426929" value="설치"><span>Install</span></label><label><input type="radio" name="entry.1523426929" value="첫 설정"><span>First setup</span></label><label><input type="radio" name="entry.1523426929" value="에이전트 연결 (Claude Code·Codex)"><span>Connecting Claude Code / Codex</span></label><label><input type="radio" name="entry.1523426929" value="결과물 보기"><span>Viewing a result</span></label><label><input type="radio" name="entry.1523426929" value="코멘트 남기기"><span>Leaving a comment</span></label><label><input type="radio" name="entry.1523426929" value="폰으로 보기"><span>Viewing on the phone</span></label><label><input type="radio" name="entry.1523426929" value="대화"><span>Chat</span></label><label><input type="radio" name="entry.1523426929" value="업데이트"><span>Updates</span></label><label><input type="radio" name="entry.1523426929" value="기타"><span>Other</span></label></div><p class="gf-err" id="feedback-q2-err"></p></fieldset>
+      <fieldset class="gf-q" data-kind="radio" aria-describedby="feedback-q3-err"><legend>What happened in the end?<span class="gf-tag">Optional</span></legend><div class="gf-opts"><label><input type="radio" name="entry.791612476" value="하려던 일을 못 했다"><span>I couldn't do it</span></label><label><input type="radio" name="entry.791612476" value="돌아서 해결했다"><span>I found a way around</span></label><label><input type="radio" name="entry.791612476" value="거슬리기만 했다"><span>It was only annoying</span></label></div><p class="gf-err" id="feedback-q3-err"></p></fieldset>
+      <div class="gf-q" data-kind="text"><label for="feedback-q4">App version<span class="gf-tag">Optional</span></label><span class="gf-hint">The number shown in Settings</span><input id="feedback-q4" type="text" name="entry.1002962770" autocomplete="off" aria-describedby="feedback-q4-err"><p class="gf-err" id="feedback-q4-err"></p></div>
+      <div class="gf-q" data-kind="email"><label for="feedback-q5">E-mail, if you want a reply<span class="gf-tag">Optional</span></label><input id="feedback-q5" type="email" name="entry.259778348" autocomplete="email" inputmode="email" spellcheck="false" placeholder="name@example.com" aria-describedby="feedback-q5-err"><p class="gf-err" id="feedback-q5-err"></p></div>
+      <p class="gf-msg" role="status" aria-live="polite"></p>
+      <p><button class="btn btn-primary" type="submit">Send feedback</button></p>
+      <p class="gf-note">Your answers are kept in a Google Form and used only to fix the product.</p>
+    </form>
+    <div class="gf-done" tabindex="-1" hidden>
+      <h2>Sent.</h2>
+      <p>This page can't confirm that it arrived. If it's urgent, write to support@genok.app.</p>
+      <p><button class="btn btn-ghost" type="button" data-again>Send another</button></p>
     </div>
   </div>
 </main>
