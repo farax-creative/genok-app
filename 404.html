@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found · Genok</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#0b0b0c;color:#efe9dc;font:16px/1.65 'Pretendard Variable',Pretendard,'Segoe UI',system-ui,sans-serif;padding:32px 16px;word-break:keep-all}
+main{max-width:420px;width:100%}
+.brand{display:inline-block;font:400 30px/1.2 Georgia,serif;color:#efe9dc;text-decoration:none;margin-bottom:28px}
+h1{font-size:19px;font-weight:600;margin:0 0 4px}
+p{margin:0 0 4px;color:#a8a294}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;border:1px solid #5a564c;border-radius:10px;color:#efe9dc;text-decoration:none}
+nav a:first-child{border-color:#efe9dc}
+nav a:hover{background:#efe9dc;color:#0b0b0c}
+nav a:active{transform:scale(.98)}
+a:focus-visible{outline:2px solid #efe9dc;outline-offset:3px}
+[hidden]{display:none}
+</style>
+</head>
+<body>
+<main>
+<a class="brand" href="/" id="home">Genok</a>
+<div id="en">
+<h1>This page doesn't exist.</h1>
+<p>The address may be mistyped, or the page has moved.</p>
+<nav><a href="/">Home</a><a href="/help">Help</a><a href="/download">Download</a></nav>
+</div>
+<div id="ko" lang="ko" hidden>
+<h1>없는 페이지입니다.</h1>
+<p>주소가 잘못 적혔거나 페이지가 옮겨졌습니다.</p>
+<nav><a href="/index.ko">처음으로</a><a href="/help.ko">도움말</a><a href="/download.ko">다운로드</a></nav>
+</div>
+</main>
+<script>
+// Korean for a Korean address (.ko) or a Korean browser; English otherwise.
+if (/\.ko(\.html)?$/.test(location.pathname) || /^ko(-|$)/i.test(navigator.language || '')) {
+  document.getElementById('en').hidden = true;
+  document.getElementById('ko').hidden = false;
+  document.documentElement.lang = 'ko';
+  document.title = '없는 페이지 · Genok';
+  document.getElementById('home').href = '/index.ko';
+}
+</script>
+</body>
+</html>
