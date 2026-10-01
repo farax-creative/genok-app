@@ -66,7 +66,7 @@
   <div class="wrap">
     <div class="legal-head">
       <h1>Terms of Service</h1>
-      <p class="updated">Effective 2026-09-30</p>
+      <p class="updated">Effective 2026-10-02</p>
     </div>
 
     <nav class="legal-toc" aria-label="Contents">
@@ -93,8 +93,8 @@
       <h2 id="s2">Article 2. The Service</h2>
       <p>Genok is a Windows app that collects the images, videos, documents, and code output produced by coding sessions such as Claude Code and Codex into versions on the user's PC, lets the user view them, mark them up on screen and leave comments, and delivers those comments to the session.</p>
       <ul>
-        <li>The App runs on the user's PC, and its internal server opens only on <code>127.0.0.1</code>. There is no separate Company server or account.</li>
-        <li>The App does not call models on the user's behalf. The Company charges no AI usage fee of its own and uses no separate API key. Work a session does counts against the usage of the AI service you subscribe to.</li>
+        <li>The App runs on the user's PC. By default its internal server opens only inside this PC (<code>127.0.0.1</code>); only when you turn on phone viewing does it also open on your own Tailscale private network. There is no separate Company server or account.</li>
+        <li>The App passes your comments to the session and, when needed, wakes the session on your PC so that it continues. The work is done by your own Claude Code / Codex session. The Company charges no AI usage fee of its own and uses no separate API key. Work a session does counts against your own Claude Code / Codex usage.</li>
         <li>The App does not read, copy, or send out the login (OAuth) tokens of Claude Code or Codex. It refers to their settings only to identify which account a session should be started with.</li>
         <li>Output and comments are stored in the <code>Documents\Genok</code> folder on the user's PC.</li>
       </ul>
@@ -102,14 +102,15 @@
       <h2 id="s3">Article 3. Fees and Plans</h2>
       <p>The App can be used for free through one full loop (collecting output, comparing versions, commenting, delivering to the session). To lift the limits and add features, use a paid plan.</p>
       <ul>
-        <li><b>Lite</b>: free. No card required. Unlimited projects, all formats and review tools, viewing on the PC. Only recent version history is kept.</li>
+        <li><b>Lite</b>: free. No card required. Unlimited projects, all formats and review tools, viewing on the PC. You can see up to the 10 most recent versions of each result. Older versions are not deleted and show again on Pro.</li>
         <li><b>Pro</b>: US$9 per month or US$79 per year. Full version history kept, viewing on a phone (your own Tailscale), connecting more than one of your own accounts.</li>
         <li><b>Lifetime</b>: US$149, one-time payment. You keep using the Pro features, and later updates are included, with no time limit. Sold in a fixed number of seats.</li>
       </ul>
       <div class="callout">
         <p><b>Payment is not yet available.</b> Until integration with a payment processor is complete, no paid transactions take place, and the amounts shown are in US dollars. Once payment opens, the checkout screen will state the processor and the final amount.</p>
       </div>
-      <p>Paid plans are activated with a license key. The license key uses a digital signature (Ed25519) that is verified offline without connecting to a Company server, and no separate account sign-up is required. The paid features can be tried for 14 days after installing the App.</p>
+      <p>Paid plans are activated with a license key. The license key uses a digital signature (Ed25519) that is verified offline without connecting to a Company server, and no separate account sign-up is required. You can try the paid features for 14 days from the day you start the trial (once).</p>
+      <p>Refund terms will be added to these Terms when payment starts. Until then the draft in the <a href="refund.html">Refund Policy</a> applies.</p>
 
       <h2 id="s4">Article 4. License and Scope of Use</h2>
       <ul>
@@ -136,13 +137,14 @@
         <li>You must not use the App to break the law or infringe someone else's rights.</li>
         <li>You must not share or publish your license key.</li>
       </ul>
-      <p>If you break these rules, the Company may suspend your license.</p>
+      <p>If you break these rules, the Company may restrict your use of the license and refuse to issue further keys or to provide support.</p>
 
       <h2 id="s7">Article 7. AI Output and the Beta</h2>
       <ul>
         <li>The output the App shows was made by your AI session. The Company does not warrant that it is accurate, lawful or fit for any purpose. Check it before you rely on it.</li>
         <li>What a session does on your PC, such as creating and changing files or running commands, follows that AI tool and your own settings. The App only passes your comments to the session.</li>
         <li>During the beta the App is unfinished. Features may change or be removed, and there may be errors.</li>
+        <li>The one-year Pro key given to beta participants is free. When it ends the App returns to Lite, and your results and comments stay as they are.</li>
       </ul>
 
       <h2 id="s8">Article 8. Security and Reporting a Vulnerability</h2>
@@ -164,7 +166,7 @@
       </ul>
 
       <h2 id="s10">Article 10. Changes to These Terms</h2>
-      <p>The Company may change these Terms when necessary, and will give notice of any change on this page together with its effective date. The changed Terms apply from the announced effective date.</p>
+      <p>The Company may change these Terms when necessary. It gives notice on this page, together with the effective date, 30 days ahead for changes that are unfavourable to users and 7 days ahead for other changes. The changed Terms apply from the announced effective date.</p>
 
       <h2 id="s11">Article 11. Contact and Governing Law</h2>
       <p>Inquiries about these Terms and use of the App are received at the contact below. These Terms are governed by the laws of the Republic of Korea, and disputes follow the procedures and jurisdiction set by applicable laws.</p>

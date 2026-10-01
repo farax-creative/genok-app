@@ -15,7 +15,7 @@
   const PLANS_EN = [
     { name: "Lite", badge: "", price: "$0", per: "", alt: "You don't enter a card",
       line: "The full loop works.",
-      features: ["Claude Code and Codex", "Unlimited projects", "Every format, every review tool", "View on your PC", "Recent versions kept"],
+      features: ["Claude Code and Codex", "Unlimited projects", "Every format, every review tool", "View on your PC", "Latest 10 versions of each result"],
       cta: "Download", href: "download.html", disabled: false, featured: false },
     { name: "Pro", badge: "", price: "$9", per: "/ month", alt: "or $79 a year",
       line: "Every version kept, and your phone too.",
@@ -29,7 +29,7 @@
   const PLANS_KO = [
     { name: "Lite", badge: "", price: "$0", per: "", alt: "카드 입력 없음",
       line: "보고, 코멘트하고, 고쳐 받기까지 됩니다.",
-      features: ["Claude Code · Codex 연결", "프로젝트 무제한", "모든 형식 · 모든 리뷰 도구", "PC에서 보기", "최근 버전 보관"],
+      features: ["Claude Code · Codex 연결", "프로젝트 무제한", "모든 형식 · 모든 리뷰 도구", "PC에서 보기", "결과물마다 최근 10개 버전"],
       cta: "다운로드", href: "download.ko.html", disabled: false, featured: false },
     { name: "Pro", badge: "", price: "$9", per: "/ 월", alt: "또는 연 $79",
       line: "버전을 전부 보관하고, 폰에서도 봅니다.",
