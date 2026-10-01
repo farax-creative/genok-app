@@ -813,6 +813,14 @@ html[lang="ko"] .legal-body h2, html[lang="ko"] .help .legal-body h2, html[lang=
 .notify-os legend .gf-tag { display: inline; min-height: 0; padding: 0; border: 0; border-radius: 0; font-size: 13px; }
 .notify-row input, .gate-row input, .gf-q input[type="text"], .gf-q input[type="email"] { height: var(--ctl-h); padding: 0 14px; border-radius: var(--ctl-r); font: 500 16px/1.5 var(--font-sans); }
 .gf-q textarea { border-radius: var(--ctl-r); font: 500 16px/1.5 var(--font-sans); }
+/* form pages ended flush against the footer rule, and the footer floated mid-screen on tall windows */
+.gf-page { padding-bottom: clamp(72px, 9vw, 120px); }
+body:has(> .gf-page) { min-height: 100dvh; display: flex; flex-direction: column; }
+body:has(> .gf-page) > .gf-page { flex: 1 0 auto; }
+.gf-note { margin-top: -8px; }
+html[lang="ko"] .gf-page .legal-head h1 { letter-spacing: -0.02em; }
+html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: -0.01em; }
+.gf-tag { letter-spacing: 0; vertical-align: 1px; }
 .gf-hint, .gf-note, .section-head .notify-note { font-size: 13px; line-height: 1.55; color: var(--ink-soft); }
 .gf-err, .gf-msg, .gate-msg, .section-head .notify-msg { font-size: 14px; line-height: 1.55; }
 
