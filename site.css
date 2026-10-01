@@ -827,6 +827,7 @@ html[lang="ko"] .legal-body h2, html[lang="ko"] .help .legal-body h2, html[lang=
 .gf-thumbs button:focus-visible { outline: 2px solid var(--ink); outline-offset: -8px; border-radius: 50%; }
 .gf-att-msg, .gf-done .gf-att-fail { margin: 8px 0 0; color: #e09a88; font-size: 14px; line-height: 1.55; }
 .gf-att-msg:empty { display: none; }
+.gf-msg.gf-info { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .gf-drop { transition: none; } .gf-thumbs button:active::before { transform: none; } }
 
 /* feedback page: version dropdown (same box as a text field) */

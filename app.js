@@ -209,6 +209,7 @@
     btn.disabled = true;
     try {
       // The reply from Google is opaque here: only a network failure can be told apart.
+      if (form._attach) await form._attach.ready();   // an image may still be shrinking
       const data = new URLSearchParams(new FormData(form));
       // screenshots travel separately; the same id goes into the text so the two can be matched
       const att = form._attach && form._attach.count() ? form._attach : null;
@@ -217,7 +218,12 @@
       if (att && area) data.set(area.name, data.get(area.name) + "\n[" + (KO ? "첨부 " : "Attachments ") + attId + "]");
       await fetch(action, { method: "POST", mode: "no-cors", body: data });
       const old = done.querySelector(".gf-att-fail"); if (old) old.remove();
-      if (att && !(await att.send(attId))) {
+      const sent = !att || (await att.send(attId, (n, total) => {
+        msg.classList.add("gf-info");
+        msg.textContent = KO ? "이미지 올리는 중 " + n + "/" + total + ". 창을 닫지 마세요." : "Uploading images " + n + "/" + total + ". Please keep this window open.";
+      }));
+      msg.classList.remove("gf-info"); msg.textContent = "";
+      if (!sent) {
         const p = document.createElement("p"); p.className = "gf-att-fail";
         p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
         done.querySelector("h2").after(p);
@@ -257,12 +263,12 @@
 (function () {
   // Screenshots on the feedback page. Stays hidden until the Apps Script address is set.
   const ATTACH_URL = "";
-  const MAX_FILES = 5, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
+  const MAX_FILES = 10, CHUNK = 3, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
   const box = document.querySelector(".gf-att"), form = document.querySelector("form.gform");
   if (!box || !form || !ATTACH_URL) return;
   const KO = document.documentElement.lang === "ko";
-  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 5장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", del: "지우기" }
-               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 5 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", del: "Remove" };
+  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 10장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", del: "지우기" }
+               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 10 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", del: "Remove" };
   const input = box.querySelector(".gf-att-in"), drop = box.querySelector(".gf-drop"), list = box.querySelector(".gf-thumbs"), msg = box.querySelector(".gf-att-msg");
   const items = [];   // { blob, url, li }
   box.hidden = false;
@@ -293,7 +299,9 @@
     li.append(img, size, del); list.appendChild(li); it.li = li;
   }
 
-  async function add(files) {
+  let queue = Promise.resolve();
+  const add = (files) => (queue = queue.then(() => addNow(files)));
+  async function addNow(files) {
     msg.textContent = "";
     for (const f of files) {
       if (!/^image\/(png|jpeg|webp)$/.test(f.type)) { msg.textContent = T.type; continue; }
@@ -322,17 +330,28 @@
 
   // used by the form's submit handler
   form._attach = {
+    ready: () => queue,
     count: () => items.length,
     newId: () => "G" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(),
-    // true only when the script answered ok; a text/plain body keeps this a simple cross-origin request
-    send: async (id) => {
-      try {
+    // Sent a few at a time so one request stays small. true only when the script answered ok for
+    // every part; a text/plain body keeps this a simple cross-origin request.
+    send: async (id, progress) => {
+      const all = items.slice();
+      const post = async (start, part) => {
         const files = [];
-        for (const it of items) files.push({ type: it.blob.type, data: await b64(it.blob) });
-        const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ id, files }) });
+        for (const it of part) files.push({ type: it.blob.type, data: await b64(it.blob) });
+        const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ id, start, files }) });
         const out = await res.json();
         return !!(out && out.ok);
-      } catch (e) { return false; }
+      };
+      for (let i = 0; i < all.length; i += CHUNK) {
+        if (progress) progress(i, all.length);
+        let ok = false;
+        for (let n = 0; n < 2 && !ok; n++) { try { ok = await post(i, all.slice(i, i + CHUNK)); } catch (e) {} }   // one retry
+        if (!ok) return false;
+      }
+      if (progress) progress(all.length, all.length);
+      return true;
     },
     clear: () => { items.splice(0).forEach((it) => { URL.revokeObjectURL(it.url); it.li.remove(); }); msg.textContent = ""; },
   };
