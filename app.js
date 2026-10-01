@@ -17,7 +17,7 @@
       line: "The full loop works.",
       features: ["Claude Code and Codex", "Unlimited projects", "Every format, every review tool", "View on your PC", "Latest 10 versions of each result"],
       cta: "Download", href: "download.html", disabled: false, featured: false },
-    { name: "Pro", badge: "", price: "$9", per: "/ month", alt: '<span class="yr"><span class="yr-l">Yearly</span> <s aria-hidden="true">$108</s> <b>$79</b><span class="yr-save">Save 27%</span></span><span class="yr-note">Twelve monthly payments of $9 come to $108. Yearly works out to about $6.58 a month.</span>',
+    { name: "Pro", badge: "", price: "$9", per: "/ month", alt: '<span class="yr"><span class="yr-l">Yearly</span> <s aria-hidden="true">$108</s> <b>$79</b><span class="yr-save">Save 27%</span></span><span class="yr-note">$108 if paid monthly. About $6.58 a month.</span>',
       line: "Every version kept, and your phone too.",
       features: ["Everything in Lite", "Full version history", "View on your phone", "More than one of your own accounts"],
       cta: "Coming soon", href: "", disabled: true, featured: true },
