@@ -843,8 +843,10 @@ body:has(> .gf-page) > .gf-page { flex: 1 0 auto; }
   .foot-grid { padding-block: 24px 10px; gap: 12px; }
   .foot-brand .brand { margin-bottom: 2px; }
   .foot-links { flex-direction: column; gap: 0; width: 100%; }
-  .foot-col { display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px; }
-  .foot-col h4 { margin: 0; min-width: 3.2em; }
+  /* the group name sits in its own left column, dimmer and smaller, so it reads as a label and wrapped links line up (user, 2026-10-02) */
+  .foot-col { position: relative; display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px; padding-left: 72px; }
+  .foot-col + .foot-col { border-top: 1px solid rgba(255, 255, 255, .14); }
+  .foot-col h4 { position: absolute; left: 0; top: 0; display: flex; align-items: center; height: 44px; margin: 0; font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--ink-dim); }
   .foot-col a, .foot-plain { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
   .foot-bottom { padding-block: 14px 18px; gap: 4px 20px; }
   .foot-legal { padding-top: 0; line-height: 1.5; }
