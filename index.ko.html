@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- Fonts in <head> on purpose: a late JS-injected link causes layout shift. -->
 <!-- Pretendard is bundled locally (assets/fonts); its @font-face is in site.css. -->
-<link rel="preload" href="assets/fonts/pretendard-site.c98fe993.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.7b2bd8d6.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -95,7 +95,7 @@
           <svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>
           Windows용 다운로드<i class="dl-ar" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg></i>
         </a>
-        <span class="hero-sub">Claude Code / Codex 유료 플랜이 있어야 씁니다. 지금은 클로즈 베타라 초대 링크를 받은 분만 설치할 수 있습니다.</span>
+        <span class="hero-sub">Claude Code / Codex 유료 플랜이 필요합니다. 지금은 초대받은 분만 설치할 수 있습니다.</span>
       </div>
 
       <div class="hero-stage"><div class="aurora" aria-hidden="true"><i></i><i></i></div><figure class="shot hero-shot">
@@ -122,7 +122,7 @@
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-pen"/></svg>그려서 짚기</span>
         <h2 class="rise"><span class="ln"><span>고칠 곳을 말로 설명하지 않아도 됩니다.</span></span></h2>
-        <p>화면을 멈추고 고칠 곳에 동그라미를 그립니다. 코멘트는 프레임 번호와 함께 세션으로 넘어갑니다.</p>
+        <p>화면을 멈추고 고칠 곳에 그리면, 코멘트가 세션으로 넘어갑니다.</p>
       </div>
       <figure class="demofig reveal">
         <video id="loopvid" src="assets/video/loop.mp4" poster="assets/video/loop-poster.jpg"
@@ -139,7 +139,7 @@
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-terminal"/></svg>왜 필요한가</span>
         <h2 class="rise"><span class="ln"><span>터미널에선 결과물이 로그에 묻힙니다.</span></span></h2>
-        <p>세션은 파일을 만들고 경로 한 줄만 남깁니다. 터미널 안에서는 지난 버전과 비교하기도, 어디가 틀렸는지 보여주기도 어렵습니다.</p>
+        <p>세션은 파일을 만들고 경로 한 줄만 남깁니다.</p>
       </div>
 
       <div class="versus reveal">
@@ -149,7 +149,6 @@
             <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">claude · 렌더 작업 세션</span></div>
             <img src="assets/shots/terminal.webp" width="1200" height="820" loading="lazy" alt="Claude Code 터미널 세션 — 만든 결과물이 긴 로그 사이에 파일 경로로만 남아 있다">
           </div>
-          <p class="vs-note">경로를 복사해 파일을 직접 열고, 뭐가 바뀌었고 어디를 고쳐야 하는지는 글로 적어 보내야 합니다.</p>
         </figure>
         <div class="vs-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></div>
         <figure class="vs-side">
@@ -158,7 +157,6 @@
             <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · 오프닝 타이틀 로고</span></div>
             <img src="assets/shots/home.webp" width="1440" height="940" loading="lazy" alt="Genok — 같은 결과물이 프로젝트와 버전으로 정리된 화면">
           </div>
-          <p class="vs-note">최신 버전이 맨 위에 있습니다. 지난 버전과 겹쳐 밀어 보고, 고칠 곳에 바로 그립니다.</p>
         </figure>
       </div>
     </div>
@@ -170,7 +168,6 @@
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>연결</span>
         <h2 class="rise"><span class="ln"><span>쓰던 것을 그대로 씁니다.</span></span></h2>
-        <p>Claude Code와 Codex를 함께 연결합니다. 지금 쓰는 구독 계정으로 로그인하면 됩니다.</p>
         <ul class="ticks">
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>별도 API 키가 필요 없습니다.</b> 이미 로그인한 구독 계정을 그대로 씁니다.</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>Genok이 따로 과금하지 않습니다.</b> 세션이 일한 만큼은 쓰시는 Claude Code / Codex 사용량에서 나갑니다.</span></li>
@@ -181,12 +178,12 @@
         <div class="acct-card reveal">
           <div class="acct-row">
             <span class="acct-mark"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg></span>
-            <span><span class="an">Claude Code</span><span class="ad">세션이 결과물을 올리고, 내가 남긴 코멘트를 다음 턴에 받아 갑니다.</span></span>
+            <span><span class="an">Claude Code</span><span class="ad">결과물을 올리고 코멘트를 받아 갑니다.</span></span>
             <span class="state"><i></i>연결됨</span>
           </div>
           <div class="acct-row">
             <span class="acct-mark"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg></span>
-            <span><span class="an">Codex</span><span class="ad">같은 방식으로 연결합니다. 두 도구를 한 화면에서 봅니다.</span></span>
+            <span><span class="an">Codex</span><span class="ad">같은 방식으로 연결합니다.</span></span>
             <span class="state"><i></i>연결됨</span>
           </div>
         </div>
@@ -200,7 +197,7 @@
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>한곳에</span>
         <h2 class="rise"><span class="ln"><span>모든 프로젝트를 한 화면에서.</span></span></h2>
-        <p>세션이 올린 결과물이 프로젝트와 버전별로 쌓입니다. 최신 버전과 지난 버전을 오가며 봅니다.</p>
+        <p>세션이 올린 결과물이 프로젝트와 버전별로 쌓입니다.</p>
       </div>
       <div class="media">
         <figure class="shot reveal">
@@ -249,7 +246,7 @@
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-code"/></svg>형식</span>
         <h2 class="rise"><span class="ln"><span>문서·코드·스프레드시트도 봅니다.</span></span></h2>
-        <p>리포트, 코드 변경 내역, 스프레드시트도 앱 안에서 열립니다. 이미지와 같은 방식으로 버전을 비교하고 코멘트를 남깁니다.</p>
+        <p>리포트, 코드 변경 내역, 스프레드시트도 같은 방식으로 비교하고 코멘트합니다.</p>
       </div>
       <div class="mq reveal" aria-hidden="true"><div><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span></div><div><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span></div></div>
       <div class="typegrid reveal">
@@ -278,7 +275,7 @@
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-phone"/></svg>폰에서 보기 <span class="tag">Pro</span></span>
         <h2 class="rise"><span class="ln"><span>폰에서도 같은 화면.</span></span></h2>
-        <p>나만 접속할 수 있는 연결로 폰에서 봅니다. 인터넷에는 아무것도 공개되지 않습니다.</p>
+        <p>나만 접속할 수 있는 연결로 봅니다. 인터넷에 공개되지 않습니다.</p>
       </div>
       <div class="phone-row reveal">
         <figure class="shot-phone"><img src="assets/shots/phone-home.webp" width="780" height="1688" loading="lazy" alt="폰에서 본 홈 화면"></figure>
@@ -287,18 +284,6 @@
     </div>
   </section>
 
-  <!-- ===== THE LOOP ===== -->
-  <section class="band">
-    <div class="wrap grid">
-      <h2 class="loop-h rise"><span class="ln"><span>코멘트를 남기면 세션이 고칩니다.</span></span></h2>
-      <ol class="loop-steps reveal">
-        <li><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><b>코멘트</b><span class="loop-d">그 자리에 그려서 짚기</span></li>
-        <li><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-messages"/></svg></span><b>세션이 받음</b><span class="loop-d">다음 턴에 코멘트 전달</span></li>
-        <li><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg></span><b>새 버전</b><span class="loop-d">v002가 올라옴</span></li>
-        <li class="ok"><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><b>맞아 / 아직</b><span class="loop-d">확인하거나, 한 번 더</span></li>
-      </ol>
-    </div>
-  </section>
 
   <!-- ===== PRICING ===== -->
   <section id="cases">
@@ -306,13 +291,12 @@
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>활용</span>
         <h2 class="rise"><span class="ln"><span>만드는 것이 달라도 확인하는 방식은 같습니다.</span></span></h2>
-        <p>세션이 무엇을 만들었든 Genok은 모아 두고, 버전마다 보관하고, 남긴 코멘트를 돌려보냅니다.</p>
       </div>
-      <div class="art flow reveal"><input class="flow-in" type="radio" name="flow" id="flow-1" checked><input class="flow-in" type="radio" name="flow" id="flow-2"><input class="flow-in" type="radio" name="flow" id="flow-3"><div class="flow-tabs"><label for="flow-1"><i>1</i><span>코멘트 남기기</span></label><label for="flow-2"><i>2</i><span>고친 버전 비교</span></label><label for="flow-3"><i>3</i><span>확인</span></label></div><figure class="shot"><div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · 로고 타이틀</span></div><div class="flow-stage"><img src="assets/shots/title-comment.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 첫 시안. 화면 위에 표시가 있고 세 번째 코멘트를 적는 중이다"><img src="assets/shots/title-compare.jpg" width="2160" height="1410" loading="lazy" alt="Genok 비교 화면에서 가름선으로 나뉜 로고 타이틀 첫 버전과 최신 버전"><img src="assets/shots/title-fixed.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 최신 버전. 요청 하나가 확인을 기다린다"></div></figure><div class="flow-caps"><p>첫 시안 위에 고칠 곳을 표시하고 한 줄씩 적습니다. 로고 위치, 비어 보이는 오른쪽, 얇은 링 세 군데입니다.</p><p>AI 세션이 고쳐서 다시 올리면 첫 버전과 겹쳐 놓고 밀어서 봅니다.</p><p>고쳐진 요청은 확인으로 닫고, 덜 된 것은 다시 보냅니다.</p></div><p class="flow-note">앱에서 그대로 찍은 화면입니다.</p></div>
+      <div class="art flow reveal"><input class="flow-in" type="radio" name="flow" id="flow-1" checked><input class="flow-in" type="radio" name="flow" id="flow-2"><input class="flow-in" type="radio" name="flow" id="flow-3"><div class="flow-tabs"><label for="flow-1"><i>1</i><span>코멘트 남기기</span></label><label for="flow-2"><i>2</i><span>고친 버전 비교</span></label><label for="flow-3"><i>3</i><span>확인</span></label></div><figure class="shot"><div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · 로고 타이틀</span></div><div class="flow-stage"><img src="assets/shots/title-comment.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 첫 시안. 화면 위에 표시가 있고 세 번째 코멘트를 적는 중이다"><img src="assets/shots/title-compare.jpg" width="2160" height="1410" loading="lazy" alt="Genok 비교 화면에서 가름선으로 나뉜 로고 타이틀 첫 버전과 최신 버전"><img src="assets/shots/title-fixed.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 최신 버전. 요청 하나가 확인을 기다린다"></div></figure><div class="flow-caps"><p>첫 시안 위에 고칠 곳을 표시하고 한 줄씩 적습니다.</p><p>AI 세션이 고쳐서 다시 올리면 첫 버전과 겹쳐 놓고 밀어서 봅니다.</p><p>고쳐진 요청은 확인으로 닫고, 덜 된 것은 다시 보냅니다.</p></div><p class="flow-note">앱에서 그대로 찍은 화면입니다.</p></div>
       <div class="cases reveal">
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D·모션</span><h3><a href="cases-3d.ko.html">렌더와 영상</a></h3><p>렌더 한 장, 시퀀스 한 편이 올라올 때마다 새 버전으로 쌓입니다. 영상은 거슬리는 프레임에서 멈추고, 그 위에 그려서 무엇을 바꿀지 적습니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>웹·디자인</span><h3><a href="cases-web.ko.html">페이지와 시안</a></h3><p>페이지를 고칠 때마다 새 버전이 올라옵니다. 이전 버전과 나란히 놓고 바뀐 곳을 본 뒤, 아직 어색한 부분을 짚어 돌려보냅니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>문서·코드·데이터</span><h3><a href="cases-docs.ko.html">리포트와 변경 내역</a></h3><p>긴 리포트는 문단에 형광펜을 긋고, 코드는 바뀐 줄에, 표는 바뀐 칸에 코멘트를 남깁니다. 대화 창을 거슬러 올라가 찾지 않아도 됩니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D·모션</span><h3><a href="cases-3d.ko.html">렌더와 영상</a></h3><p>렌더와 시퀀스가 올라올 때마다 새 버전으로 쌓입니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>웹·디자인</span><h3><a href="cases-web.ko.html">페이지와 시안</a></h3><p>페이지를 고칠 때마다 새 버전이 올라와 이전 버전과 나란히 봅니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>문서·코드·데이터</span><h3><a href="cases-docs.ko.html">리포트와 변경 내역</a></h3><p>문단, 바뀐 줄, 바뀐 칸에 코멘트를 남깁니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
       </div>
     </div>
   </section>
@@ -351,7 +335,7 @@
       <div class="section-head">
         <span class="label">베타</span>
         <h2 class="rise"><span class="ln"><span>지금은 클로즈 베타 중입니다.</span></span></h2>
-        <p><a href="beta.ko.html">베타를 신청</a>하시면 확인한 뒤 개인 초대 링크를 메일로 보냅니다. 정식 오픈 소식만 받으려면 여기에 메일 주소를 남겨 주세요.</p>
+        <p><a href="beta.ko.html">베타를 신청</a>하시면 초대 링크를 메일로 보내 드립니다. 정식 오픈 소식만 받으시려면 메일 주소를 남겨 주세요.</p>
         <form class="notify" id="notify-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdQNyzieivmztizhHmY1ZaHSQ5uQcgQadH9y-fjwlIiYpHzFQ/formResponse" method="post" novalidate>
           <fieldset class="notify-os"><legend>쓰는 운영체제<span class="gf-tag">선택</span></legend><label><input type="radio" name="entry.1759373767" value="Windows"><span>Windows</span></label><label><input type="radio" name="entry.1759373767" value="macOS"><span>macOS</span></label><label><input type="radio" name="entry.1759373767" value="기타"><span>기타</span></label></fieldset>
           <label for="notify-email">알림 받을 이메일</label>
@@ -374,7 +358,7 @@
         <h2 class="rise"><span class="ln"><span>지금 만들고 있는 것.</span></span></h2>
       </div>
       <ul class="next-list">
-        <li><b>macOS</b><span>지금은 Windows에서만 됩니다. Mac 버전을 준비하고 있습니다.</span></li>
+        <li><b>macOS</b><span>Mac 버전을 준비하고 있습니다.</span></li>
         <li><b>3D 앱 추가</b><span>더 많은 3D 도구의 렌더를 같은 방식으로 모아 봅니다.</span></li>
         <li><b>문서 형식 추가</b><span>앱 안에서 열어 보고 코멘트할 수 있는 파일 종류를 늘립니다.</span></li>
       </ul>
@@ -387,11 +371,9 @@
     <div class="wrap grid">
       <div class="section-head"><span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-messages"/></svg>FAQ</span><h2 class="rise"><span class="ln"><span>자주 묻는 질문</span></span></h2></div>
       <div class="faq-list">
-        <details><summary>Claude Code와 Codex 둘 다 되나요?</summary><div class="answer">네. 둘 다 연결해 한 화면에서 봅니다. 세션이 <code>loop push</code>로 결과물을 올리고, 남긴 코멘트를 다음 턴에 받아 갑니다.</div></details>
-        <details><summary>API 키가 필요한가요? 추가 비용이 드나요?</summary><div class="answer">아니요. 지금 쓰는 구독 계정으로 로그인하고, 별도 API 키는 필요 없습니다. Genok이 따로 과금하지도 않습니다. 세션이 일한 만큼은 쓰시는 Claude Code / Codex 사용량에서 나갑니다.</div></details>
-        <details><summary>데이터는 어디에 있나요?</summary><div class="answer"><code>문서\Genok</code> 폴더에 프로젝트와 버전별로 쌓입니다. 결과물은 이 폴더로 복사돼 보관되고, 탐색기로 열어 볼 수 있습니다.</div></details>
+        <details><summary>데이터는 어디에 있나요?</summary><div class="answer"><code>문서\Genok</code> 폴더에 프로젝트와 버전별로 쌓입니다. 탐색기로 열어 볼 수 있습니다.</div></details>
         <details><summary>인터넷에 공개되나요?</summary><div class="answer">아니요. 서버는 <code>127.0.0.1</code>에서만 열립니다. 폰으로 볼 때도 나만 접속할 수 있는 연결로만 열립니다.</div></details>
-        <details><summary>Windows에서 SmartScreen 경고가 떠요</summary><div class="answer">설치 파일에 아직 코드 서명이 없어서, Windows가 처음 보는 앱을 실행하기 전에 확인 창을 띄웁니다. <b>추가 정보</b>를 누른 뒤 <b>실행</b>을 누르면 설치가 진행됩니다.</div></details>
+        <details><summary>Windows에서 SmartScreen 경고가 떠요</summary><div class="answer">설치 파일에 아직 코드 서명이 없어서 나오는 확인 창입니다. <b>추가 정보</b>를 누른 뒤 <b>실행</b>을 누르면 됩니다.</div></details>
       </div>
     </div>
   </section>
@@ -426,7 +408,7 @@
     </div></details>
     <div class="foot-bottom">
       <span>© 2026 Genok</span>
-      <span>v0.1.66 · Windows 10/11</span>
+      <span>v0.1.67 · Windows 10/11</span>
       <span class="foot-legal">Claude, Claude Code는 Anthropic의, OpenAI·Codex는 OpenAI의 상표입니다. Genok은 두 회사와 제휴하거나 후원받지 않습니다.</span>
     </div>
   </div>
