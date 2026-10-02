@@ -823,7 +823,7 @@
 // ---- app skin: download buttons follow the cursor with a light and ring out from the press point ----
 (function () {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('.btn-primary').forEach(function (b) {
+  document.querySelectorAll('.btn-primary, .btn.inv-dl').forEach(function (b) {
     var fx = document.createElement('i');
     fx.className = 'dl-fx'; fx.setAttribute('aria-hidden', 'true');
     b.appendChild(fx);

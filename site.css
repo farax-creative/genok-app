@@ -1138,18 +1138,21 @@ svg.ic { stroke-width: 1.6; }
 }
 @keyframes skin-sheen { from { background-position: 0% 0; } to { background-position: 100% 0; } }
 /* download buttons answer the hand: a light under the cursor, a ring from the press point, a springy release */
-.btn-primary { position: relative; }
-.btn-primary .dl-fx { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
-.btn-primary .dl-fx::before { content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .25s ease;
+/* the light sits behind the label (isolate + z-index -1), so the words keep their full contrast */
+.btn-primary, .inv-dl { position: relative; isolation: isolate; }
+.btn .dl-fx { position: absolute; inset: 0; z-index: -1; border-radius: inherit; overflow: hidden; pointer-events: none; }
+.inv-dl.is-on:hover { filter: brightness(1.08); }
+.inv-dl:not(.is-on) .dl-fx { display: none; }
+.btn .dl-fx::before { content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .25s ease;
   background: radial-gradient(110px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .6), transparent 70%); }
-.btn-primary .dl-fx b { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: rgba(18, 18, 18, .16); animation: dl-rip .55s var(--ease) forwards; }
+.btn .dl-fx b { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: rgba(18, 18, 18, .16); animation: dl-rip .55s var(--ease) forwards; }
 @keyframes dl-rip { to { transform: scale(22); opacity: 0; } }
 @media (hover: hover) and (pointer: fine) {
-  .btn-primary:hover .dl-fx::before { opacity: 1; }
+  .btn-primary:hover .dl-fx::before, .inv-dl.is-on:hover .dl-fx::before { opacity: 1; }
   .btn-primary { transition: transform .35s cubic-bezier(.3, 1.4, .5, 1), background .2s var(--ease), filter .15s ease; }
 }
 @media (prefers-reduced-motion: reduce) {
   .copy .tag, .plan .badge, .lang-menu[open] .lang-pop { animation: none; }
-  .btn-primary .dl-fx { display: none; }
+  .btn .dl-fx { display: none; }
   .btn-primary { transition: none; }
 }
