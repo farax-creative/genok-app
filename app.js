@@ -465,11 +465,20 @@
 
 /* copy buttons on command boxes: clipboard first, text selection when the clipboard is not available */
 (function () {
+  var live;
+  function say(t) {
+    if (!live) {
+      live = document.createElement("span"); live.setAttribute("aria-live", "polite");
+      live.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap";
+      document.body.appendChild(live);
+    }
+    live.textContent = ""; setTimeout(function () { live.textContent = t; }, 30);
+  }
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".copy-btn"); if (!b) return;
     var code = b.parentNode.querySelector("code"), label = b.querySelector("span"), was = b.getAttribute("data-label") || label.textContent;
     function done() {
-      b.setAttribute("data-label", was); label.textContent = b.getAttribute("data-done"); b.classList.add("is-done");
+      b.setAttribute("data-label", was); label.textContent = b.getAttribute("data-done"); b.classList.add("is-done"); say(b.getAttribute("data-done"));
       clearTimeout(b._t); b._t = setTimeout(function () { label.textContent = was; b.classList.remove("is-done"); }, 1600);
     }
     function select() { var r = document.createRange(); r.selectNodeContents(code); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
