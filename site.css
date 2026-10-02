@@ -652,7 +652,7 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 .hero-copy { max-width: none; }
 .hero h1 { text-wrap: balance; }
 h2, h3 { text-wrap: balance; }
-.section-head p, .lead { text-wrap: pretty; }
+.section-head p, .lead, #beta p { text-wrap: pretty; }
 .hero.case-hero .hero-copy { max-width: none; }
 .hero.case-hero h1 { max-width: 15em; }
 .hero-cta { flex-direction: column; align-items: flex-start; gap: 14px; }
