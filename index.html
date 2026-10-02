@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Genok: review what your AI makes</title>
 <meta name="description" content="Genok is a Windows app that collects what Claude Code and Codex make, lets you draw on what's wrong, and sends your notes back to the session.">
-<meta name="theme-color" content="#0b0b0c">
+<meta name="theme-color" content="#0f1012">
 <meta property="og:title" content="Genok">
 <meta property="og:description" content="AI makes it. You say OK.">
 <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- Fonts in <head> on purpose: a late JS-injected link causes layout shift. -->
 <!-- Pretendard is bundled locally (assets/fonts); its @font-face is in site.css. -->
-<link rel="preload" href="assets/fonts/pretendard-site.5529ee14.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.292bcc8c.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -65,7 +65,7 @@
       <a href="#faq">FAQ</a>
     </nav>
     <details class="lang-menu"><summary aria-label="Language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="index.html" lang="en" hreflang="en" aria-current="true">English</a><a href="index.ko.html" lang="ko" hreflang="ko">한국어</a></div></details>
-    <a class="btn btn-primary nav-dl" href="download.html">Download</a>
+    <a class="btn btn-primary nav-dl" href="download.html"><span class="roll"><span>Download</span></span></a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
     </button>
@@ -87,21 +87,21 @@
   <section class="hero">
     <div class="wrap grid">
       <div class="hero-copy">
-        <h1>AI makes it.<br>You say OK.</h1>
+        <h1 class="rise"><span class="ln"><span>AI makes it.</span></span><span class="ln"><span>You say OK.</span></span></h1>
       </div>
       <p class="lead">Genok shows you what Claude Code and Codex made, version by version. Draw on what's wrong and the session fixes it.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="download.html">
           <svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>
-          Download for Windows
+          Download for Windows<i class="dl-ar" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg></i>
         </a>
         <span class="hero-sub">Requires Claude Code / Codex on a paid plan. Closed beta: you need an invite link to install.</span>
       </div>
 
-      <figure class="shot hero-shot">
+      <div class="hero-stage"><div class="aurora" aria-hidden="true"><i></i><i></i></div><figure class="shot hero-shot">
         <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · Opening title logo · v002 · Needs review</span></div>
-        <img src="assets/shots/hero.webp" width="1440" height="940" alt="The Genok app: a result shown by version, with comments" fetchpriority="high">
-      </figure>
+        <img src="assets/shots/hero.webp" width="1440" height="940" alt="The Genok app: a result shown by version, with comments" fetchpriority="high"><div class="anno" aria-hidden="true"><svg class="an-c" viewBox="0 0 100 60" preserveAspectRatio="none"><path d="M50 6C80 3 97 15 95 31C93 49 71 57 46 55C20 54 4 44 6 28C8 13 29 4 60 8"/></svg><svg class="an-l" viewBox="0 0 20 60" preserveAspectRatio="none"><path d="M13 58Q3 30 9 3"/></svg><span class="an-n">The spacing is tight here</span></div>
+      </figure></div>
 
       <div class="workswith">
         <span class="ww-label">Use it with</span>
@@ -121,7 +121,7 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-pen"/></svg>Draw on it</span>
-        <h2>Point at the problem. Don't describe it.</h2>
+        <h2 class="rise"><span class="ln"><span>Point at the problem. Don't describe it.</span></span></h2>
         <p>Pause the frame and circle the spot. Your note goes to the session with the frame number attached.</p>
       </div>
       <figure class="demofig reveal">
@@ -138,7 +138,7 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-terminal"/></svg>Why</span>
-        <h2>In a terminal, results get buried in the log.</h2>
+        <h2 class="rise"><span class="ln"><span>In a terminal, results get buried in the log.</span></span></h2>
         <p>A session makes a file and leaves you a path. Comparing it with the last version, or showing where it went wrong, is hard from there.</p>
       </div>
 
@@ -169,7 +169,7 @@
     <div class="wrap grid split">
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>Connect</span>
-        <h2>Keep what you already use.</h2>
+        <h2 class="rise"><span class="ln"><span>Keep what you already use.</span></span></h2>
         <p>Connect Claude Code and Codex side by side. You sign in with the subscription you already have.</p>
         <ul class="ticks">
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>You don't need an API key.</b> Genok uses the subscription you are already signed in to.</span></li>
@@ -199,7 +199,7 @@
     <div class="wrap grid split">
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>One place</span>
-        <h2>Every project on one screen.</h2>
+        <h2 class="rise"><span class="ln"><span>Every project on one screen.</span></span></h2>
         <p>What your sessions make is filed by project and version. Step between the newest and the ones before it.</p>
       </div>
       <div class="media">
@@ -215,7 +215,7 @@
     <div class="wrap grid split rev">
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-film"/></svg>Video</span>
-        <h2>Video, frame by frame.</h2>
+        <h2 class="rise"><span class="ln"><span>Video, frame by frame.</span></span></h2>
         <p>Step one frame at a time, slow it down, loop the part that bothers you.</p>
       </div>
       <div class="media">
@@ -231,7 +231,7 @@
     <div class="wrap grid split">
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-compare"/></svg>Compare</span>
-        <h2>See what changed.</h2>
+        <h2 class="rise"><span class="ln"><span>See what changed.</span></span></h2>
         <p>Lay v002 over v001 and drag the slider across.</p>
       </div>
       <div class="media">
@@ -248,23 +248,24 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-code"/></svg>Formats</span>
-        <h2>Documents, code and spreadsheets too.</h2>
+        <h2 class="rise"><span class="ln"><span>Documents, code and spreadsheets too.</span></span></h2>
         <p>Reports, code diffs and spreadsheets open inside the app. You compare versions and comment on them the same way as an image.</p>
       </div>
+      <div class="mq reveal" aria-hidden="true"><div><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span></div><div><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span></div></div>
       <div class="typegrid reveal">
         <figure class="shot typeshot">
           <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></span><span class="shot-title">Code diff · styles.css</span></div>
-          <img src="assets/shots/code.webp" width="1200" height="820" loading="lazy" alt="A version diff of a code file with added and removed lines in colour">
+          <img src="assets/shots/code.webp" width="1440" height="900" loading="lazy" alt="A version diff of a code file with added and removed lines in colour">
           <figcaption>Comment on the changed line.</figcaption>
         </figure>
         <figure class="shot typeshot">
           <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></span><span class="shot-title">Report · report.html</span></div>
-          <img src="assets/shots/doc.webp" width="1200" height="820" loading="lazy" alt="An HTML report opened in the app">
+          <img src="assets/shots/doc.webp" width="1440" height="900" loading="lazy" alt="An HTML report opened in the app">
           <figcaption>Highlight a paragraph and leave a note.</figcaption>
         </figure>
         <figure class="shot typeshot">
           <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-table"/></svg></span><span class="shot-title">Spreadsheet · costs.csv</span></div>
-          <img src="assets/shots/sheet.webp" width="1200" height="820" loading="lazy" alt="Two versions of a spreadsheet with the changed cells marked">
+          <img src="assets/shots/sheet.webp" width="1440" height="900" loading="lazy" alt="Two versions of a spreadsheet with the changed cells marked">
           <figcaption>Only the changed cells are marked.</figcaption>
         </figure>
       </div>
@@ -276,7 +277,7 @@
     <div class="wrap grid split">
       <div class="copy">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-phone"/></svg>On your phone <span class="tag">Pro</span></span>
-        <h2>The same screen on your phone.</h2>
+        <h2 class="rise"><span class="ln"><span>The same screen on your phone.</span></span></h2>
         <p>Open Genok on your phone over your own private connection. Nothing is published to the internet.</p>
       </div>
       <div class="phone-row reveal">
@@ -289,7 +290,7 @@
   <!-- ===== THE LOOP ===== -->
   <section class="band">
     <div class="wrap grid">
-      <h2 class="loop-h">Leave a note. The session fixes it.</h2>
+      <h2 class="loop-h rise"><span class="ln"><span>Leave a note. The session fixes it.</span></span></h2>
       <ol class="loop-steps reveal">
         <li><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><b>Comment</b><span class="loop-d">Draw on the spot</span></li>
         <li><span class="loop-ic"><svg class="ic" aria-hidden="true"><use href="#i-messages"/></svg></span><b>The session gets it</b><span class="loop-d">On its next turn</span></li>
@@ -304,10 +305,10 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>Use cases</span>
-        <h2>Whatever you make, you review it the same way.</h2>
+        <h2 class="rise"><span class="ln"><span>Whatever you make, you review it the same way.</span></span></h2>
         <p>Genok doesn't care what the session produced. It collects it, keeps every version, and sends your notes back.</p>
       </div>
-      <div class="art flow reveal"><input class="flow-in" type="radio" name="flow" id="flow-1" checked><input class="flow-in" type="radio" name="flow" id="flow-2"><input class="flow-in" type="radio" name="flow" id="flow-3"><div class="flow-tabs"><label for="flow-1"><i>1</i><span>Leave comments</span></label><label for="flow-2"><i>2</i><span>Compare the fix</span></label><label for="flow-3"><i>3</i><span>Confirm</span></label></div><figure class="shot"><div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · Speaker hero</span></div><div class="flow-stage"><img src="assets/shots/speaker-comment.jpg" width="2160" height="1410" loading="lazy" alt="The first speaker render open in Genok with three marks drawn on it and a comment being written"><img src="assets/shots/speaker-compare.jpg" width="2160" height="1410" loading="lazy" alt="The first and the fixed speaker render side by side in Genok's compare view"><img src="assets/shots/speaker-fixed.jpg" width="2160" height="1410" loading="lazy" alt="The fixed speaker render in Genok with two requests confirmed and one waiting"></div></figure><div class="flow-caps"><p>Mark what to fix on the first render and write a line for each: the plinth, the fabric, the floor.</p><p>When the AI session uploads the fixed version, look at it next to the one before.</p><p>Close the requests that are fixed. Send back the ones that are not.</p></div><p class="flow-note">Captured from the app. Most of the app's screens are in Korean for now.</p></div>
+      <div class="art flow reveal"><input class="flow-in" type="radio" name="flow" id="flow-1" checked><input class="flow-in" type="radio" name="flow" id="flow-2"><input class="flow-in" type="radio" name="flow" id="flow-3"><div class="flow-tabs"><label for="flow-1"><i>1</i><span>Leave comments</span></label><label for="flow-2"><i>2</i><span>Compare the fix</span></label><label for="flow-3"><i>3</i><span>Confirm</span></label></div><figure class="shot"><div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · Logo title</span></div><div class="flow-stage"><img src="assets/shots/title-comment.jpg" width="2160" height="1410" loading="lazy" alt="The first draft of a logo title open in Genok, with marks on the frame and a third comment being written"><img src="assets/shots/title-compare.jpg" width="2160" height="1410" loading="lazy" alt="The first and the latest version of the logo title in Genok's compare view, split by a slider"><img src="assets/shots/title-fixed.jpg" width="2160" height="1410" loading="lazy" alt="The latest version of the logo title in Genok with one request waiting to be confirmed"></div></figure><div class="flow-caps"><p>Mark what to fix on the first draft and write a line for each: where the logo sits, the empty right side, the thin ring.</p><p>When the AI session uploads the fixed version, slide between it and the first one.</p><p>Close the requests that are fixed. Send back the ones that are not.</p></div><p class="flow-note">Captured from the app. Most of the app's screens are in Korean for now.</p></div>
       <div class="cases reveal">
         <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D and motion</span><h3><a href="cases-3d.html">Renders and clips</a></h3><p>Each render and each sequence lands as a new version. Pause a clip on the frame that bothers you, draw on it, and write what to change.</p><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
         <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>Web and design</span><h3><a href="cases-web.html">Pages and mockups</a></h3><p>Every pass at a page arrives as a version. Put it next to the last one, see what moved, and point at the part that still looks off.</p><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
@@ -320,7 +321,7 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>Pricing</span>
-        <h2>Lite does the whole job.</h2>
+        <h2 class="rise"><span class="ln"><span>Lite does the whole job.</span></span></h2>
         <p>The full loop works on Lite, which is free. Go Pro when you want the limits off.</p>
       </div>
 
@@ -349,7 +350,7 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label">Beta</span>
-        <h2>Genok is in closed beta.</h2>
+        <h2 class="rise"><span class="ln"><span>Genok is in closed beta.</span></span></h2>
         <p><a href="beta.html">Request access</a> and, once we've reviewed it, we e-mail you a personal invite link. To hear only about the launch, leave your e-mail here.</p>
         <form class="notify" id="notify-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdQNyzieivmztizhHmY1ZaHSQ5uQcgQadH9y-fjwlIiYpHzFQ/formResponse" method="post" novalidate>
           <fieldset class="notify-os"><legend>Your operating system<span class="gf-tag">Optional</span></legend><label><input type="radio" name="entry.1759373767" value="Windows"><span>Windows</span></label><label><input type="radio" name="entry.1759373767" value="macOS"><span>macOS</span></label><label><input type="radio" name="entry.1759373767" value="기타"><span>Other</span></label></fieldset>
@@ -370,7 +371,7 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label">Next</span>
-        <h2>What we're working on.</h2>
+        <h2 class="rise"><span class="ln"><span>What we're working on.</span></span></h2>
       </div>
       <ul class="next-list">
         <li><b>macOS</b><span>Genok runs on Windows today. A Mac version is in the works.</span></li>
@@ -384,7 +385,7 @@
   <!-- ===== FAQ ===== -->
   <section id="faq" class="faq">
     <div class="wrap grid">
-      <div class="section-head"><span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-messages"/></svg>FAQ</span><h2>Questions</h2></div>
+      <div class="section-head"><span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-messages"/></svg>FAQ</span><h2 class="rise"><span class="ln"><span>Questions</span></span></h2></div>
       <div class="faq-list">
         <details><summary>Does it work with both Claude Code and Codex?</summary><div class="answer">Yes. Connect both and review them on one screen. The session uploads its result with <code>loop push</code> and picks up your notes on its next turn.</div></details>
         <details><summary>Do I need an API key? Does it cost extra?</summary><div class="answer">No. You sign in with the subscription you already use and need no separate API key. Genok adds no charge of its own. What a session does counts against your own Claude Code / Codex usage.</div></details>
@@ -398,7 +399,7 @@
   <!-- ===== CLOSING ===== -->
   <section class="end">
     <div class="wrap">
-      <h2>AI makes it.<br>You say OK.</h2>
+      <h2 class="rise"><span class="ln"><span>AI makes it.</span></span><span class="ln"><span>You say OK.</span></span></h2>
       <a class="btn btn-primary" href="download.html">Download for Windows</a>
       <p>Closed beta · Windows 10 and 11</p>
     </div>
@@ -420,7 +421,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Genok</span>
-      <span>v0.1.54 · Windows 10/11</span>
+      <span>v0.1.60 · Windows 10/11</span>
       <span class="foot-legal">Claude and Claude Code are trademarks of Anthropic. OpenAI and Codex are trademarks of OpenAI. Genok is not affiliated with or sponsored by either company.</span>
     </div>
   </div>
