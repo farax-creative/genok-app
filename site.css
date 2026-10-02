@@ -1197,3 +1197,8 @@ svg.ic { stroke-width: 1.6; }
   .btn .dl-fx { display: none; }
   .btn-primary { transition: none; }
 }
+
+/* ---- reading floor: 13px text, 40px tap height ---- */
+.label, .label .tag, .changelog .cv small, .foot-col h4, .foot-legal, .flow-tabs label i, .zoom-tip, .legal-toc h2,
+.acct-row .state, .soon-tag, .anno .an-n, .ww-label, .demo-cap, .yr-save { font-size: 13px !important; }
+.foot-col a { display: flex; align-items: center; min-height: 40px; }
