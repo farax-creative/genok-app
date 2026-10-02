@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- Fonts in <head> on purpose: a late JS-injected link causes layout shift. -->
 <!-- Pretendard is bundled locally (assets/fonts); its @font-face is in site.css. -->
-<link rel="preload" href="assets/fonts/pretendard-site.296021ee.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.dc7f962d.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -89,12 +89,13 @@
       <div class="hero-copy">
         <h1 class="rise"><span class="ln"><span>AI makes it.</span></span><span class="ln"><span>You say OK.</span></span></h1>
       </div>
+      <p class="lead">Genok shows you what Claude Code and Codex made, version by version. Draw on what's wrong and the session fixes it.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="download.html">
           <svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>
           Download for Windows<i class="dl-ar" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg></i>
         </a>
-        <span class="hero-sub">Requires a Claude Code / Codex paid plan · invite only for now</span>
+        <span class="hero-sub">Requires Claude Code / Codex on a paid plan. Closed beta: you need an invite link to install.</span>
       </div>
 
       <div class="hero-stage"><div class="aurora" aria-hidden="true"><i></i><i></i></div><figure class="shot hero-shot">
@@ -116,35 +117,111 @@
   </section>
 
   <!-- ===== DRAW (signature: the select-and-draw loop) ===== -->
-  
-
-  <!-- ===== WHY / THE PAIN: terminal vs Genok ===== -->
-  
-
-  <!-- ===== WORKS WITH (detail) ===== -->
-  <section id="see">
+  <section id="draw">
     <div class="wrap grid">
-      <ol class="next-steps home-steps"><li><i>1</i><div><b>Results pile up version by version.</b></div></li><li><i>2</i><div><b>Draw on the part to fix.</b></div></li><li><i>3</i><div><b>The same session fixes it and uploads a new version.</b></div></li></ol>
-      <div class="home-shot"><figure class="shot reveal">
-          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Product turntable · f0 / 143</span></div>
-          <img src="assets/shots/video.webp" width="1440" height="940" loading="lazy" alt="A video player with frame numbers and playback controls">
-        </figure></div>
+      <div class="section-head">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-pen"/></svg>Draw on it</span>
+        <h2 class="rise"><span class="ln"><span>Point at the problem. Don't describe it.</span></span></h2>
+        <p>Pause the frame and draw on the spot. Your note goes to the session.</p>
+      </div>
+      <figure class="demofig reveal">
+        <video id="loopvid" src="assets/video/loop.mp4" poster="assets/video/loop-poster.jpg"
+               width="1440" height="900" muted loop playsinline preload="none"
+               aria-label="Pausing a result, drawing on it, the session sending a new version, and the two versions compared side by side"></video>
+        <figcaption class="demo-cap">Pause → draw → new version → compare</figcaption>
+      </figure>
     </div>
   </section>
+
+  <!-- ===== WHY / THE PAIN: terminal vs Genok ===== -->
+  <section id="why" class="band">
+    <div class="wrap grid">
+      <div class="section-head">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-terminal"/></svg>Why</span>
+        <h2 class="rise"><span class="ln"><span>In a terminal, results get buried in the log.</span></span></h2>
+        <p>A session makes a file and leaves you a path.</p>
+      </div>
+
+      <div class="versus reveal">
+        <figure class="vs-side">
+          <figcaption class="vs-cap vs-before"><svg class="ic" aria-hidden="true"><use href="#i-messages"/></svg>A Claude Code / Codex session: the result is buried in the chat</figcaption>
+          <div class="shot vs-shot">
+            <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">claude · render session</span></div>
+            <img src="assets/shots/terminal.webp" width="1200" height="820" loading="lazy" alt="A Claude Code terminal session where the result is only a file path in a long log">
+          </div>
+        </figure>
+        <div class="vs-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+        <figure class="vs-side">
+          <figcaption class="vs-cap vs-after"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Genok: the same result, filed by version</figcaption>
+          <div class="shot vs-shot">
+            <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · Opening title logo</span></div>
+            <img src="assets/shots/home.webp" width="1440" height="940" loading="lazy" alt="Genok showing the same result filed by project and version">
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKS WITH (detail) ===== -->
   <section id="works" class="home-line">
     <div class="wrap grid">
       <p>It uses your Claude Code / Codex subscription as it is. No API key, no extra charge.</p>
     </div>
   </section>
+
+  <!-- ===== SEE: home / video / compare (real screenshots) ===== -->
+  
+
+  <section id="see">
+    <div class="wrap grid split rev">
+      <div class="copy">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-film"/></svg>Video</span>
+        <h2 class="rise"><span class="ln"><span>Video, frame by frame.</span></span></h2>
+        <p>Step one frame at a time, slow it down, loop the part that bothers you.</p>
+      </div>
+      <div class="media">
+        <figure class="shot reveal">
+          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Product turntable · f0 / 143</span></div>
+          <img src="assets/shots/video.webp" width="1440" height="940" loading="lazy" alt="A video player with frame numbers and playback controls">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid split">
+      <div class="copy">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-compare"/></svg>Compare</span>
+        <h2 class="rise"><span class="ln"><span>See what changed.</span></span></h2>
+        <p>Lay v002 over v001 and drag the slider across.</p>
+      </div>
+      <div class="media">
+        <figure class="shot reveal">
+          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Compare · slider</span></div>
+          <img src="assets/shots/compare.webp" width="1440" height="940" loading="lazy" alt="Two versions overlaid and compared with a slider">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BROAD CONTENT TYPES: real app screenshots ===== -->
+  
+
+  <!-- ===== PHONE ===== -->
+  
+
+
+  <!-- ===== PRICING ===== -->
   <section id="cases">
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>Use cases</span>
+        <h2 class="rise"><span class="ln"><span>Whatever you make, you review it the same way.</span></span></h2>
       </div>
       <div class="cases reveal">
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D and motion</span><h3><a href="cases-3d.html">Renders and clips</a></h3><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>Web and design</span><h3><a href="cases-web.html">Pages and mockups</a></h3><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>Documents, code and data</span><h3><a href="cases-docs.html">Reports and diffs</a></h3><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D and motion</span><h3><a href="cases-3d.html">Renders and clips</a></h3><p>Each render and each sequence lands as a new version.</p><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>Web and design</span><h3><a href="cases-web.html">Pages and mockups</a></h3><p>Every pass at a page arrives as a version you can put next to the last one.</p><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>Documents, code and data</span><h3><a href="cases-docs.html">Reports and diffs</a></h3><p>Comment on a paragraph, a changed line or a changed cell.</p><span class="case-more" aria-hidden="true">Read more<svg class="ic"><use href="#i-arrow"/></svg></span></article>
       </div>
     </div>
   </section>
@@ -153,6 +230,8 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>Pricing</span>
+        <h2 class="rise"><span class="ln"><span>Lite does the whole job.</span></span></h2>
+        <p>The full loop works on Lite, which is free. Go Pro when you want the limits off.</p>
       </div>
 
       <div class="cmptable reveal" role="table" aria-label="Lite and Pro compared">
@@ -161,13 +240,17 @@
           <span role="columnheader">Lite</span>
           <span role="columnheader" class="cmp-pro">Pro</span>
         </div>
+        <div class="cmp-row" role="row"><span role="cell">Claude Code and Codex</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span></div>
+        <div class="cmp-row" role="row"><span role="cell">Projects</span><span role="cell" data-h="Lite">Unlimited</span><span role="cell" class="cmp-pro" data-h="Pro">Unlimited</span></div>
+        <div class="cmp-row" role="row"><span role="cell">Every format (images, video, documents, code, sheets)</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span></div>
+        <div class="cmp-row" role="row"><span role="cell">Compare, comment, draw on frames</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span></div>
         <div class="cmp-row" role="row"><span role="cell">Version history</span><span role="cell" data-h="Lite">Latest 10</span><span role="cell" class="cmp-pro strong" data-h="Pro">All</span></div>
         <div class="cmp-row" role="row"><span role="cell">View on your phone</span><span role="cell" class="no" data-h="Lite"><span aria-hidden="true">—</span><span class="sr">Not included</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span></div>
         <div class="cmp-row" role="row"><span role="cell">More than one of your own accounts</span><span role="cell" class="no" data-h="Lite"><span aria-hidden="true">—</span><span class="sr">Not included</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">Included</span></span></div>
       </div>
 
       <div class="plans" id="plans"></div>
-      <p class="plan-foot">Everything else works on Lite, which is free. Prices in US dollars. Checkout isn't open yet. Once it is, you can ask for a full refund within 7 days of the first payment. <a href="refund.html">Refund policy</a></p>
+      <p class="plan-foot">Prices in US dollars. Checkout isn't open yet. Once it is, you can ask for a full refund within 7 days of the first payment. <a href="refund.html">Refund policy</a></p>
     </div>
   </section>
 
