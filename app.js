@@ -491,14 +491,22 @@
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, hasIO = "IntersectionObserver" in window;
 
-  /* S4: only headings still below the fold are hidden, so nothing on screen flickers */
+  /* S4: a heading and what sits next to it (label, lead, cards) come in together, one after another.
+     Only blocks still below the fold are hidden, so nothing on screen flickers. */
   if (!reduce && hasIO) {
     var hio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("rise-w"); hio.unobserve(e.target); } });
-    }, { threshold: 0.4 });
-    document.querySelectorAll("h2.rise").forEach(function (h) {
-      if (h.getBoundingClientRect().top > innerHeight) { h.classList.add("rise-w"); hio.observe(h); }
-    });
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var g = e.target._mo; hio.unobserve(e.target); g.classList.remove("mo-w");
+        setTimeout(function () { g.classList.remove("mo"); }, 1400);   /* hand the children their own transitions back */
+      });
+    }, { threshold: 0.3 });
+    var hold = function (watch, group) {
+      if (watch.getBoundingClientRect().top <= innerHeight || group.classList.contains("mo")) return;
+      group.classList.add("mo", "mo-w"); watch._mo = group; hio.observe(watch);
+    };
+    document.querySelectorAll("h2.rise").forEach(function (h) { hold(h, h.parentElement); });
+    document.querySelectorAll(".cases, .plans, .faq-list, .loop-steps").forEach(function (g) { hold(g.firstElementChild || g, g); });
   }
 
   /* S5: a price counts up from 0 the first time it is seen; stops if something else rewrites the text */
@@ -546,4 +554,110 @@
       });
     });
   }
+})();
+
+/* site motion, second set: buttons that fill from the cursor, step rings, a typed command, larger screenshots, dots near the cursor */
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, hasIO = "IntersectionObserver" in window;
+  var ko = (document.documentElement.lang || "").indexOf("ko") === 0;
+  function local(e, el, a, b) { var r = el.getBoundingClientRect(); el.style.setProperty(a, (e.clientX - r.left) + "px"); el.style.setProperty(b, (e.clientY - r.top) + "px"); }
+
+  /* B1: remember where the pointer entered, the fill grows from there */
+  document.addEventListener("pointerover", function (e) {
+    var b = e.target.closest && e.target.closest(".btn-ghost, .copy-btn");
+    if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) local(e, b, "--bx", "--by");
+  }, { passive: true });
+
+  /* B9 */
+  document.querySelectorAll(".end, #beta").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") local(e, el, "--dx", "--dy"); }, { passive: true });
+    el.addEventListener("pointerleave", function () { el.style.setProperty("--dx", "-400px"); el.style.setProperty("--dy", "-400px"); });
+  });
+
+  /* B4: 48 ticks; step i of n lights (i + 1) / n of them. The lit share eases towards its target, so it can be re-run at any time. */
+  (function () {
+    var steps = document.querySelectorAll(".loop-steps li"), N = 48; if (!steps.length) return;
+    var rings = [].map.call(steps, function (li, i) {
+      var ic = li.querySelector(".loop-ic"); if (!ic) return null;
+      var ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg"), off = document.createElementNS(ns, "path"), on = document.createElementNS(ns, "path");
+      svg.setAttribute("viewBox", "0 0 64 64"); svg.setAttribute("class", "ring"); svg.setAttribute("aria-hidden", "true"); svg.appendChild(off); svg.appendChild(on);
+      ic.classList.add("has-ring"); ic.appendChild(svg);
+      var r = { cur: 0, to: (i + 1) / steps.length, raf: 0 };
+      r.draw = function () {
+        var a = "", l = "";
+        for (var k = 0; k < N; k++) {
+          var t = k / N * 2 * Math.PI - Math.PI / 2, c = Math.cos(t), s = Math.sin(t);
+          var seg = "M" + (32 + 25 * c).toFixed(2) + " " + (32 + 25 * s).toFixed(2) + "L" + (32 + 30 * c).toFixed(2) + " " + (32 + 30 * s).toFixed(2);
+          if (k + .5 < r.cur * N) l += seg; else a += seg;
+        }
+        off.setAttribute("d", a); on.setAttribute("d", l);
+      };
+      r.run = function (from) {
+        if (reduce) { r.cur = r.to; r.draw(); return; }
+        if (from !== undefined) r.cur = from;
+        if (r.raf) return;
+        (function tick() { r.cur += (r.to - r.cur) * .12; if (Math.abs(r.to - r.cur) < .002) { r.cur = r.to; r.draw(); r.raf = 0; return; } r.draw(); r.raf = requestAnimationFrame(tick); })();
+      };
+      r.draw();
+      li.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") r.run(0); });
+      return r;
+    });
+    var start = function () { rings.forEach(function (r, i) { if (r) setTimeout(function () { r.run(); }, reduce ? 0 : 160 * i); }); };
+    if (!hasIO) return start();
+    new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); start(); } }, { threshold: 0.4 }).observe(steps[0].parentNode);
+  })();
+
+  /* B6: the text stays in the page the whole time (copying works mid-way); letters are only shown one after another */
+  (function () {
+    if (reduce || !hasIO || !/(^|\/)start(\.ko)?(\.html)?$/.test(location.pathname)) return;
+    var code = document.querySelector(".copybox code"); if (!code || code.children.length) return;
+    var txt = code.textContent, caret = document.createElement("i"); caret.className = "caret"; caret.setAttribute("aria-hidden", "true");
+    code.textContent = "";
+    var spans = [].map.call(txt, function (ch) { var sp = document.createElement("span"); sp.textContent = ch; code.appendChild(sp); return sp; });
+    code.classList.add("typing"); code.insertBefore(caret, spans[0]);
+    new IntersectionObserver(function (es, o) {
+      if (!es[0].isIntersecting) return; o.disconnect();
+      var i = 0;
+      (function type() {
+        spans[i].classList.add("on"); code.insertBefore(caret, spans[i].nextSibling); i++;
+        if (i < spans.length) setTimeout(type, 45 + Math.random() * 55); else setTimeout(function () { caret.remove(); }, 1600);
+      })();
+    }, { threshold: 0.8 }).observe(code);
+  })();
+
+  /* B7: click a screenshot to see it larger; the label trails the mouse with a little lag */
+  (function () {
+    var imgs = document.querySelectorAll(".shot img"); if (!imgs.length) return;
+    var tip = document.createElement("span"), x = 0, y = 0, tx = 0, ty = 0, raf = 0, open = null;
+    tip.className = "zoom-tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = ko ? "크게 보기" : "View larger"; document.body.appendChild(tip);
+    function follow() { x += (tx - x) * .2; y += (ty - y) * .2; tip.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)"; raf = Math.abs(tx - x) + Math.abs(ty - y) > .3 ? requestAnimationFrame(follow) : 0; }
+    function aim(e, jump) {
+      tx = Math.min(innerWidth - tip.offsetWidth - 8, e.clientX + 14); ty = Math.min(innerHeight - tip.offsetHeight - 8, e.clientY + 14);
+      if (jump || reduce) { x = tx; y = ty; tip.style.transform = "translate(" + x + "px," + y + "px)"; } else if (!raf) raf = requestAnimationFrame(follow);
+    }
+    function close() {
+      if (!open) return; var d = open; open = null; d.classList.remove("on"); document.removeEventListener("keydown", key);
+      setTimeout(function () { d.remove(); }, 220); if (d._from) d._from.focus();
+    }
+    function key(e) { if (e.key === "Escape") close(); }
+    function show(img) {
+      if (open) return;
+      var d = document.createElement("button"), big = document.createElement("img"), r = img.getBoundingClientRect();
+      d.type = "button"; d.className = "zoom"; d.setAttribute("aria-label", ko ? "닫기" : "Close"); d._from = img;
+      big.src = img.currentSrc || img.src; big.alt = img.alt;
+      big.style.transformOrigin = ((r.left + r.width / 2) / innerWidth * 100).toFixed(1) + "% " + ((r.top + r.height / 2) / innerHeight * 100).toFixed(1) + "%";
+      d.appendChild(big); document.body.appendChild(d); open = d; tip.classList.remove("on");
+      d.addEventListener("click", close); document.addEventListener("keydown", key);
+      requestAnimationFrame(function () { requestAnimationFrame(function () { d.classList.add("on"); d.focus(); }); });
+    }
+    imgs.forEach(function (img) {
+      img.classList.add("zoomable"); img.tabIndex = 0; img.setAttribute("role", "button");
+      img.setAttribute("aria-label", (img.alt ? img.alt + ". " : "") + (ko ? "크게 보기" : "View larger"));
+      img.addEventListener("click", function () { show(img); });
+      img.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(img); } });
+      img.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { aim(e, true); tip.classList.add("on"); } });
+      img.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") aim(e); });
+      img.addEventListener("pointerleave", function () { tip.classList.remove("on"); });
+    });
+  })();
 })();

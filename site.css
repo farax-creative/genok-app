@@ -958,11 +958,21 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
 .rise .ln { display: block; overflow: hidden; padding: .08em 0 .14em; margin: -.08em 0 -.14em; }
 .rise .ln > span { display: block; transition: transform .7s var(--ease); }
 .rise .ln + .ln > span { transition-delay: .09s; }
-.rise.rise-w .ln > span { transform: translateY(110%); }
 .hero h1.rise .ln > span { animation: rise-in .8s var(--ease) both; }
 .hero h1.rise .ln + .ln > span { animation-delay: .09s; }
 @keyframes rise-in { from { transform: translateY(110%); } }
 @keyframes rise-fade { from { opacity: 0; } }
+/* the rest of a block follows its heading: label first, then the lead and the cards, 70ms apart */
+.mo > :not(h2):not(.reveal) { transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.mo > :nth-child(2) { transition-delay: .07s; } .mo > :nth-child(3) { transition-delay: .14s; } .mo > :nth-child(4) { transition-delay: .21s; }
+.mo > :nth-child(5) { transition-delay: .28s; } .mo > :nth-child(n+6) { transition-delay: .35s; }
+.mo-w > :not(h2):not(.reveal) { opacity: 0; transform: translateY(14px); }
+.mo-w h2.rise .ln > span { transform: translateY(110%); }
+.mo > h2.rise .ln > span { transition-delay: .07s; } .mo > h2.rise .ln + .ln > span { transition-delay: .16s; }
+/* first screen: lead, button, screenshot and the tool line follow the headline on load */
+.hero .lead, .hero .hero-cta, .hero .hero-stage, .hero .workswith { animation: mo-in .7s var(--ease) both; }
+.hero .lead { animation-delay: .16s; } .hero .hero-cta { animation-delay: .24s; } .hero .hero-stage { animation-delay: .32s; } .hero .workswith { animation-delay: .4s; }
+@keyframes mo-in { from { opacity: 0; transform: translateY(14px); } }
 /* S6 slow light behind the first screenshot */
 .hero { overflow-x: clip; }
 .hero .hero-stage { grid-column: 1 / span 12; position: relative; margin-top: clamp(52px, 6vw, 84px); }
@@ -1000,4 +1010,57 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
   .btn:hover .dl-ar, .btn:hover .dl-ar svg, .case:hover .case-more .ic { transform: none; }
   .btn:hover .dl-ar svg + svg { transform: translateY(-200%); }
   .hero h1.rise .ln > span { animation: rise-fade .3s ease both; }
+  .hero .lead, .hero .hero-cta, .hero .hero-stage, .hero .workswith { animation: none; }
+}
+
+/* ---- site motion, second set (B1 B2 B4 B6 B7 B8 B9) ---- */
+/* B1 second buttons fill from where the cursor came in */
+.btn-ghost, .copy-btn { position: relative; isolation: isolate; overflow: hidden; }
+.btn-ghost::before, .copy-btn::before { content: ""; position: absolute; z-index: -1; left: var(--bx, 50%); top: var(--by, 50%); width: 360px; height: 360px; margin: -180px;
+  border-radius: 50%; background: var(--ink); transform: scale(0); transition: transform .5s var(--ease); pointer-events: none; }
+/* B2 rolling label */
+.roll { display: block; overflow: hidden; line-height: 1.6; height: 1.6em; }
+.roll > span { display: block; text-shadow: 0 1.6em 0 currentColor; transition: transform .35s var(--ease); }
+/* B4 a ring of ticks around each step, lit as far as that step goes */
+.loop-ic.has-ring { position: relative; border-color: transparent; border-radius: 50%; }
+.loop-ic .ring { position: absolute; inset: -9px; width: auto; height: auto; pointer-events: none; }
+.loop-ic .ring path { fill: none; stroke-width: 1.6; stroke-linecap: round; stroke: var(--line-2); }
+.loop-ic .ring path + path { stroke: var(--accent); }
+.loop-steps li.ok .loop-ic .ring path + path { stroke: var(--green); }
+/* B6 the first command on the start page types itself */
+.typing span { opacity: 0; }
+.typing span.on { opacity: 1; }
+.typing .caret { display: inline-block; width: 7px; height: 1.05em; margin-left: 1px; vertical-align: -2px; background: var(--ink); animation: caret 1s steps(2) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+/* B7 screenshots open larger; a small label trails the cursor to say so */
+.shot img.zoomable { cursor: zoom-in; }
+.zoom-tip { position: fixed; left: 0; top: 0; z-index: 60; padding: 5px 10px; border-radius: 999px; background: var(--ink); color: var(--bg); font: 600 12px/1.3 var(--font-sans);
+  white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s var(--ease); will-change: transform; }
+.zoom-tip.on { opacity: 1; }
+.zoom { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; padding: clamp(12px, 3vw, 40px); background: rgba(6, 6, 8, .82); border: 0; width: 100%; height: 100%;
+  max-width: none; max-height: none; cursor: zoom-out; opacity: 0; transition: opacity .2s var(--ease); }
+.zoom.on { opacity: 1; }
+.zoom img { max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 10px; border: 1px solid var(--line-2); transform: scale(.96); transition: transform .32s var(--ease); }
+.zoom.on img { transform: none; }
+/* B9 dots behind the closing section and the beta section; the ones near the cursor light up */
+.end, #beta { position: relative; isolation: isolate; }
+.end::before, #beta::before, .end::after, #beta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.end::before, #beta::before { background: radial-gradient(circle, rgba(var(--glow), .13) 1px, transparent 1.5px) 0 0 / 18px 18px;
+  -webkit-mask: radial-gradient(70% 90% at 50% 50%, #000, transparent); mask: radial-gradient(70% 90% at 50% 50%, #000, transparent); }
+.end::after, #beta::after { background: radial-gradient(circle, rgba(var(--glow), .9) 1px, transparent 1.5px) 0 0 / 18px 18px;
+  -webkit-mask: radial-gradient(120px at var(--dx, -400px) var(--dy, -400px), #000, transparent); mask: radial-gradient(120px at var(--dx, -400px) var(--dy, -400px), #000, transparent); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-ghost:hover::before, .copy-btn:hover::before { transform: scale(1); }
+  .btn-ghost:hover, .copy-btn:hover { color: var(--bg); background: transparent; }
+  .nav-dl:hover .roll > span { transform: translateY(-1.6em); }
+  /* B8 the card under the cursor stays sharp, the others step back */
+  .cases .case { transition: opacity .25s var(--ease), transform .3s var(--ease), border-color .2s ease; }
+  .cases:has(.case:hover) .case:not(:hover) { opacity: .5; }
+  .cases .case:hover { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-ghost::before, .copy-btn::before, .roll > span, .zoom img { transition: none; }
+  .nav-dl:hover .roll > span, .cases .case:hover { transform: none; }
+  .zoom img { transform: none; }
+  .typing .caret { animation: none; }
 }
