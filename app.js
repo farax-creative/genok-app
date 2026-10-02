@@ -165,6 +165,32 @@
                  : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the e-mail address. Example: name@example.com", other: "Type what the other one is." };
   const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
+  // A request form (no "send another" button) is sent once. The same request came in two or three
+  // times from one person: after a reload the page looked as if nothing had been sent. The browser
+  // keeps the day it was sent, nothing else, and shows the sent screen again for 30 days.
+  const ONCE = !done.querySelector("[data-again]");
+  const KEY = "genok-sent:" + location.pathname.split("/").pop().replace(/\.ko\.html$|\.html$/, "");
+  const LABEL = btn.textContent, BUSY = KO ? "보내는 중…" : "Sending…";
+  const remember = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch (err) {} };
+  const sentAt = () => { try { const t = Number(localStorage.getItem(KEY)); return t && Date.now() - t < 30 * 864e5 ? t : 0; } catch (err) { return 0; } };
+  function showDone(mail, when) {
+    let p = done.querySelector(".gf-echo");
+    if (!p) { p = document.createElement("p"); p.className = "gf-echo"; done.querySelector("h2").after(p); }
+    const day = when ? new Date(when).toLocaleDateString(KO ? "ko-KR" : "en-US", { month: "long", day: "numeric" }) : "";
+    p.textContent = mail ? (KO ? "적어 주신 메일: " : "Your e-mail: ") + mail
+      : day ? (KO ? "이 브라우저에서 " + day + "에 이미 신청을 보냈습니다." : "A request was already sent from this browser on " + day + ".") : "";
+    p.hidden = !p.textContent;
+    if (when && !done.querySelector("[data-redo]")) {
+      const w = document.createElement("p"), b = document.createElement("button");
+      b.className = "btn btn-ghost"; b.type = "button"; b.dataset.redo = ""; b.textContent = KO ? "다른 메일로 다시 신청" : "Request again with another e-mail";
+      b.addEventListener("click", () => { try { localStorage.removeItem(KEY); } catch (err) {} done.hidden = true; form.hidden = false; btn.disabled = false; form.querySelector("input, textarea").focus(); });
+      w.append(b); done.append(w);
+    }
+    form.hidden = true; done.hidden = false;
+    if (!when) done.focus();
+  }
+  if (ONCE && sentAt()) showDone("", sentAt());
+
   // the app opens feedback(.ko).html?v=0.1.46 so the version is already filled in; digits and dots only
   const ver = new URLSearchParams(location.search).get("v") || "";
   const verField = form.querySelector('[name="entry.1002962770"]');
@@ -206,7 +232,8 @@
     if (firstBad) { firstBad.focus(); return; }
     const action = form.getAttribute("action");
     if (!action) { msg.innerHTML = FAIL; return; }
-    btn.disabled = true;
+    if (btn.disabled) return;
+    btn.disabled = true; btn.textContent = BUSY;
     try {
       // The reply from Google is opaque here: only a network failure can be told apart.
       if (form._attach) await form._attach.ready();   // an image may still be shrinking
@@ -228,9 +255,11 @@
         p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
         done.querySelector("h2").after(p);
       }
-      form.hidden = true; done.hidden = false; done.focus();
-    } catch (err) { msg.innerHTML = FAIL; }
-    btn.disabled = false;
+      const mail = form.querySelector('input[type="email"]');
+      if (ONCE) remember();
+      showDone(ONCE && mail ? mail.value.trim() : "", 0);
+    } catch (err) { msg.innerHTML = FAIL; btn.disabled = false; }
+    btn.textContent = LABEL;
   });
   form.addEventListener("input", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
   form.addEventListener("change", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
@@ -242,7 +271,7 @@
   const again = done.querySelector("[data-again]");
   if (again) again.addEventListener("click", () => {
     form.reset(); if (form._attach) form._attach.clear(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
-    done.hidden = true; form.hidden = false; form.querySelector("textarea, input").focus();
+    done.hidden = true; form.hidden = false; btn.disabled = false; form.querySelector("textarea, input").focus();
   });
 })();
 
