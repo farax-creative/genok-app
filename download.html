@@ -29,6 +29,58 @@
 <link rel="alternate" hreflang="ko" href="https://genok.app/download.ko.html">
 <link rel="alternate" hreflang="x-default" href="https://genok.app/download.html">
 <meta property="og:locale" content="en_US">
+<style>
+/* ---- invitation: the ring waits, the code wakes it, the button turns on ---- */
+.inv-top { display: flex; align-items: center; gap: 18px; margin: 0 0 20px; }
+.inv-orb { position: relative; flex: 0 0 auto; width: 104px; height: 104px; }
+.inv-orb svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.inv-orb path { fill: none; stroke: var(--accent); stroke-linecap: round; stroke-width: 1.15; }
+.inv-orb #inv-dim { stroke-opacity: .34; }
+.inv-orb #inv-lit { stroke-opacity: .96; }
+.inv-glow { position: absolute; inset: -34%; border-radius: 50%; opacity: 0; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(239, 233, 220, .20), rgba(239, 233, 220, 0) 70%); }
+.inv-n { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0;
+  font: 400 30px/1 Georgia, 'Times New Roman', serif; color: var(--accent); font-variant-numeric: lining-nums; letter-spacing: .01em; }
+.inv-head { min-width: 0; }
+.inv-head .gate-h { margin: 0 0 6px; }
+.inv-title { display: grid; }
+.inv-title > * { grid-area: 1 / 1; margin: 0; }
+.inv-title .gate-p { align-self: center; }
+.inv-no { font: 400 clamp(26px, 7vw, 32px)/1.15 Georgia, 'Times New Roman', serif; color: var(--ink); font-variant-numeric: lining-nums; white-space: nowrap; }
+.inv-no small { font-size: .56em; color: var(--ink-soft); letter-spacing: .04em; }
+.inv-swap { display: grid; margin: 0 0 16px; }
+.inv-swap > * { grid-area: 1 / 1; min-width: 0; }
+.inv-b { align-self: center; }
+.inv-say { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: var(--ink); }
+.inv-key { margin: 0; color: var(--ink-soft); font-size: 15px; }
+.inv-back { margin: 8px 0 0; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--ink-dim);
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer; min-height: 44px; }
+.inv-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+.inv [data-off] { visibility: hidden; }
+.inv-dl { position: relative; overflow: hidden; display: flex; flex-wrap: wrap; white-space: normal; width: 100%; min-height: 56px; padding: 8px 16px; gap: 2px 10px; font-size: 16px;
+  border: 1px solid var(--line-2); background: transparent; color: var(--ink-dim); cursor: not-allowed; }
+.inv-dl svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.inv-dl .inv-off { font-weight: 500; font-size: 13.5px; color: var(--ink-dim); }
+.inv-dl .i-down, .inv-dl.is-on .i-lock, .inv-dl.is-on .inv-off { display: none; }
+.inv-dl.is-on { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); cursor: pointer; }
+.inv-dl.is-on .i-down { display: block; }
+.inv-dl.is-on:hover { background: var(--btn-hover); }
+.inv-dl.is-on:active { transform: scale(.985); }
+.inv-dl:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.inv-dl::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 34%; pointer-events: none; opacity: 0;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .7), rgba(255, 255, 255, 0)); }
+.inv-dl.is-on.sheen::after { animation: inv-sheen .9s var(--ease) 1; }
+@keyframes inv-sheen { 0% { left: -40%; opacity: 1; } 100% { left: 110%; opacity: 1; } }
+.dl-card.inv-open { border-color: rgba(239, 233, 220, .42); }
+.dl-card { transition: border-color .4s var(--ease); }
+.inv-demo { margin: 12px 0 0; font-size: 13px; color: var(--ink-dim); }
+.inv-demo b { color: var(--ink-soft); font-weight: 500; letter-spacing: .04em; }
+@media (max-width: 420px) { .inv-orb { width: 84px; height: 84px; } .inv-n { font-size: 24px; } .inv-top { gap: 14px; } }
+@media (prefers-reduced-motion: reduce) {
+  .inv-a, .inv-b, .inv-n, .inv-glow, .inv-title > * { transition: opacity .2s ease; }
+  .inv-dl.is-on.sheen::after { animation: none; }
+}
+</style>
 </head>
 <body>
 
@@ -74,9 +126,41 @@
       </div>
 
       <div class="dl-card reveal">
-        <div class="gate" id="gate">
-          <p class="gate-h">Closed beta</p>
-          <p class="gate-p">During the beta the installer isn't on this page. After we review a request, we e-mail a personal invite link.</p>
+        <div class="gate inv" id="gate">
+          <div class="inv-top">
+            <div class="inv-orb" id="inv-orb" aria-hidden="true">
+              <span class="inv-glow" id="inv-glow"></span>
+              <svg viewBox="0 0 64 64"><g id="inv-g"><path id="inv-dim"/><path id="inv-lit"/></g></svg>
+              <span class="inv-n" id="inv-n"></span>
+            </div>
+            <div class="inv-head">
+              <p class="gate-h">Closed beta</p>
+              <div class="inv-title">
+                <p class="gate-p" id="inv-p">Enter your invite code to turn on the download button.</p>
+                <p class="inv-no" id="inv-no" data-off><small>No.</small> <span id="inv-num">00</span> <small>/ 50</small></p>
+              </div>
+            </div>
+          </div>
+          <div class="inv-swap">
+            <form class="inv-a" id="inv-form" autocomplete="off" novalidate>
+              <label for="inv-code">Invite code</label>
+              <div class="gate-row">
+                <input id="inv-code" name="code" type="text" spellcheck="false" autocapitalize="characters" maxlength="32" aria-describedby="inv-msg">
+                <button class="btn btn-ghost" id="inv-go" type="submit">Confirm</button>
+              </div>
+              <p class="gate-msg" id="inv-msg" role="status" aria-live="polite"></p>
+            </form>
+            <div class="inv-b" id="inv-b" data-off>
+              <p class="inv-say">You're invited to the Genok beta.</p>
+              <p class="inv-key">After installing, the app shows a button for a free beta key.</p>
+              <button type="button" class="inv-back" id="inv-back">Use another code</button>
+            </div>
+          </div>
+          <a class="btn inv-dl" id="inv-dl" role="link" aria-disabled="true">
+            <svg class="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <svg class="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
+            <span>Download for Windows</span><span class="inv-off">· Turns on with a code</span>
+          </a>
           <p class="gate-wait">The installer isn't code-signed yet, so a blue “Windows protected your PC” window may appear. Choose <b>More info</b>, then <b>Run anyway</b>.</p>
           <p class="gate-wait">Not a tester yet? <a href="beta.html">Request access</a> or <a href="index.html#beta">get notified at launch</a>.</p>
         </div>
@@ -138,5 +222,123 @@
 </footer>
 
 <script src="app.js"></script>
+<script>
+/* Invitation: an invite code turns on the download button. One loop drives the ring; every value is a
+   spring that continues from where it is, so going back half-way reverses instead of jumping. */
+(function () {
+  var HASHES = ["46aab6f62ef36193bb0b9f7641e52b62","1166cd278491f1ee5fa488a2275b6a4c","42f0292b1fe395a6b397af3cdcc2e1c2","5ae730ad7707ff6e40b37ee5c0f991d2","fb7068b468a61f7547426f1cbf9f4a3c","dcb445f80373e5057f1523d13cdecb64","3c80020c812855cbbe5ef1cb0b1d7895","86b405678d1aba3b4d0f90918a3df94d","e0d3212fcbf009b08c82f5c119ba391f","82f4217f140f324b8c3eddc963fa6f5f","a5140af51544415504faef26deb37d2e","b6bc60065512cc4bf25692adcae253d0","577e0b3a7f2c2c9c9a105f003c1177af","c451da77f570eee3936410b5f82a25c0","56e5c59aeef823fda4e689ff96ade3f0","baa9864e67d933dc686b7482689ef5d9","dd3db9ea7eff49d42f1e8eca1c255433","faa727712335aaba53bf4fadc52ab489","85382e81993c80876ff6acae15a8fc69","e072a9029665813315786320c07a60c1","7372982e705e7d5ccfad373c25cf1768","02ca793c55daac002df8f374cff342e0","83929f7071451a2fd9e0771301958ef1","5b41bb878b84cd8a3f4b991333306eea","e0725ebe4f5e78991e93b973dac1040e","00929475f1cfa5ac082c85d77a8a43e6","b8f4bcfd028ca1f6d995ee93698b6a74","e4401149d36f8a9ffd29ab1b42542a1f","2702d962f244967c77fde29b49dcd5f0","6d58a853700af357f1efd63e2d4b4e5c","becd18da3c413aa946a6a3fea85efccc","09ad85d4ccc21412fafae91db0459bbb","7ca08688abb9a60b8775fb413939ea6e","e8bcd90def0273c2254a4c9b4e219a0b","93ffcf026cef7082fc42a590890ea85a","fdb6af926a7f3c689bcf42ec4d9719c7","bc376380e1b8619a97310fab71cdaec2","df26fc4eb5e86b988ece06bcdb72fa19","9591b13ceabafc66c61cf8149f4d3a40","c3d8944f9f5b9ce4ac459142cc7dc55a","d4fcee799e55f7b6693fe652bd844f76","afba4ecaeadcc849b0e6a71ef9033575","a9ea3fefec27d0cfe6e8cb4be9f135b9","c4b52e06b192458ae34b604255263038","61005453e925d984fecc6e06b6f15410","133a8f92bdd0f5b31bd59fa7494cb4d5","c6191a8fb0083814c0b050f42a439b46","04099384b671a036c1efe68c842bc6f7","ccfb5fbd26b7ee43aceedfe417a68ece","ae7996b807361ac1d6ff793314c6401f"], SALT = 'genok-beta-2026', ITER = 60000, LEN = 8, INST = 'https://github.com/farax-creative/genok-app/releases/latest/download/Genok_x64-setup.exe', BAD = 'That code doesn\'t match. Enter it exactly as in your invitation.';
+  var NAT = [[-87.3,16.71,24.18],[-81.8,16.51,24.27],[-76.4,16.47,24.39],[-70.9,16.61,24.55],[-65.5,16.91,24.73],[-60.0,17.35,24.9],[-54.5,17.86,25.02],[-49.1,18.36,25.11],[-43.6,18.8,25.04],[-38.2,19.1,24.79],[-32.7,19.24,24.4],[-27.3,19.21,23.86],[-21.8,19.02,23.23],[-16.4,18.73,22.6],[-10.9,18.39,22.12],[-5.5,18.05,21.89],[0.0,17.76,21.91],[5.5,17.54,22.16],[10.9,17.41,22.62],[16.4,17.35,23.22],[21.8,17.34,23.87],[27.3,17.34,24.48],[32.7,17.33,24.97],[38.2,17.3,25.28],[43.6,17.26,25.4],[49.1,17.21,25.33],[54.5,17.21,25.1],[60.0,17.26,24.79],[65.5,17.41,24.45],[70.9,17.66,24.21],[76.4,17.99,24.01],[81.8,18.37,23.86],[87.3,18.74,23.78],[92.7,19.06,23.68],[98.2,19.26,23.53],[103.6,19.3,23.33],[109.1,19.16,23.1],[114.5,18.85,22.92],[120.0,18.42,22.75],[125.5,17.91,22.63],[130.9,17.41,22.61],[136.4,16.97,22.73],[141.8,16.67,23.01],[147.3,16.53,23.45],[152.7,16.57,23.99],[158.2,16.75,24.57],[163.6,17.04,25.12],[169.1,17.38,25.53],[174.5,17.72,25.76],[180.0,18.01,25.74],[-174.5,18.22,25.49],[-169.1,18.36,25.1],[-163.6,18.42,24.56],[-158.2,18.43,23.95],[-152.7,18.43,23.39],[-147.3,18.44,22.9],[-141.8,18.47,22.53],[-136.4,18.51,22.32],[-130.9,18.55,22.33],[-125.5,18.56,22.55],[-120.0,18.5,22.86],[-114.5,18.36,23.2],[-109.1,18.11,23.51],[-103.6,17.79,23.77],[-98.2,17.41,23.95],[-92.7,17.03,24.08]], C = 32;
+  var $ = function (id) { return document.getElementById(id); };
+  var card = $('gate').closest('.dl-card'), orb = $('inv-orb'), g = $('inv-g'), dim = $('inv-dim'), lit = $('inv-lit');
+  var form = $('inv-form'), input = $('inv-code'), msg = $('inv-msg'), go = $('inv-go'), dl = $('inv-dl');
+  var A = form, B = $('inv-b'), P = $('inv-p'), NO = $('inv-no'), N = $('inv-n'), glow = $('inv-glow');
+  var mq = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+  var rad = function (d) { return d * Math.PI / 180; };
+
+  // u: closed 0 .. open 1.  b: a push on the ticks (out on a right code, in on a wrong one).
+  // s: how much the ring leans toward the pointer.  p: how much of the code is typed.
+  function spring(k, c) { return { x: 0, v: 0, to: 0, k: k, c: c }; }
+  var u = spring(170, 21), b = spring(210, 13), s = spring(120, 22), p = spring(90, 19);
+  var all = [u, b, s, p], rot = 0, spin = 0, clock = 0, ptr = 0, raf = 0, last = 0, seen = true, n = NAT.length;
+
+  function paint() {
+    var o = Math.max(0, Math.min(1, u.x)), idle = 1 - o, dA = '', dB = '', cut = p.x * n, i, t, a, d, bump, ri, ro, c1, s1, seg;
+    for (i = 0; i < n; i++) {
+      t = NAT[i]; a = t[0];
+      d = ((a + rot - ptr + 540) % 360) - 180;                       // angle between this tick and the pointer
+      bump = s.x * 2.4 * Math.exp(-(d * d) / 900);
+      var br = mq.matches ? 0 : idle * .9 * Math.sin(clock * 2.2 + rad(a) * 2);   // quiet breathing while it waits
+      ri = t[1] - br * .4 - b.x * .7; ro = t[2] + br + bump + b.x * 2;
+      c1 = Math.cos(rad(a)); s1 = Math.sin(rad(a));
+      seg = 'M' + (C + ri * c1).toFixed(2) + ' ' + (C + ri * s1).toFixed(2) + 'L' + (C + ro * c1).toFixed(2) + ' ' + (C + ro * s1).toFixed(2);
+      if (i < cut) dB += seg; else dA += seg;
+    }
+    dim.setAttribute('d', dA); lit.setAttribute('d', dB);
+    g.setAttribute('transform', 'rotate(' + rot.toFixed(2) + ' 32 32)');
+    var move = !mq.matches;
+    A.style.opacity = 1 - o; B.style.opacity = o; P.style.opacity = 1 - o; NO.style.opacity = o; N.style.opacity = o; glow.style.opacity = o;
+    A.style.transform = move ? 'translateY(' + (-10 * u.x).toFixed(2) + 'px)' : 'none';
+    B.style.transform = move ? 'translateY(' + (12 * (1 - u.x)).toFixed(2) + 'px)' : 'none';
+    NO.style.transform = move ? 'translateX(' + (-10 * (1 - u.x)).toFixed(2) + 'px)' : 'none';
+    N.style.transform = move ? 'scale(' + (.7 + .3 * u.x).toFixed(3) + ')' : 'none';
+    show(A, o < .98); show(P, o < .98); show(B, o > .02); show(NO, o > .02);
+  }
+  function show(el, on) { if (on) el.removeAttribute('data-off'); else el.setAttribute('data-off', ''); }
+  function still(q) { return Math.abs(q.x - q.to) < .0006 && Math.abs(q.v) < .006; }
+  function frame(now) {
+    var dt = Math.min(.05, (now - last) / 1000 || .016), i, j, q; last = now; clock += dt;
+    for (j = 0; j < 4; j++) for (i = 0; i < all.length; i++) { q = all[i]; q.v += (-q.k * (q.x - q.to) - q.c * q.v) * dt / 4; q.x += q.v * dt / 4; }
+    spin *= Math.exp(-2.6 * dt);
+    rot = (rot + (9 * (1 - u.x) + spin) * dt) % 360;
+    paint();
+    // open and settled: nothing left to move. Closed: the ring keeps breathing while it is on screen.
+    var settled = all.every(still) && Math.abs(spin) < .5;
+    if (settled && (u.to === 1 || !seen || document.hidden)) { all.forEach(function (q) { q.x = q.to; q.v = 0; }); paint(); raf = 0; return; }
+    raf = requestAnimationFrame(frame);
+  }
+  function run() {
+    if (mq.matches) { all.forEach(function (q) { q.x = q.to; q.v = 0; }); spin = 0; paint(); return; }
+    if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
+  }
+
+  function setOpen(on, num) {
+    u.to = on ? 1 : 0; p.to = on ? 1 : Math.min(1, input.value.replace(/[^A-Za-z0-9]/g, '').length / LEN);
+    card.classList.toggle('inv-open', on); dl.classList.toggle('is-on', on); dl.classList.toggle('sheen', on && !mq.matches);
+    if (on) { dl.href = INST; dl.removeAttribute('aria-disabled'); $('inv-num').textContent = N.textContent = num; b.v += 9; spin += 420; }
+    else { dl.removeAttribute('href'); dl.setAttribute('aria-disabled', 'true'); }
+    run();
+  }
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
+  function check(code) {
+    var clean = code.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (!clean || !window.crypto || !crypto.subtle) return Promise.resolve(-1);
+    var te = new TextEncoder();
+    return crypto.subtle.importKey('raw', te.encode(clean), 'PBKDF2', false, ['deriveBits']).then(function (key) {
+      return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: te.encode(SALT), iterations: ITER }, key, 128);
+    }).then(function (bits) { return HASHES.indexOf(hex(bits)); }, function () { return -1; });
+  }
+  function store(v) { try { if (v) localStorage.setItem('genok-invite', v); else localStorage.removeItem('genok-invite'); } catch (e) {} }
+  function open(code, quiet) {
+    go.disabled = true; msg.textContent = ''; input.removeAttribute('aria-invalid');
+    spin += 160; run();                                              // the ring turns while the code is checked
+    return check(code).then(function (i) {
+      go.disabled = false;
+      if (i < 0) {
+        if (!quiet) { msg.textContent = BAD; input.setAttribute('aria-invalid', 'true'); input.select(); b.v -= 11; run(); }
+        return;
+      }
+      store(code); setOpen(true, ('0' + (i + 1)).slice(-2));
+      if (!quiet) dl.focus({ preventScroll: true });
+    });
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); open(input.value); });
+  input.addEventListener('input', function () {
+    msg.textContent = ''; input.removeAttribute('aria-invalid');
+    p.to = Math.min(1, input.value.replace(/[^A-Za-z0-9]/g, '').length / LEN); b.v += 2.2; run();
+  });
+  $('inv-back').addEventListener('click', function () { store(''); setOpen(false); input.focus({ preventScroll: true }); });
+  dl.addEventListener('click', function (e) { if (!dl.classList.contains('is-on')) { e.preventDefault(); input.focus(); b.v -= 6; run(); } });
+
+  // the ring leans toward the pointer, wherever it is on the page
+  window.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    var r = orb.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    ptr = Math.atan2(dy, dx) * 180 / Math.PI;
+    s.to = Math.max(0, 1 - Math.hypot(dx, dy) / 520); run();
+  }, { passive: true });
+  document.documentElement.addEventListener('mouseleave', function () { s.to = 0; run(); });
+  orb.addEventListener('pointerdown', function () { b.v += 7; spin += 140; run(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) run(); }).observe(orb);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) run(); });
+  if (mq.addEventListener) mq.addEventListener('change', run);
+
+  paint(); run();
+  // A link from the invitation mail carries the code after "#", so the page opens without typing.
+  var h = '';
+  try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+  if (!h || document.getElementById(h)) { h = ''; try { h = localStorage.getItem('genok-invite') || ''; } catch (e) {} }
+  if (h) { input.value = h; open(h, true); }
+})();
+</script>
 </body>
 </html>
