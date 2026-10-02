@@ -123,8 +123,8 @@
   const msg = document.getElementById("notify-msg");
   const btn = form.querySelector("button");
   const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
-  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
-  const BADMAIL = KO ? "메일 주소 형식을 확인해 주세요. 예: name@example.com" : "Check the e-mail address. Example: name@example.com";
+  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please email " + MAIL + ".";
+  const BADMAIL = KO ? "메일 주소 형식을 확인해 주세요. 예: name@example.com" : "Check the email address. Example: name@example.com";
   const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
   const say = (html, bad) => { msg.innerHTML = html; msg.classList.toggle("bad", !!bad); };
   // checked on leaving the field, never while typing
@@ -146,7 +146,7 @@
       // The reply from Google is opaque here: only a network failure can be told apart.
       await fetch(action, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(form)) });
       form.reset();
-      say(KO ? "신청됐습니다. 정식으로 열리면 메일로 알려 드립니다." : "You're on the list. We'll e-mail you when Genok opens.");
+      say(KO ? "신청됐습니다. 정식으로 열리면 메일로 알려 드립니다." : "You're on the list. We'll email you when Genok opens.");
     } catch (err) { say(FAIL, true); }
     btn.disabled = false;
   });
@@ -160,9 +160,9 @@
   const msg = form.querySelector(".gf-msg");
   const btn = form.querySelector('button[type="submit"]');
   const MAIL = '<a href="mailto:support@genok.app">support@genok.app</a>';
-  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please e-mail " + MAIL + ".";
+  const FAIL = KO ? "보내지 못했습니다. " + MAIL + "으로 메일 주세요." : "That didn't go through. Please email " + MAIL + ".";
   const TXT = KO ? { need: "이 항목을 채워 주세요.", pick: "하나 이상 골라 주세요.", mail: "메일 주소 형식을 확인해 주세요. 예: name@example.com", other: "기타 내용을 적어 주세요." }
-                 : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the e-mail address. Example: name@example.com", other: "Type what the other one is." };
+                 : { need: "Please fill this in.", pick: "Choose at least one.", mail: "Check the email address. Example: name@example.com", other: "Type what the other one is." };
   const isMail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
   // A request form (no "send another" button) is sent once. The same request came in two or three
@@ -186,12 +186,12 @@
     let p = done.querySelector(".gf-echo");
     if (!p) { p = document.createElement("p"); p.className = "gf-echo"; done.querySelector("h2").after(p); }
     const day = when ? new Date(when).toLocaleDateString(KO ? "ko-KR" : "en-US", { month: "long", day: "numeric" }) : "";
-    p.textContent = mail ? (KO ? "적어 주신 메일: " : "Your e-mail: ") + mail
+    p.textContent = mail ? (KO ? "적어 주신 메일: " : "Your email: ") + mail
       : day ? (KO ? "이 브라우저에서 " + day + "에 이미 신청을 보냈습니다." : "A request was already sent from this browser on " + day + ".") : "";
     p.hidden = !p.textContent;
     if (when && !done.querySelector("[data-redo]")) {
       const w = document.createElement("p"), b = document.createElement("button");
-      b.className = "btn btn-ghost"; b.type = "button"; b.dataset.redo = ""; b.textContent = KO ? "다른 메일로 다시 신청" : "Request again with another e-mail";
+      b.className = "btn btn-ghost"; b.type = "button"; b.dataset.redo = ""; b.textContent = KO ? "다른 메일로 다시 신청" : "Request again with another email";
       b.addEventListener("click", () => { try { localStorage.removeItem(KEY); } catch (err) {} done.hidden = true; form.hidden = false; btn.disabled = false; form.querySelector("input, textarea").focus(); });
       w.append(b); done.append(w);
     }
@@ -255,7 +255,7 @@
       const sent = !att || (await att.finish());
       if (!sent) {
         const p = document.createElement("p"); p.className = "gf-att-fail";
-        p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
+        p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please email them to " + MAIL + ".";
         done.querySelector("h2").after(p);
       }
       if (form._attach) form._attach.clear();
@@ -267,7 +267,7 @@
   });
   form.addEventListener("input", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
   form.addEventListener("change", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
-  // an e-mail field is checked when you leave it; an empty one waits for the submit
+  // an email field is checked when you leave it; an empty one waits for the submit
   form.addEventListener("focusout", (e) => {
     const q = e.target.closest('.gf-q[data-kind="email"]');
     if (q && e.target.value.trim()) check(q);
