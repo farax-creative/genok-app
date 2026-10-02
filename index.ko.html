@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- Fonts in <head> on purpose: a late JS-injected link causes layout shift. -->
 <!-- Pretendard is bundled locally (assets/fonts); its @font-face is in site.css. -->
-<link rel="preload" href="assets/fonts/pretendard-site.d3c614b0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.61145efe.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -89,13 +89,12 @@
       <div class="hero-copy">
         <h1 class="rise"><span class="ln"><span>AI가 만들고,</span></span><span class="ln"><span>OK는 내가 합니다.</span></span></h1>
       </div>
-      <p class="lead">Claude Code와 Codex가 만든 결과물을 버전별로 보여줍니다. 틀린 곳에 그려서 표시하면 그 세션이 고칩니다.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="download.ko.html">
           <svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>
           Windows용 다운로드<i class="dl-ar" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9.5M4 8.8l4 4 4-4"/></svg></i>
         </a>
-        <span class="hero-sub">Claude Code / Codex 유료 플랜이 필요합니다. 지금은 초대받은 분만 설치할 수 있습니다.</span>
+        <span class="hero-sub">Claude Code / Codex 유료 플랜 필요 · 지금은 초대받은 분만</span>
       </div>
 
       <div class="hero-stage"><div class="aurora" aria-hidden="true"><i></i><i></i></div><figure class="shot hero-shot">
@@ -117,186 +116,35 @@
   </section>
 
   <!-- ===== DRAW (signature: the select-and-draw loop) ===== -->
-  <section id="draw">
-    <div class="wrap grid">
-      <div class="section-head">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-pen"/></svg>그려서 짚기</span>
-        <h2 class="rise"><span class="ln"><span>고칠 곳을 말로 설명하지 않아도 됩니다.</span></span></h2>
-        <p>화면을 멈추고 고칠 곳에 그리면, 코멘트가 세션으로 넘어갑니다.</p>
-      </div>
-      <figure class="demofig reveal">
-        <video id="loopvid" src="assets/video/loop.mp4" poster="assets/video/loop-poster.jpg"
-               width="1440" height="900" muted loop playsinline preload="none"
-               aria-label="결과물을 멈추고 그려서 짚으면 세션이 새 버전을 올리고, 두 버전을 나란히 비교하는 과정"></video>
-        <figcaption class="demo-cap">멈춤 → 그리기 → 새 버전 → 비교</figcaption>
-      </figure>
-    </div>
-  </section>
+  
 
   <!-- ===== WHY / THE PAIN: terminal vs Genok ===== -->
-  <section id="why" class="band">
-    <div class="wrap grid">
-      <div class="section-head">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-terminal"/></svg>왜 필요한가</span>
-        <h2 class="rise"><span class="ln"><span>터미널에선 결과물이 로그에 묻힙니다.</span></span></h2>
-        <p>세션은 파일을 만들고 경로 한 줄만 남깁니다.</p>
-      </div>
-
-      <div class="versus reveal">
-        <figure class="vs-side">
-          <figcaption class="vs-cap vs-before"><svg class="ic" aria-hidden="true"><use href="#i-messages"/></svg>Claude Code / Codex 세션: 결과물이 대화에 묻힘</figcaption>
-          <div class="shot vs-shot">
-            <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">claude · 렌더 작업 세션</span></div>
-            <img src="assets/shots/terminal.webp" width="1200" height="820" loading="lazy" alt="Claude Code 터미널 세션 — 만든 결과물이 긴 로그 사이에 파일 경로로만 남아 있다">
-          </div>
-        </figure>
-        <div class="vs-arrow" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></div>
-        <figure class="vs-side">
-          <figcaption class="vs-cap vs-after"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Genok: 같은 결과물을 버전별로 정리</figcaption>
-          <div class="shot vs-shot">
-            <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · 오프닝 타이틀 로고</span></div>
-            <img src="assets/shots/home.webp" width="1440" height="940" loading="lazy" alt="Genok — 같은 결과물이 프로젝트와 버전으로 정리된 화면">
-          </div>
-        </figure>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ===== WORKS WITH (detail) ===== -->
-  <section id="works">
-    <div class="wrap grid split">
-      <div class="copy">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>연결</span>
-        <h2 class="rise"><span class="ln"><span>쓰던 것을 그대로 씁니다.</span></span></h2>
-        <ul class="ticks">
-          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>별도 API 키가 필요 없습니다.</b> 이미 로그인한 구독 계정을 그대로 씁니다.</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>Genok이 따로 과금하지 않습니다.</b> 세션이 일한 만큼은 쓰시는 Claude Code / Codex 사용량에서 나갑니다.</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>계정 정보를 읽지 않습니다.</b> 어느 계정으로 세션을 켤지만 알면 됩니다.</span></li>
-        </ul>
-      </div>
-      <div class="media">
-        <div class="acct-card reveal">
-          <div class="acct-row">
-            <span class="acct-mark"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg></span>
-            <span><span class="an">Claude Code</span><span class="ad">결과물을 올리고 코멘트를 받아 갑니다.</span></span>
-            <span class="state"><i></i>연결됨</span>
-          </div>
-          <div class="acct-row">
-            <span class="acct-mark"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg></span>
-            <span><span class="an">Codex</span><span class="ad">같은 방식으로 연결합니다.</span></span>
-            <span class="state"><i></i>연결됨</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SEE: home / video / compare (real screenshots) ===== -->
   <section id="see">
-    <div class="wrap grid split">
-      <div class="copy">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>한곳에</span>
-        <h2 class="rise"><span class="ln"><span>모든 프로젝트를 한 화면에서.</span></span></h2>
-        <p>세션이 올린 결과물이 프로젝트와 버전별로 쌓입니다.</p>
-      </div>
-      <div class="media">
-        <figure class="shot reveal">
-          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">홈</span></div>
-          <img src="assets/shots/home.webp" width="1440" height="940" loading="lazy" alt="프로젝트와 최근 결과물을 모아 보는 홈 화면">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap grid split rev">
-      <div class="copy">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-film"/></svg>영상</span>
-        <h2 class="rise"><span class="ln"><span>영상은 프레임 단위로.</span></span></h2>
-        <p>한 프레임씩 넘기고, 배속을 낮추고, 신경 쓰이는 구간만 반복해 봅니다.</p>
-      </div>
-      <div class="media">
-        <figure class="shot reveal">
+    <div class="wrap grid">
+      <ol class="next-steps home-steps"><li><i>1</i><div><b>결과물이 버전별로 쌓입니다.</b></div></li><li><i>2</i><div><b>고칠 곳에 그려서 표시합니다.</b></div></li><li><i>3</i><div><b>그 세션이 고쳐 새 버전을 올립니다.</b></div></li></ol>
+      <div class="home-shot"><figure class="shot reveal">
           <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">제품 턴테이블 · f0 / 143</span></div>
           <img src="assets/shots/video.webp" width="1440" height="940" loading="lazy" alt="프레임 번호와 재생 컨트롤이 있는 영상 플레이어">
-        </figure>
-      </div>
+        </figure></div>
     </div>
   </section>
-
-  <section>
-    <div class="wrap grid split">
-      <div class="copy">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-compare"/></svg>버전 비교</span>
-        <h2 class="rise"><span class="ln"><span>바뀐 곳이 바로 보입니다.</span></span></h2>
-        <p>v001 위에 v002를 겹쳐 놓고 가운데 선을 밀어 봅니다.</p>
-      </div>
-      <div class="media">
-        <figure class="shot reveal">
-          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">버전 비교 · 밀기</span></div>
-          <img src="assets/shots/compare.webp" width="1440" height="940" loading="lazy" alt="두 버전을 겹쳐 놓고 밀어서 비교하는 화면">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BROAD CONTENT TYPES: real app screenshots ===== -->
-  <section id="types" class="band">
+  <section id="works" class="home-line">
     <div class="wrap grid">
-      <div class="section-head">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-code"/></svg>형식</span>
-        <h2 class="rise"><span class="ln"><span>문서·코드·스프레드시트도 봅니다.</span></span></h2>
-        <p>리포트, 코드 변경 내역, 스프레드시트도 같은 방식으로 비교하고 코멘트합니다.</p>
-      </div>
-      <div class="mq reveal" aria-hidden="true"><div><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span><span>.png</span><span>.jpg</span><span>.webp</span><span>.svg</span><span>.gif</span><span>.mp4</span><span>.mov</span><span>.webm</span></div><div><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span><span>.md</span><span>.pdf</span><span>.html</span><span>.csv</span><span>.xlsx</span><span>.py</span><span>.ts</span><span>.css</span><span>.json</span></div></div>
-      <div class="typegrid reveal">
-        <figure class="shot typeshot">
-          <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></span><span class="shot-title">코드 diff · styles.css</span></div>
-          <img src="assets/shots/code.webp" width="1440" height="900" loading="lazy" alt="코드 파일의 버전 diff — 추가·삭제된 줄이 색으로 표시된 화면">
-          <figcaption>바뀐 줄에 코멘트를 남깁니다.</figcaption>
-        </figure>
-        <figure class="shot typeshot">
-          <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></span><span class="shot-title">문서 리포트 · report.html</span></div>
-          <img src="assets/shots/doc.webp" width="1440" height="900" loading="lazy" alt="HTML 리포트 문서를 앱에서 열어 보는 화면">
-          <figcaption>문단에 형광펜을 긋고 코멘트를 남깁니다.</figcaption>
-        </figure>
-        <figure class="shot typeshot">
-          <div class="shot-bar"><span class="ic-chip"><svg class="ic" aria-hidden="true"><use href="#i-table"/></svg></span><span class="shot-title">스프레드시트 · costs.csv</span></div>
-          <img src="assets/shots/sheet.webp" width="1440" height="900" loading="lazy" alt="스프레드시트의 두 버전 비교 — 바뀐 셀이 표시된 화면">
-          <figcaption>바뀐 셀만 표시됩니다.</figcaption>
-        </figure>
-      </div>
+      <p>Claude Code / Codex 구독을 그대로 씁니다. API 키도, 추가 요금도 없습니다.</p>
     </div>
   </section>
-
-  <!-- ===== PHONE ===== -->
-  <section id="phone">
-    <div class="wrap grid split">
-      <div class="copy">
-        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-phone"/></svg>폰에서 보기 <span class="tag">Pro</span></span>
-        <h2 class="rise"><span class="ln"><span>폰에서도 같은 화면.</span></span></h2>
-        <p>나만 접속할 수 있는 연결로 봅니다. 인터넷에 공개되지 않습니다.</p>
-      </div>
-      <div class="phone-row reveal">
-        <figure class="shot-phone"><img src="assets/shots/phone-home.webp" width="780" height="1688" loading="lazy" alt="폰에서 본 홈 화면"></figure>
-        <figure class="shot-phone up"><img src="assets/shots/phone-item.webp" width="780" height="1688" loading="lazy" alt="폰에서 본 결과물 화면"></figure>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===== PRICING ===== -->
   <section id="cases">
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>활용</span>
-        <h2 class="rise"><span class="ln"><span>만드는 것이 달라도 확인하는 방식은 같습니다.</span></span></h2>
       </div>
-      <div class="art flow reveal"><input class="flow-in" type="radio" name="flow" id="flow-1" checked><input class="flow-in" type="radio" name="flow" id="flow-2"><input class="flow-in" type="radio" name="flow" id="flow-3"><div class="flow-tabs"><label for="flow-1"><i>1</i><span>코멘트 남기기</span></label><label for="flow-2"><i>2</i><span>고친 버전 비교</span></label><label for="flow-3"><i>3</i><span>확인</span></label></div><figure class="shot"><div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">Genok · 로고 타이틀</span></div><div class="flow-stage"><img src="assets/shots/title-comment.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 첫 시안. 화면 위에 표시가 있고 세 번째 코멘트를 적는 중이다"><img src="assets/shots/title-compare.jpg" width="2160" height="1410" loading="lazy" alt="Genok 비교 화면에서 가름선으로 나뉜 로고 타이틀 첫 버전과 최신 버전"><img src="assets/shots/title-fixed.jpg" width="2160" height="1410" loading="lazy" alt="Genok에서 연 로고 타이틀 최신 버전. 요청 하나가 확인을 기다린다"></div></figure><div class="flow-caps"><p>첫 시안 위에 고칠 곳을 표시하고 한 줄씩 적습니다.</p><p>AI 세션이 고쳐서 다시 올리면 첫 버전과 겹쳐 놓고 밀어서 봅니다.</p><p>고쳐진 요청은 확인으로 닫고, 덜 된 것은 다시 보냅니다.</p></div><p class="flow-note">앱에서 그대로 찍은 화면입니다.</p></div>
       <div class="cases reveal">
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D·모션</span><h3><a href="cases-3d.ko.html">렌더와 영상</a></h3><p>렌더와 시퀀스가 올라올 때마다 새 버전으로 쌓입니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>웹·디자인</span><h3><a href="cases-web.ko.html">페이지와 시안</a></h3><p>페이지를 고칠 때마다 새 버전이 올라와 이전 버전과 나란히 봅니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
-        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>문서·코드·데이터</span><h3><a href="cases-docs.ko.html">리포트와 변경 내역</a></h3><p>문단, 바뀐 줄, 바뀐 칸에 코멘트를 남깁니다.</p><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg>3D·모션</span><h3><a href="cases-3d.ko.html">렌더와 영상</a></h3><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg>웹·디자인</span><h3><a href="cases-web.ko.html">페이지와 시안</a></h3><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
+        <article class="case"><span class="who"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>문서·코드·데이터</span><h3><a href="cases-docs.ko.html">리포트와 변경 내역</a></h3><span class="case-more" aria-hidden="true">자세히<svg class="ic"><use href="#i-arrow"/></svg></span></article>
       </div>
     </div>
   </section>
@@ -305,8 +153,6 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-infinity"/></svg>가격</span>
-        <h2 class="rise"><span class="ln"><span>Lite로 충분합니다.</span></span></h2>
-        <p>올리고, 코멘트하고, 고쳐 받는 과정이 무료인 Lite에서 전부 됩니다. 한도를 없애고 싶을 때 Pro로 바꾸면 됩니다.</p>
       </div>
 
       <div class="cmptable reveal" role="table" aria-label="Lite와 Pro 비교">
@@ -315,17 +161,13 @@
           <span role="columnheader">Lite</span>
           <span role="columnheader" class="cmp-pro">Pro</span>
         </div>
-        <div class="cmp-row" role="row"><span role="cell">Claude Code / Codex 연결</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span></div>
-        <div class="cmp-row" role="row"><span role="cell">프로젝트</span><span role="cell" data-h="Lite">무제한</span><span role="cell" class="cmp-pro" data-h="Pro">무제한</span></div>
-        <div class="cmp-row" role="row"><span role="cell">모든 형식 (이미지·영상·문서·코드·시트)</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span></div>
-        <div class="cmp-row" role="row"><span role="cell">비교 · 코멘트 · 프레임에 그리기</span><span role="cell" class="yes" data-h="Lite"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span></div>
         <div class="cmp-row" role="row"><span role="cell">버전 기록 보기</span><span role="cell" data-h="Lite">최근 10개</span><span role="cell" class="cmp-pro strong" data-h="Pro">전부</span></div>
         <div class="cmp-row" role="row"><span role="cell">폰에서 보기</span><span role="cell" class="no" data-h="Lite"><span aria-hidden="true">—</span><span class="sr">없음</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span></div>
         <div class="cmp-row" role="row"><span role="cell">본인 계정 여러 개 연결</span><span role="cell" class="no" data-h="Lite"><span aria-hidden="true">—</span><span class="sr">없음</span></span><span role="cell" class="yes cmp-pro" data-h="Pro"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span class="sr">포함</span></span></div>
       </div>
 
       <div class="plans" id="plans"></div>
-      <p class="plan-foot">가격은 미국 달러 기준입니다. 결제는 아직 열리지 않았습니다. 결제가 열리면 첫 결제 7일 안에 요청하면 전액 환불합니다. <a href="refund.ko.html">환불정책</a></p>
+      <p class="plan-foot">나머지는 무료인 Lite에서 전부 됩니다. 가격은 미국 달러 기준입니다. 결제는 아직 열리지 않았습니다. 결제가 열리면 첫 결제 7일 안에 요청하면 전액 환불합니다. <a href="refund.ko.html">환불정책</a></p>
     </div>
   </section>
 
@@ -334,10 +176,9 @@
     <div class="wrap grid">
       <div class="section-head">
         <span class="label">베타</span>
-        <h2 class="rise"><span class="ln"><span>지금은 클로즈 베타 중입니다.</span></span></h2>
-        <p><a href="beta.ko.html">베타를 신청</a>하시면 초대 링크를 메일로 보내 드립니다. 정식 오픈 소식만 받으시려면 메일 주소를 남겨 주세요.</p>
+        <h2 class="rise"><span class="ln"><span>지금은 클로즈 베타입니다.</span></span></h2>
+        <p class="home-beta"><a class="btn btn-primary" href="beta.ko.html">베타 신청</a></p>
         <form class="notify" id="notify-form" action="https://docs.google.com/forms/d/e/1FAIpQLSdQNyzieivmztizhHmY1ZaHSQ5uQcgQadH9y-fjwlIiYpHzFQ/formResponse" method="post" novalidate>
-          <fieldset class="notify-os"><legend>쓰는 운영체제<span class="gf-tag">선택</span></legend><label><input type="radio" name="entry.1759373767" value="Windows"><span>Windows</span></label><label><input type="radio" name="entry.1759373767" value="macOS"><span>macOS</span></label><label><input type="radio" name="entry.1759373767" value="기타"><span>기타</span></label></fieldset>
           <label for="notify-email">알림 받을 이메일</label>
           <div class="notify-row">
             <input id="notify-email" type="email" name="entry.850015955" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="notify-msg" placeholder="name@example.com" required>
@@ -351,20 +192,7 @@
   </section>
 
   <!-- ===== NEXT (list to be agreed with Dev) ===== -->
-  <section id="next">
-    <div class="wrap grid">
-      <div class="section-head">
-        <span class="label">예정</span>
-        <h2 class="rise"><span class="ln"><span>지금 만들고 있는 것.</span></span></h2>
-      </div>
-      <ul class="next-list">
-        <li><b>macOS</b><span>Mac 버전을 준비하고 있습니다.</span></li>
-        <li><b>3D 앱 추가</b><span>더 많은 3D 도구의 렌더를 같은 방식으로 모아 봅니다.</span></li>
-        <li><b>문서 형식 추가</b><span>앱 안에서 열어 보고 코멘트할 수 있는 파일 종류를 늘립니다.</span></li>
-      </ul>
-      <p class="next-note">계획은 바뀔 수 있어 날짜는 적지 않았습니다.</p>
-    </div>
-  </section>
+  
 
   <!-- ===== FAQ ===== -->
   <section id="faq" class="faq">
@@ -379,13 +207,7 @@
   </section>
 
   <!-- ===== CLOSING ===== -->
-  <section class="end">
-    <div class="wrap">
-      <h2 class="rise"><span class="ln"><span>AI가 만들고,</span></span><span class="ln"><span>OK는 내가 합니다.</span></span></h2>
-      <a class="btn btn-primary" href="download.ko.html">Windows용 다운로드</a>
-      <p>클로즈 베타 · Windows 10, 11</p>
-    </div>
-  </section>
+  
 
 </main>
 
