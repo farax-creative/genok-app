@@ -71,7 +71,7 @@
 
     <div class="legal-body">
             <div class="callout">
-        <p><b>During the beta most of the app's screens are in Korean.</b> Button names on this page are given in English, with the Korean label you will see in brackets.</p>
+        <p><b>The app's screens are in English or Korean.</b> In 0.1.68 some notification and history text still appears in Korean.</p>
       </div>
       <h2 class="fold-h" id="stuck">When something doesn't work</h2>
       <details class="fold"><summary>If a blue "Windows protected your PC" window appears</summary><div class="fold-body"><p>The installer isn't code-signed yet, so Windows asks first. Two clicks get you past it.</p>
@@ -79,7 +79,7 @@
         <li>Click <b>More info</b>.</li>
         <li>Click <b>Run anyway</b>, which appears below.</li>
       </ol></div></details>
-      <details class="fold"><summary>If it says Genok couldn't be installed</summary><div class="fold-body"><p>Quit Genok from the tray (종료) and run the installer again. If it keeps failing, send us <code>%LOCALAPPDATA%\Genok\install.log</code>.</p></div></details>
+      <details class="fold"><summary>If it says Genok couldn't be installed</summary><div class="fold-body"><p>Quit Genok from the tray and run the installer again. If it keeps failing, send us <code>%LOCALAPPDATA%\Genok\install.log</code>.</p></div></details>
       <details class="fold"><summary>If the window stays white</summary><div class="fold-body"><p>Edge WebView2 is missing. Windows 11 includes it. On Windows 10, install the "WebView2 Runtime" from Microsoft.</p></div></details>
       <details class="fold"><summary>My comment didn't reach the session</summary><div class="fold-body"><p>Check that you reopened the Claude Code / Codex window after connecting, and that the session is working in the same folder the result was sent from.</p></div></details>
       <details class="fold"><summary>The link doesn't open</summary><div class="fold-body"><p>Check that Genok is in the tray. If another program is using port 8777, Genok picks a free one between 8778 and 8796, so opening the result from the app window is the surest way.</p></div></details>
@@ -93,20 +93,20 @@
       <details class="fold" id="first"><summary><i>2</i>First run</summary><div class="fold-body"><ul>
         <li>Open Genok from the Start menu or the desktop. The setup screen walks you through the steps in order.</li>
         <li>Results are kept in <code>Documents\Genok</code> unless you pick another folder during setup.</li>
-        <li>Closing the window doesn't quit the app. It stays in the tray, next to the clock. To quit, click the tray icon and choose <b>Quit</b> (종료).</li>
+        <li>Closing the window doesn't quit the app. It stays in the tray, next to the clock. To quit, click the tray icon and choose <b>Quit</b>.</li>
       </ul>
 
       <h3 id="key">Enter your beta key</h3>
       <ol>
-        <li>Open Settings › License (설정 › 라이선스) and paste the whole key, then press Apply. No key yet? Press Get a key on the same screen. It asks for an email only, not a card.</li>
+        <li>Open Settings › License and paste the whole key, then press Apply. No key yet? Press Get a key on the same screen. It asks for an email only, not a card.</li>
         <li>With a valid key, the Pro features open: viewing on your phone, more than one of your own accounts, full version history, phone notifications.</li>
         <li>If the key is rejected, read the reason shown on the screen first. If there is none, copy the whole key again and paste it once more. If that fails, write to support@genok.app.</li>
         <li>The key runs for one year from the day you get it. If you change PCs or lose the key, write to <a href="mailto:support@genok.app">support@genok.app</a>.</li>
       </ol></div></details>
       <details class="fold" id="connect"><summary><i>3</i>Connect Claude Code / Codex</summary><div class="fold-body"><p>The Claude Code step of setup shows one of three things.</p>
       <ul>
-        <li><b>Claude Code isn't installed</b>: install it with the steps below, then click <b>Check again</b> (다시 확인).</li>
-        <li><b>You need to sign in</b>: click <b>Sign in</b> (로그인하기). A black terminal window opens with Claude Code running in it. Sign in as it asks, come back to Genok and click <b>Check again</b>. You can close the terminal.</li>
+        <li><b>Claude Code isn't installed</b>: install it with the steps below, then click <b>Check again</b>.</li>
+        <li><b>You need to sign in</b>: click <b>Sign in</b>. A black terminal window opens with Claude Code running in it. Sign in as it asks, come back to Genok and click <b>Check again</b>. You can close the terminal.</li>
         <li><b>Claude Code connected</b>: go on to the next step. Genok adds a hook and a skill to your Claude Code settings and keeps the original as <code>settings.json.bak-&lt;time&gt;</code>.</li>
       </ul>
 
@@ -133,10 +133,10 @@
         <li>The <code>http://localhost:8777/i/...</code> address you get back opens on this PC only.</li>
       </ul></div></details>
       <details class="fold" id="update"><summary><i>5</i>Updates</summary><div class="fold-body"><ul>
-        <li>Under Settings › About (정보), click <b>Check for updates</b> (업데이트 확인). If there is a new version, click <b>Update now</b> (지금 업데이트). Genok downloads it, installs it and restarts.</li>
-        <li>If you are in the middle of something, choose <b>Download only</b> (받아 두기) and click <b>Restart to apply</b> (다시 켜서 적용) when it suits you.</li>
+        <li>Under Settings › About, click <b>Check for updates</b>. If there is a new version, click <b>Update now</b>. Genok downloads it, installs it and restarts.</li>
+        <li>If you are in the middle of something, choose <b>Download only</b> and click <b>Restart to apply</b> when it suits you.</li>
         <li>Applying an update closes the app once and opens it again. Your results, settings and chats stay.</li>
-        <li>If it says it failed, check your internet connection and click <b>Try again</b> (다시 하기).</li>
+        <li>If it says it failed, check your internet connection and click <b>Try again</b>.</li>
         <li>If the app doesn't open after an update, or the version hasn't changed, download the new installer and run it over the old one. Your data and settings stay.</li>
         <li>If the app doesn't come up right after an update, open Genok again from the Start menu.</li>
       </ul></div></details>
@@ -147,12 +147,12 @@
       <div class="help-cards fold-cards">
         <a class="help-card" href="feedback.html">
           <b>Something in your way?</b>
-          <span>Tell us in one line, right when it happens. In the app it's <b>Send feedback</b> (의견 남기기) in the title bar, or <b>Open form</b> (양식 열기) under Settings › About (정보) when the window is narrow.</span>
+          <span>Tell us in one line, right when it happens. In the app it's <b>Send feedback</b> in the title bar, or <b>Open form</b> under Settings › About when the window is narrow.</span>
           <span class="help-go">Send feedback</span>
         </a>
         <div class="help-card">
           <b>Still not working after this page?</b>
-          <span>Open Settings, find the diagnostics card (문제 진단), choose <b>Save diagnostics</b> (진단 묶음 저장) and send the file to <a href="mailto:support@genok.app">support@genok.app</a>. It contains folder paths that include your Windows user name, and your project names.</span>
+          <span>Open Settings, find the diagnostics card, choose <b>Save diagnostics bundle</b> and send the file to <a href="mailto:support@genok.app">support@genok.app</a>. It contains folder paths that include your Windows user name, and your project names.</span>
         </div>
       </div>
     </div>
