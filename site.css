@@ -932,3 +932,72 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
 .dl-next:hover { border-color: var(--ink); }
 .dl-next:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 @keyframes dl-next-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---- site motion (S1-S8). Hover effects only where there is a real pointer; reduced motion gets a fade or nothing ---- */
+:root { --glow: 239, 233, 220; }
+:root[data-theme="light"] { --glow: 21, 21, 26; }
+/* S1 download arrow */
+.btn .dl-ar { flex: none; position: relative; width: 28px; height: 28px; margin: 0 -10px 0 4px; border-radius: 50%; overflow: hidden;
+  background: var(--btn-ink); color: var(--btn); transition: transform .28s var(--ease); }
+.btn .dl-ar svg { position: absolute; inset: 7px; width: 14px; height: 14px; transition: transform .28s var(--ease); }
+.btn .dl-ar svg + svg { transform: translateY(-200%); }
+/* S2 light behind the closing button */
+.end .btn-primary { position: relative; isolation: isolate; }
+.end .btn-primary::after { content: ""; position: absolute; inset: -16px -10px; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(var(--glow), .55), transparent); filter: blur(18px); opacity: .28;
+  transition: opacity .3s var(--ease); animation: glow-drift 6s ease-in-out infinite alternate; }
+@keyframes glow-drift { from { transform: translate(-16%, 6%) scale(.92); } to { transform: translate(16%, -6%) scale(1.12); } }
+/* S3 underline that draws itself */
+.textlink, .plan-foot a, .cl-more a, .legal-body a, .faq-list .answer a { text-decoration: none; padding-bottom: 1px;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat, linear-gradient(var(--line-2), var(--line-2)) 0 100% / 100% 1px no-repeat;
+  transition: background-size .25s ease-out, color .2s var(--ease); }
+.case-more { padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .25s ease-out; }
+.case-more .ic { transition: transform .25s var(--ease); }
+.textlink:focus-visible, .plan-foot a:focus-visible, .cl-more a:focus-visible, .legal-body a:focus-visible, .faq-list .answer a:focus-visible { background-size: 100% 1px, 100% 1px; }
+/* S4 headings rise line by line */
+.rise .ln { display: block; overflow: hidden; padding: .08em 0 .14em; margin: -.08em 0 -.14em; }
+.rise .ln > span { display: block; transition: transform .7s var(--ease); }
+.rise .ln + .ln > span { transition-delay: .09s; }
+.rise.rise-w .ln > span { transform: translateY(110%); }
+.hero h1.rise .ln > span { animation: rise-in .8s var(--ease) both; }
+.hero h1.rise .ln + .ln > span { animation-delay: .09s; }
+@keyframes rise-in { from { transform: translateY(110%); } }
+@keyframes rise-fade { from { opacity: 0; } }
+/* S6 slow light behind the first screenshot */
+.hero { overflow-x: clip; }
+.hero .hero-stage { grid-column: 1 / span 12; position: relative; margin-top: clamp(52px, 6vw, 84px); }
+.hero .hero-stage .hero-shot { position: relative; margin-top: 0; }
+.aurora { position: absolute; inset: -6% 0; pointer-events: none; }
+.aurora i { position: absolute; left: 4%; top: 0; width: 62%; height: 90%; border-radius: 50%; opacity: .22; filter: blur(46px);
+  background: radial-gradient(closest-side, rgba(var(--glow), .5), transparent); animation: aurora-a 14s ease-in-out infinite alternate; }
+.aurora i + i { left: auto; right: 4%; top: 12%; opacity: .15; animation: aurora-b 19s ease-in-out infinite alternate; }
+@keyframes aurora-a { from { transform: translate(-8%, 10%) scale(1); } to { transform: translate(22%, -4%) scale(1.2); } }
+@keyframes aurora-b { from { transform: translate(8%, 4%) scale(1.15); } to { transform: translate(-20%, 12%) scale(.95); } }
+:root[data-theme="light"] .aurora i { opacity: .08; }
+/* S7 light that follows the cursor on cards */
+.plan, .typeshot { position: relative; }
+.case::before, .plan::before, .case::after, .plan::after, .typeshot::after { content: ""; position: absolute; border-radius: inherit; pointer-events: none;
+  opacity: 0; transition: opacity .25s var(--ease); }
+.case::before, .plan::before { inset: 0; background: radial-gradient(220px at var(--mx, 50%) var(--my, 50%), rgba(var(--glow), .07), transparent 70%); }
+.case::after, .plan::after, .typeshot::after { inset: -1px; padding: 1px; background: radial-gradient(180px at var(--mx, 50%) var(--my, 50%), rgba(var(--glow), .6), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.typeshot::after { inset: 0; }
+/* S8 questions open smoothly */
+.faq-list details.is-moving { overflow: hidden; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .dl-ar { transform: scale(1.07); }
+  .btn:hover .dl-ar svg { transform: translateY(200%); }
+  .btn:hover .dl-ar svg + svg { transform: none; }
+  .end .btn-primary:hover::after { opacity: .55; }
+  .textlink:hover, .plan-foot a:hover, .cl-more a:hover, .legal-body a:hover, .faq-list .answer a:hover { background-size: 100% 1px, 100% 1px; }
+  .case:hover .case-more { background-size: 100% 1px; }
+  .case:hover .case-more .ic { transform: translateX(4px); }
+  .case:hover::before, .plan:hover::before, .case:hover::after, .plan:hover::after, .typeshot:hover::after { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .end .btn-primary::after, .aurora i { animation: none; }
+  .btn .dl-ar, .btn .dl-ar svg, .case-more .ic, .rise .ln > span { transition: none; }
+  .btn:hover .dl-ar, .btn:hover .dl-ar svg, .case:hover .case-more .ic { transform: none; }
+  .btn:hover .dl-ar svg + svg { transform: translateY(-200%); }
+  .hero h1.rise .ln > span { animation: rise-fade .3s ease both; }
+}

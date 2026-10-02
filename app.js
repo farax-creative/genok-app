@@ -486,3 +486,64 @@
     else select();
   });
 })();
+
+/* site motion: headings rise when they come into view, prices count up once, cards light up under the cursor, questions open smoothly */
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, hasIO = "IntersectionObserver" in window;
+
+  /* S4: only headings still below the fold are hidden, so nothing on screen flickers */
+  if (!reduce && hasIO) {
+    var hio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove("rise-w"); hio.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    document.querySelectorAll("h2.rise").forEach(function (h) {
+      if (h.getBoundingClientRect().top > innerHeight) { h.classList.add("rise-w"); hio.observe(h); }
+    });
+  }
+
+  /* S5: a price counts up from 0 the first time it is seen; stops if something else rewrites the text */
+  if (!reduce && hasIO) {
+    var pio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, m = /^(\D*)(\d+)(.*)$/.exec(el.textContent); pio.unobserve(el);
+        if (!m || +m[2] === 0) return;
+        var end = +m[2], t0 = performance.now(), last = el.textContent;
+        el.style.display = "inline-block"; el.style.minWidth = el.getBoundingClientRect().width + "px";
+        (function step(t) {
+          if (el.textContent !== last) { el.style.minWidth = ""; return; }
+          var k = Math.min(1, (t - t0) / 900), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          last = el.textContent = k < 1 ? m[1] + v + m[3] : m[0];
+          if (k < 1) requestAnimationFrame(step); else el.style.minWidth = "";
+        })(t0);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll(".plan .price .amt").forEach(function (el) { pio.observe(el); });
+  }
+
+  /* S7: the card under the mouse learns where the cursor is */
+  document.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "mouse" || !e.target.closest) return;
+    var c = e.target.closest(".case, .plan, .typeshot"); if (!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", (e.clientX - r.left) + "px"); c.style.setProperty("--my", (e.clientY - r.top) + "px");
+  }, { passive: true });
+
+  /* S8: height animates from wherever it is now, so a second click mid-way turns it around */
+  if (!reduce && Element.prototype.animate) {
+    document.querySelectorAll(".faq-list details").forEach(function (d) {
+      var sum = d.querySelector("summary"), anim = null, closing = false;
+      sum.addEventListener("click", function (e) {
+        e.preventDefault();
+        var from = d.getBoundingClientRect().height, edge = d.offsetHeight - d.clientHeight; if (anim) anim.cancel();
+        closing = d.open && !closing;
+        if (!closing) d.open = true;
+        var to = (closing ? sum.getBoundingClientRect().height : d.scrollHeight) + edge;
+        d.classList.add("is-moving");
+        anim = d.animate({ height: [from + "px", to + "px"] }, { duration: closing ? 220 : 320, easing: "cubic-bezier(0.23, 1, 0.32, 1)" });
+        var mine = anim, wasClosing = closing;
+        anim.onfinish = function () { if (anim !== mine) return; if (wasClosing) d.open = false; closing = false; anim = null; d.classList.remove("is-moving"); };
+      });
+    });
+  }
+})();
