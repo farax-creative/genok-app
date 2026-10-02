@@ -1005,7 +1005,7 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
   .case:hover::before, .plan:hover::before, .case:hover::after, .plan:hover::after, .typeshot:hover::after { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .end .btn-primary::after, .aurora i { animation: none; }
+  .end .btn-primary::after, .aurora i, .aurora i + i { animation: none; }
   .btn .dl-ar, .btn .dl-ar svg, .case-more .ic, .rise .ln > span { transition: none; }
   .btn:hover .dl-ar, .btn:hover .dl-ar svg, .case:hover .case-more .ic { transform: none; }
   .btn:hover .dl-ar svg + svg { transform: translateY(-200%); }

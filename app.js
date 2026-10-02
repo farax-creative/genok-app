@@ -606,7 +606,7 @@
       if (!open) return; var d = open; open = null; d.classList.remove("on"); document.removeEventListener("keydown", key);
       setTimeout(function () { d.remove(); }, 220); if (d._from) d._from.focus();
     }
-    function key(e) { if (e.key === "Escape") close(); }
+    function key(e) { if (e.key === "Escape") close(); else if (e.key === "Tab" && open) { e.preventDefault(); open.focus(); } /* focus stays on the open picture */ }
     function show(img) {
       if (open) return;
       var d = document.createElement("button"), big = document.createElement("img"), r = img.getBoundingClientRect();
@@ -713,7 +713,10 @@
     var base = paths[0].getAttribute("stroke") || paths[0].getAttribute("fill") || "#efe9dc";
     var defs = document.createElementNS(ns, "defs"), g = document.createElementNS(ns, "linearGradient");
     g.id = "gk-sheen"; g.setAttribute("gradientUnits", "userSpaceOnUse"); g.setAttribute("x1", -70); g.setAttribute("x2", 70); g.setAttribute("y1", 0); g.setAttribute("y2", 26);
-    [[0, base, 1], [.3, base, .55], [.5, "#ffffff", 1], [.7, base, .55], [1, base, 1]].forEach(function (st) {
+    /* on a light page a white band would erase the letters, so the band is a soft dip instead */
+    var light = document.documentElement.getAttribute("data-theme") === "light";
+    (light ? [[0, base, 1], [.3, base, 1], [.5, base, .5], [.7, base, 1], [1, base, 1]]
+           : [[0, base, 1], [.3, base, .55], [.5, "#ffffff", 1], [.7, base, .55], [1, base, 1]]).forEach(function (st) {
       var el = document.createElementNS(ns, "stop"); el.setAttribute("offset", st[0]); el.setAttribute("stop-color", st[1]); el.setAttribute("stop-opacity", st[2]); g.appendChild(el);
     });
     defs.appendChild(g); svg.insertBefore(defs, svg.firstChild);
