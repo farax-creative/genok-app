@@ -561,6 +561,9 @@ html[lang="ko"] .end h2 { line-height: 1.24; }
 .shot-box { aspect-ratio: 16 / 10; display: grid; place-items: center; text-align: center; padding: 16px; border: 1px dashed var(--line-2); border-radius: var(--radius-sm); color: var(--ink-dim); font-size: 14px; line-height: 1.5; }
 .help .changelog { padding-left: 0; }
 .help .changelog li { font-size: 15px; }
+/* one version per row: a fixed version column keeps every text column on the same line */
+.changelog li { grid-template-columns: 64px minmax(0, 1fr); }
+.changelog .cv { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .cl-more { margin: 18px 0 0; font-size: 14px; }
 .cl-more a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .shot figcaption { margin-top: 8px; font-size: 13px; color: var(--ink-dim); }
