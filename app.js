@@ -291,7 +291,7 @@
 
 (function () {
   // Screenshots on the feedback page. Stays hidden until the Apps Script address is set.
-  const ATTACH_URL = "";
+  const ATTACH_URL = "https://script.google.com/macros/s/AKfycbx94ACd-dlB8WQZi4GDW1UyKY87APCd5EZQ88swGMwDmF6aY-wmTHlxVymkFiUt0JO8/exec";
   const MAX_FILES = 10, CHUNK = 3, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
   const box = document.querySelector(".gf-att"), form = document.querySelector("form.gform");
   if (!box || !form || !ATTACH_URL) return;
