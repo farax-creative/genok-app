@@ -83,7 +83,7 @@
       <details class="fold"><summary>If the window stays white</summary><div class="fold-body"><p>Edge WebView2 is missing. Windows 11 includes it. On Windows 10, install the "WebView2 Runtime" from Microsoft.</p></div></details>
       <details class="fold"><summary>My comment didn't reach the session</summary><div class="fold-body"><p>Check that you reopened the Claude Code / Codex window after connecting, and that the session is working in the same folder the result was sent from.</p></div></details>
       <details class="fold"><summary>The link doesn't open</summary><div class="fold-body"><p>Check that Genok is in the tray. If another program is using port 8777, Genok picks a free one between 8778 and 8796, so opening the result from the app window is the surest way.</p></div></details>
-      <details class="fold"><summary>I want to review on my phone</summary><div class="fold-body"><p>Viewing on a phone is a Pro feature, so a key opens it. It has not been verified in the beta yet. Please review on your PC first.</p></div></details>
+      <details class="fold"><summary>I want to review on my phone</summary><div class="fold-body"><p>Phone viewing is a Pro feature and needs a key. It isn't fully tested in the beta yet, so review on your PC for now.</p></div></details>
       <h2 class="fold-h">Step by step</h2>
       <details class="fold" id="install"><summary><i>1</i>Install</summary><div class="fold-body"><ul>
         <li>Run <code>Genok_0.1.67_x64-setup.exe</code>. It doesn't ask for administrator rights.</li>
@@ -100,7 +100,7 @@
       <ol>
         <li>Open Settings › License (설정 › 라이선스) and paste the whole key, then press Apply. No key yet? Press Get a key on the same screen. It asks for an email only, not a card.</li>
         <li>With a valid key, the Pro features open: viewing on your phone, more than one of your own accounts, full version history, phone notifications.</li>
-        <li>If it is refused, read the reason shown on the screen first. If there is none, copy the whole key again and paste it once more. If that fails, write to support@genok.app.</li>
+        <li>If the key is rejected, read the reason shown on the screen first. If there is none, copy the whole key again and paste it once more. If that fails, write to support@genok.app.</li>
         <li>The key runs for one year from the day you get it. If you change PCs or lose the key, write to <a href="mailto:support@genok.app">support@genok.app</a>.</li>
       </ol></div></details>
       <details class="fold" id="connect"><summary><i>3</i>Connect Claude Code / Codex</summary><div class="fold-body"><p>The Claude Code step of setup shows one of three things.</p>
@@ -125,7 +125,7 @@
         <li>If you use Codex: after connecting, open <code>codex</code> in a terminal and allow the hook once under <code>/hooks</code>. Comments aren't delivered until you do.</li>
         <li>The Claude and ChatGPT desktop apps can send results and read comments, but they don't wake a session (a Claude Code or Codex window you have open and working).</li>
       </ul></div></details>
-      <details class="fold" id="push"><summary><i>4</i>Send a result</summary><div class="fold-body"><p>Ask Claude Code / Codex to "send the result to Genok". To do it yourself, use the command shown in Settings on the card for sending from a session.</p>
+      <details class="fold" id="push"><summary><i>4</i>Send a result</summary><div class="fold-body"><p>Ask Claude Code / Codex to "send the result to Genok". To do it yourself, use the command on the "send from a session" card in Settings.</p>
       <div class="copybox"><pre><code>"%LOCALAPPDATA%\Programs\Genok\_internal\loop.exe" push &lt;file&gt; --item &lt;name&gt; --note "note"</code></pre><button type="button" class="copy-btn" data-done="Copied" aria-label="Copy the command"><span>Copy</span></button></div>
       <ul>
         <li>Send again with the same <code>--item</code> and the versions stack up as v002, v003, so you can compare them.</li>
@@ -133,7 +133,7 @@
         <li>The <code>http://localhost:8777/i/...</code> address you get back opens on this PC only.</li>
       </ul></div></details>
       <details class="fold" id="update"><summary><i>5</i>Updates</summary><div class="fold-body"><ul>
-        <li>Under Settings › About (정보), click <b>Check for updates</b> (업데이트 확인). If there is a new version, click <b>Update now</b> (지금 업데이트). Genok downloads it, swaps it in and reopens.</li>
+        <li>Under Settings › About (정보), click <b>Check for updates</b> (업데이트 확인). If there is a new version, click <b>Update now</b> (지금 업데이트). Genok downloads it, installs it and restarts.</li>
         <li>If you are in the middle of something, choose <b>Download only</b> (받아 두기) and click <b>Restart to apply</b> (다시 켜서 적용) when it suits you.</li>
         <li>Applying an update closes the app once and opens it again. Your results, settings and chats stay.</li>
         <li>If it says it failed, look at your internet connection and click <b>Try again</b> (다시 하기).</li>
