@@ -144,7 +144,7 @@
       <h3>If you don't have Claude Code</h3>
       <ol>
         <li>Open PowerShell from the Start menu, paste this line and press Enter. You don't need administrator rights.
-          <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre></li>
+          <div class="copybox"><pre><code>irm https://claude.ai/install.ps1 | iex</code></pre><button type="button" class="copy-btn" data-done="Copied" aria-label="Copy the command"><span>Copy</span></button></div></li>
         <li>When it finishes, open a <b>new</b> PowerShell window, run <code>claude</code> and sign in through the browser. You need a paid plan such as Claude Pro, Max or Team, or a Console account. The free plan doesn't work.</li>
         <li>Come back to Genok and click <b>Check again</b>. If it still says Claude Code isn't installed, quit Genok from the tray and open it again.</li>
       </ol>
@@ -159,7 +159,7 @@
 
       <h2 id="push"><span class="h-n">4</span>Send a result</h2>
       <p>Ask Claude Code / Codex to "send the result to Genok". To do it yourself, use the command shown in Settings on the card for sending from a session.</p>
-      <pre><code>"%LOCALAPPDATA%\Programs\Genok\_internal\loop.exe" push &lt;file&gt; --item &lt;name&gt; --note "note"</code></pre>
+      <div class="copybox"><pre><code>"%LOCALAPPDATA%\Programs\Genok\_internal\loop.exe" push &lt;file&gt; --item &lt;name&gt; --note "note"</code></pre><button type="button" class="copy-btn" data-done="Copied" aria-label="Copy the command"><span>Copy</span></button></div>
       <ul>
         <li>Send again with the same <code>--item</code> and the versions stack up as v002, v003, so you can compare them.</li>
         <li>If the send is refused, there are comments you haven't answered. Look at them with <code>loop.exe todo --item &lt;name&gt;</code>, then send again with <code>--fixed &lt;id&gt;</code> for the ones you handled and <code>--later &lt;id&gt;</code> for the ones you put off.</li>

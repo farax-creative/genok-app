@@ -462,3 +462,18 @@
     });
   }, { rootMargin: '300px' }).observe(v);
 })();
+
+/* copy buttons on command boxes: clipboard first, text selection when the clipboard is not available */
+(function () {
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".copy-btn"); if (!b) return;
+    var code = b.parentNode.querySelector("code"), label = b.querySelector("span"), was = b.getAttribute("data-label") || label.textContent;
+    function done() {
+      b.setAttribute("data-label", was); label.textContent = b.getAttribute("data-done"); b.classList.add("is-done");
+      clearTimeout(b._t); b._t = setTimeout(function () { label.textContent = was; b.classList.remove("is-done"); }, 1600);
+    }
+    function select() { var r = document.createRange(); r.selectNodeContents(code); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code.textContent).then(done, select);
+    else select();
+  });
+})();

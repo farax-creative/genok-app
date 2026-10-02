@@ -161,6 +161,7 @@
             <svg class="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
             <span>Download for Windows</span><span class="inv-off">· Turns on with a code</span>
           </a>
+          <a class="dl-next" id="dl-next" href="start.html" hidden><span><small>Downloading</small>See what to try first while it downloads</span><span aria-hidden="true">→</span></a>
           <p class="gate-wait">The installer isn't code-signed yet, so a blue “Windows protected your PC” window may appear. Choose <b>More info</b>, then <b>Run anyway</b>.</p>
           <p class="gate-wait">Not a tester yet? <a href="beta.html">Request access</a> or <a href="index.html#beta">get notified at launch</a>.</p>
         </div>
@@ -338,6 +339,13 @@
   try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
   if (!h || document.getElementById(h)) { h = ''; try { h = localStorage.getItem('genok-invite') || ''; } catch (e) {} }
   if (h) { input.value = h; open(h, true); }
+})();
+</script>
+<script>
+/* once the download starts, show where to go next (the gate script above still owns the button) */
+(function () {
+  var dl = document.getElementById('inv-dl'), next = document.getElementById('dl-next');
+  if (dl && next) dl.addEventListener('click', function () { if (dl.classList.contains('is-on')) next.hidden = false; });
 })();
 </script>
 </body>
