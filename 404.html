@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Page not found - Genok</title>
+<title>없는 페이지 · Genok</title>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
 <style>
@@ -25,26 +25,26 @@ a:focus-visible{outline:2px solid #efe9dc;outline-offset:3px}
 </head>
 <body>
 <main>
-<a class="brand" href="/" id="home">Genok</a>
-<div id="en">
+<a class="brand" href="/index.ko" id="home">Genok</a>
+<div id="en" lang="en" hidden>
 <h1>This page doesn't exist.</h1>
 <p>The address may be mistyped, or the page has moved.</p>
 <nav><a href="/">Home</a><a href="/help">Help</a><a href="/download">Download</a></nav>
 </div>
-<div id="ko" lang="ko" hidden>
+<div id="ko">
 <h1>없는 페이지입니다.</h1>
 <p>주소가 잘못 적혔거나 페이지가 옮겨졌습니다.</p>
 <nav><a href="/index.ko">처음으로</a><a href="/help.ko">도움말</a><a href="/download.ko">다운로드</a></nav>
 </div>
 </main>
 <script>
-// Korean for a Korean address (.ko) or a Korean browser; English otherwise.
-if (/\.ko(\.html)?$/.test(location.pathname) || /^ko(-|$)/i.test(navigator.language || '')) {
-  document.getElementById('en').hidden = true;
-  document.getElementById('ko').hidden = false;
-  document.documentElement.lang = 'ko';
-  document.title = '없는 페이지 · Genok';
-  document.getElementById('home').href = '/index.ko';
+// Korean unless the browser is not Korean and the address is not a Korean one (.ko).
+if (!/\.ko(\.html)?$/.test(location.pathname) && !/^ko(-|$)/i.test(navigator.language || '')) {
+  document.getElementById('ko').hidden = true;
+  document.getElementById('en').hidden = false;
+  document.documentElement.lang = 'en';
+  document.title = 'Page not found - Genok';
+  document.getElementById('home').href = '/';
 }
 </script>
 </body>
