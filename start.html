@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Your first five minutes - Genok</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="For Genok beta participants: the four things the setup screen doesn't tell you.">
+<meta name="description" content="For Genok beta participants: five steps from the request to the first result.">
 <meta property="og:title" content="Your first five minutes - Genok">
-<meta property="og:description" content="For Genok beta participants: the four things the setup screen doesn't tell you.">
+<meta property="og:description" content="For Genok beta participants: five steps from the request to the first result.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://genok.app/start.html">
 <meta property="og:image" content="https://genok.app/assets/og.png">
@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f1012">
-<link rel="preload" href="assets/fonts/pretendard-site.e763a5f1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.d3c614b0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -62,30 +62,28 @@
   <div class="wrap">
     <div class="legal-head">
       <h1>Your first five minutes</h1>
-      <p class="updated">For beta participants</p>
+      <p class="updated">For beta participants · one step at a time</p>
     </div>
 
-    <div class="legal-body">
-      <p>Genok's first screen walks you through installing and connecting Claude Code / Codex. This page has the four things that screen leaves out.</p>
+    <div class="legal-body steps">
+      <h2 id="apply"><span class="h-n">1</span>Request</h2>
+      <p><a href="beta.html">Request the beta</a>. After we review it, we e-mail an invitation.</p>
 
-      <h2 id="guard"><span class="h-n">1</span>If a warning appears</h2>
-      <p>If the browser says the file "isn't commonly downloaded", choose <b>Keep</b>. When you run the installer, Windows shows a blue "Windows protected your PC" window. It appears because we don't have a code-signing certificate yet. Click <b>More info</b>, then <b>Run anyway</b>.</p>
+      <h2 id="get"><span class="h-n">2</span>Enter the code and download</h2>
+      <p>On the <a href="download.html">download page</a>, enter the invite code from the e-mail. The download button turns on.</p>
 
-      <h2 id="key"><span class="h-n">2</span>Paste your key</h2>
-      <p>In Settings › License, press Get a key. Copy the whole key you receive, paste it on the same screen and press Apply. If it doesn't work, write to support@genok.app. Without a key you can still do everything below on Lite.</p>
+      <h2 id="guard"><span class="h-n">3</span>Install</h2>
+      <p>Run the file. If a warning appears, choose <b>Keep</b>, then <b>More info</b>, then <b>Run anyway</b>. It appears because the installer has no code signature yet.</p>
 
-      <h2 id="first"><span class="h-n">3</span>Ask for one image</h2>
-      <p>Close any Claude Code / Codex window that was open before you connected, and open a new one. Then ask:</p>
+      <h2 id="key"><span class="h-n">4</span>Connect and add your key</h2>
+      <p>Genok's first screen walks you through connecting Claude Code / Codex. Then in Settings › License press Get a key, paste the key you receive and press Apply. Without a key you can still use Lite.</p>
+
+      <h2 id="first"><span class="h-n">5</span>First request</h2>
+      <p>Open a new Claude Code / Codex window and ask:</p>
       <div class="copybox"><pre><code>Draw a coffee cup icon and upload it to Genok</code></pre><button type="button" class="copy-btn" data-done="Copied" aria-label="Copy the command"><span>Copy</span></button></div>
-      <ol>
-        <li>The picture appears in the Genok window.</li>
-        <li>Point at what you don't like and leave a comment, for example "make the steam longer".</li>
-        <li>The session fixes it and uploads again as v002. Compare the two side by side and press <b>Accept</b> when it's right.</li>
-      </ol>
-      <p>The work the session does counts against your own Claude Code / Codex usage. Genok charges nothing extra for it.</p>
+      <p>When the picture appears, point at what to fix and leave a comment. The fixed picture arrives as v002.</p>
 
-      <h2 id="say"><span class="h-n">4</span>If you get stuck</h2>
-      <p>Click the megaphone icon (<b>Send feedback</b>) in the title bar and write one line. If the window is narrow, it's <b>Open form</b> under Settings › About. If the app won't open, <a href="feedback.html">write it here</a> instead. See also <a href="help.html#stuck">where people get stuck</a>.</p>
+      <p class="steps-end" id="say"><a class="btn btn-primary" href="feedback.html">Send feedback</a><span>In the app it's the megaphone icon in the title bar, or <b>Open form</b> under Settings › About if the window is narrow.</span></p>
     </div>
   </div>
 </main>

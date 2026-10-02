@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>처음 5분 - Genok</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Genok 베타 참여자용 안내. 설치 화면이 알려 주지 않는 네 가지.">
+<meta name="description" content="Genok 베타 참여자용 안내. 신청부터 첫 요청까지 다섯 단계.">
 <meta property="og:title" content="처음 5분 - Genok">
-<meta property="og:description" content="Genok 베타 참여자용 안내. 설치 화면이 알려 주지 않는 네 가지.">
+<meta property="og:description" content="Genok 베타 참여자용 안내. 신청부터 첫 요청까지 다섯 단계.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://genok.app/start.ko.html">
 <meta property="og:image" content="https://genok.app/assets/og.png">
@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f1012">
-<link rel="preload" href="assets/fonts/pretendard-site.e763a5f1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.d3c614b0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -62,30 +62,28 @@
   <div class="wrap">
     <div class="legal-head">
       <h1>처음 5분</h1>
-      <p class="updated">베타 참여자용</p>
+      <p class="updated">베타 참여자용 · 차례대로 하나씩</p>
     </div>
 
-    <div class="legal-body">
-      <p>설치와 연결은 Genok 첫 화면이 안내합니다. 여기에는 그 화면에 없는 네 가지만 있습니다.</p>
+    <div class="legal-body steps">
+      <h2 id="apply"><span class="h-n">1</span>신청</h2>
+      <p><a href="beta.ko.html">베타를 신청</a>하면 확인 뒤 초대 메일을 보냅니다.</p>
 
-      <h2 id="guard"><span class="h-n">1</span>경고가 뜨면</h2>
-      <p>받을 때 브라우저가 "일반적으로 다운로드되지 않는 파일"이라고 하면 <b>유지</b>를 누릅니다. 설치 파일을 실행하면 파란 "Windows의 PC 보호" 창이 뜹니다. 아직 코드 서명 인증서가 없어서 뜨는 경고입니다. <b>추가 정보</b>를 누르면 아래에 <b>실행</b>이 생깁니다.</p>
+      <h2 id="get"><span class="h-n">2</span>코드 넣고 받기</h2>
+      <p><a href="download.ko.html">내려받기</a>에서 메일의 초대 코드를 넣으면 받기 버튼이 켜집니다.</p>
 
-      <h2 id="key"><span class="h-n">2</span>키 붙여 넣기</h2>
-      <p>설정 › 라이선스에서 [키 받기]를 눌러 키를 받습니다. 받은 키를 통째로 복사해 같은 화면에 붙여 넣고 [적용]을 누릅니다. 안 되면 support@genok.app으로 알려 주세요. 키 없이도 Lite로 아래를 그대로 해 볼 수 있습니다.</p>
+      <h2 id="guard"><span class="h-n">3</span>설치</h2>
+      <p>받은 파일을 실행합니다. 경고가 뜨면 <b>유지</b>, <b>추가 정보</b>, <b>실행</b> 순서로 누릅니다. 아직 코드 서명이 없어서 뜨는 경고입니다.</p>
 
-      <h2 id="first"><span class="h-n">3</span>이미지 한 장 시켜 보기</h2>
-      <p>연결하기 전부터 열려 있던 Claude Code / Codex 창은 닫고 새로 엽니다. 그다음 이렇게 시킵니다.</p>
+      <h2 id="key"><span class="h-n">4</span>연결과 키</h2>
+      <p>Claude Code / Codex 연결은 Genok 첫 화면이 안내합니다. 그다음 설정 › 라이선스에서 [키 받기]를 누르고, 받은 키를 붙여 넣어 [적용]을 누릅니다. 키 없이도 Lite로 쓸 수 있습니다.</p>
+
+      <h2 id="first"><span class="h-n">5</span>첫 요청</h2>
+      <p>Claude Code / Codex 창을 새로 열고 이렇게 시킵니다.</p>
       <div class="copybox"><pre><code>커피잔 아이콘을 하나 그려서 Genok에 올려줘</code></pre><button type="button" class="copy-btn" data-done="복사됨" aria-label="명령 복사"><span>복사</span></button></div>
-      <ol>
-        <li>Genok 창에 그림이 뜹니다.</li>
-        <li>마음에 안 드는 곳을 짚어 코멘트를 남깁니다. 예: "김을 더 길게".</li>
-        <li>세션이 고쳐서 다시 올리면 v002로 쌓입니다. 두 장을 나란히 보고, 됐으면 <b>승인</b>을 누릅니다.</li>
-      </ol>
-      <p>세션이 일한 만큼은 본인의 Claude Code / Codex 사용량에서 나갑니다. Genok이 따로 받는 요금은 없습니다.</p>
+      <p>그림이 뜨면 고칠 곳을 짚어 코멘트를 남깁니다. 고친 그림은 v002로 올라옵니다.</p>
 
-      <h2 id="say"><span class="h-n">4</span>막히면</h2>
-      <p>제목 줄의 확성기 아이콘(<b>의견 남기기</b>)을 누르고 한 줄만 적어 주세요. 창이 좁으면 설정 › 정보의 <b>양식 열기</b>입니다. 앱이 안 열리면 <a href="feedback.ko.html">여기서 바로 적어도</a> 됩니다. <a href="help.ko.html#stuck">자주 막히는 곳</a>도 봐 주세요.</p>
+      <p class="steps-end" id="say"><a class="btn btn-primary" href="feedback.ko.html">의견 남기기</a><span>앱에서는 제목 줄의 확성기 아이콘, 창이 좁으면 설정 › 정보의 <b>양식 열기</b>입니다.</span></p>
     </div>
   </div>
 </main>
