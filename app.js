@@ -816,3 +816,24 @@
     }, .55);
   })();
 })();
+
+// ---- app skin: download buttons follow the cursor with a light and ring out from the press point ----
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.btn-primary').forEach(function (b) {
+    var fx = document.createElement('i');
+    fx.className = 'dl-fx'; fx.setAttribute('aria-hidden', 'true');
+    b.appendChild(fx);
+    b.addEventListener('pointermove', function (e) {
+      var r = b.getBoundingClientRect();
+      fx.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      fx.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+    b.addEventListener('pointerdown', function (e) {
+      var r = b.getBoundingClientRect(), d = document.createElement('b');
+      d.style.left = (e.clientX - r.left) + 'px'; d.style.top = (e.clientY - r.top) + 'px';
+      fx.appendChild(d);
+      d.addEventListener('animationend', function () { d.remove(); });
+    });
+  });
+})();
