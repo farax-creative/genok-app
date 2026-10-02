@@ -898,3 +898,4 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
 @media (min-width: 900px) { .plan .price-alt { min-height: 72px; } }
 .plan-foot a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
 .plan-foot a:hover { color: var(--ink); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
