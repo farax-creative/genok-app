@@ -574,39 +574,6 @@
     el.addEventListener("pointerleave", function () { el.style.setProperty("--dx", "-400px"); el.style.setProperty("--dy", "-400px"); });
   });
 
-  /* B4: 48 ticks; step i of n lights (i + 1) / n of them. The lit share eases towards its target, so it can be re-run at any time. */
-  (function () {
-    var steps = document.querySelectorAll(".loop-steps li"), N = 48; if (!steps.length) return;
-    var rings = [].map.call(steps, function (li, i) {
-      var ic = li.querySelector(".loop-ic"); if (!ic) return null;
-      var ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg"), off = document.createElementNS(ns, "path"), on = document.createElementNS(ns, "path");
-      svg.setAttribute("viewBox", "0 0 64 64"); svg.setAttribute("class", "ring"); svg.setAttribute("aria-hidden", "true"); svg.appendChild(off); svg.appendChild(on);
-      ic.classList.add("has-ring"); ic.appendChild(svg);
-      var r = { cur: 0, to: (i + 1) / steps.length, raf: 0 };
-      r.draw = function () {
-        var a = "", l = "";
-        for (var k = 0; k < N; k++) {
-          var t = k / N * 2 * Math.PI - Math.PI / 2, c = Math.cos(t), s = Math.sin(t);
-          var seg = "M" + (32 + 25 * c).toFixed(2) + " " + (32 + 25 * s).toFixed(2) + "L" + (32 + 30 * c).toFixed(2) + " " + (32 + 30 * s).toFixed(2);
-          if (k + .5 < r.cur * N) l += seg; else a += seg;
-        }
-        off.setAttribute("d", a); on.setAttribute("d", l);
-      };
-      r.run = function (from) {
-        if (reduce) { r.cur = r.to; r.draw(); return; }
-        if (from !== undefined) r.cur = from;
-        if (r.raf) return;
-        (function tick() { r.cur += (r.to - r.cur) * .12; if (Math.abs(r.to - r.cur) < .002) { r.cur = r.to; r.draw(); r.raf = 0; return; } r.draw(); r.raf = requestAnimationFrame(tick); })();
-      };
-      r.draw();
-      li.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") r.run(0); });
-      return r;
-    });
-    var start = function () { rings.forEach(function (r, i) { if (r) setTimeout(function () { r.run(); }, reduce ? 0 : 160 * i); }); };
-    if (!hasIO) return start();
-    new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); start(); } }, { threshold: 0.4 }).observe(steps[0].parentNode);
-  })();
-
   /* B6: the text stays in the page the whole time (copying works mid-way); letters are only shown one after another */
   (function () {
     if (reduce || !hasIO || !/(^|\/)start(\.ko)?(\.html)?$/.test(location.pathname)) return;
