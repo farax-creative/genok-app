@@ -1058,3 +1058,37 @@ html[lang="ko"] .gf-q > label, html[lang="ko"] .gf-q > legend { letter-spacing: 
   .zoom img { transform: none; }
   .typing .caret { animation: none; }
 }
+
+/* ---- site motion, third set (C1 C2 C3 C5 C6 C12 C14) ---- */
+/* C1 the first download button leans towards the cursor */
+.hero-cta .btn-lg { will-change: transform; }
+/* C2 the tool names settle out of scrambled letters */
+.ww-tool .scr { display: inline-block; white-space: nowrap; }
+/* C5 format screenshots tilt towards the cursor */
+.typeshot { will-change: transform; }
+/* C6 file types drift past in two rows */
+.mq { grid-column: 1 / span 12; display: grid; gap: 10px; overflow: hidden; margin: 0 0 clamp(18px, 2.4vw, 28px); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.mq.drag { cursor: grabbing; }
+.mq > div { display: flex; width: max-content; will-change: transform; }
+.mq span { margin-right: 8px; padding: 6px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-soft);
+  font: 500 13px/1.3 ui-monospace, "Cascadia Mono", Consolas, monospace; white-space: nowrap; }
+/* C12 a ring of dots spreads from where the closing section is clicked (adds a second mask layer to the B9 dots) */
+.end::after, #beta::after {
+  -webkit-mask: radial-gradient(120px at var(--dx, -400px) var(--dy, -400px), #000, transparent),
+    radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), transparent calc(var(--rr, 0px) - 46px), rgba(0, 0, 0, var(--ra, 0)) var(--rr, 0px), transparent calc(var(--rr, 0px) + 46px));
+  mask: radial-gradient(120px at var(--dx, -400px) var(--dy, -400px), #000, transparent),
+    radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), transparent calc(var(--rr, 0px) - 46px), rgba(0, 0, 0, var(--ra, 0)) var(--rr, 0px), transparent calc(var(--rr, 0px) + 46px)); }
+/* C14 the mark on the first screenshot */
+.hero-shot { position: relative; }
+.anno { position: absolute; left: 0; right: 0; bottom: 0; aspect-ratio: 1440 / 940; pointer-events: none; }
+.anno svg { position: absolute; overflow: visible; }
+.anno path { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.anno .an-c { left: 33%; top: 23%; width: 24%; height: 19%; }
+.anno .an-l { left: 43%; top: 14%; width: 3%; height: 9%; }
+.anno .an-n { position: absolute; left: 38%; top: 9.5%; padding: 4px 10px; border-radius: 8px; background: var(--accent); color: var(--bg); font-size: clamp(10px, 1.1vw, 13px); font-weight: 600; white-space: nowrap; }
+.anno.wait .an-c, .anno.wait .an-l { clip-path: inset(0 100% 0 0); }
+.anno.wait .an-n { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta .btn-lg, .typeshot { transform: none !important; }
+}

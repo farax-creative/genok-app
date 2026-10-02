@@ -628,3 +628,191 @@
     });
   })();
 })();
+
+/* site motion, third set: a download button that leans to the cursor, scrambled tool names, a sheen on the wordmark,
+   tilting screenshots, a strip of file types, a ripple in the dots, a mark that draws itself */
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, hasIO = "IntersectionObserver" in window;
+  function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+
+  /* one loop for every spring; a spring keeps its position and speed when it gets a new target, so it can be turned round mid-way */
+  var live = [], raf = 0, last = 0;
+  function frame(t) {
+    var dt = clamp((t - last) / 1000, .001, .032); last = t;
+    live = live.filter(function (s) { return s.step(dt); });
+    raf = live.length ? requestAnimationFrame(frame) : 0;
+  }
+  function spring(x, k, c, on, eps) {
+    eps = eps || .001;
+    var s = { x: x, v: 0, to: x, on: false,
+      step: function (dt) {
+        s.v += (-k * (s.x - s.to) - c * s.v) * dt; s.x += s.v * dt;
+        var done = Math.abs(s.v) < eps * 20 && Math.abs(s.x - s.to) < eps;
+        if (done) { s.x = s.to; s.v = 0; s.on = false; }
+        on(s.x); return !done;
+      },
+      set: function (to) {
+        s.to = to; if (s.on) return;
+        s.on = true; live.push(s); if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
+      },
+      jump: function (to) { s.x = s.to = to; s.v = 0; on(to); } };
+    return s;
+  }
+  function seen(el, fn, th) {
+    if (!hasIO) return fn();
+    new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { o.disconnect(); fn(); } }, { threshold: th || .5 }).observe(el);
+  }
+
+  /* C1: mouse only, at most 10px, springs back when the cursor leaves */
+  (function () {
+    var b = document.querySelector(".hero-cta .btn-lg"), box = b && b.closest(".hero-cta"); if (!b || reduce) return;
+    var draw = function () { b.style.transform = "translate(" + sx.x.toFixed(2) + "px," + sy.x.toFixed(2) + "px)"; };
+    var sx = spring(0, 200, 14, draw, .01), sy = spring(0, 200, 14, draw, .01);
+    box.addEventListener("pointermove", function (e) {
+      if (e.pointerType !== "mouse") return;
+      var r = b.getBoundingClientRect(), cx = r.left - sx.x + r.width / 2, cy = r.top - sy.x + r.height / 2;
+      var dx = e.clientX - cx, dy = e.clientY - cy;
+      if (Math.abs(dx) > r.width / 2 + 70 || Math.abs(dy) > r.height / 2 + 50) { sx.set(0); sy.set(0); return; }
+      sx.set(clamp(dx * .22, -10, 10)); sy.set(clamp(dy * .3, -8, 8));
+    }, { passive: true });
+    box.addEventListener("pointerleave", function () { sx.set(0); sy.set(0); });
+  })();
+
+  /* C2: the real text stays for screen readers (aria-label); only the letters shown are shuffled, and the width is held */
+  (function () {
+    if (reduce) return;
+    var G = "ABCDEFGHJKLMNOPQRSTUVWXYZ<>/[]{}=+*#";
+    [].forEach.call(document.querySelectorAll(".workswith .ww-tool"), function (tool, n) {
+      var txt = tool.textContent.trim(); if (!txt || tool.children.length) return;
+      var el = document.createElement("span"); el.className = "scr"; el.textContent = txt; tool.textContent = ""; tool.appendChild(el); tool.setAttribute("aria-label", txt);
+      var id = 0;
+      function run() {
+        cancelAnimationFrame(id);
+        el.style.width = el.style.width || el.getBoundingClientRect().width.toFixed(1) + "px";
+        var t0 = performance.now(), len = txt.length, at = [], cur = [], f = 0, i;
+        for (i = 0; i < len; i++) at.push(i / len * .7 + Math.random() * .3);
+        (function step(t) {
+          var p = (t - t0) / 900, o = "";
+          for (i = 0; i < len; i++) {
+            if (txt[i] === " " || p >= at[i]) o += txt[i];
+            else { if (f % 3 === 0 || !cur[i]) cur[i] = G[Math.random() * G.length | 0]; o += cur[i]; }
+          }
+          f++; el.textContent = o;
+          if (p < 1) id = requestAnimationFrame(step); else { el.textContent = txt; el.style.width = ""; }
+        })(t0);
+      }
+      tool.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") run(); });
+      seen(tool, function () { setTimeout(run, 500 + 220 * n); }, .9);
+    });
+  })();
+
+  /* C3: a band of light follows the cursor across the wordmark in the top bar and leaves by the nearer side */
+  (function () {
+    var a = document.querySelector(".site-header .brand"), svg = a && a.querySelector(".lockup"); if (!svg || reduce || !svg.viewBox) return;
+    var ns = "http://www.w3.org/2000/svg", W = svg.viewBox.baseVal.width, paths = svg.querySelectorAll("path"); if (!W || !paths.length) return;
+    var base = paths[0].getAttribute("stroke") || paths[0].getAttribute("fill") || "#efe9dc";
+    var defs = document.createElementNS(ns, "defs"), g = document.createElementNS(ns, "linearGradient");
+    g.id = "gk-sheen"; g.setAttribute("gradientUnits", "userSpaceOnUse"); g.setAttribute("x1", -70); g.setAttribute("x2", 70); g.setAttribute("y1", 0); g.setAttribute("y2", 26);
+    [[0, base, 1], [.3, base, .55], [.5, "#ffffff", 1], [.7, base, .55], [1, base, 1]].forEach(function (st) {
+      var el = document.createElementNS(ns, "stop"); el.setAttribute("offset", st[0]); el.setAttribute("stop-color", st[1]); el.setAttribute("stop-opacity", st[2]); g.appendChild(el);
+    });
+    defs.appendChild(g); svg.insertBefore(defs, svg.firstChild);
+    [].forEach.call(paths, function (p) { var k = p.getAttribute("stroke") && p.getAttribute("stroke") !== "none" ? "stroke" : "fill"; p.setAttribute(k, "url(#gk-sheen)"); });
+    var s = spring(-.4, 60, 14, function (x) { g.setAttribute("gradientTransform", "translate(" + (x * W).toFixed(1) + " 0)"); });
+    s.jump(-.4);
+    function at(e) { var r = svg.getBoundingClientRect(); return clamp((e.clientX - r.left) / r.width, -.4, 1.4); }
+    a.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") s.set(at(e)); }, { passive: true });
+    a.addEventListener("pointerleave", function () { s.set(s.to < .5 ? -.4 : 1.4); });
+    setTimeout(function () { s.set(1.4); }, 700); /* once on load */
+  })();
+
+  /* C5: mouse only; the screenshot leans a few degrees towards the cursor and settles back */
+  (function () {
+    if (reduce) return;
+    [].forEach.call(document.querySelectorAll(".typeshot"), function (el) {
+      var draw = function () { el.style.transform = rx.x || ry.x ? "perspective(900px) rotateX(" + rx.x.toFixed(2) + "deg) rotateY(" + ry.x.toFixed(2) + "deg)" : ""; };
+      var rx = spring(0, 170, 16, draw, .01), ry = spring(0, 170, 16, draw, .01);
+      el.addEventListener("pointermove", function (e) {
+        if (e.pointerType !== "mouse") return;
+        var r = el.getBoundingClientRect();
+        ry.set(((e.clientX - r.left) / r.width - .5) * 7); rx.set(-((e.clientY - r.top) / r.height - .5) * 6);
+      }, { passive: true });
+      el.addEventListener("pointerleave", function () { rx.set(0); ry.set(0); });
+    });
+  })();
+
+  /* C6: slows to a stop under the cursor, can be dragged, and keeps the speed it was thrown with before easing back */
+  (function () {
+    var m = document.querySelector(".mq"); if (!m) return;
+    var rows = [].slice.call(m.children), cruise = reduce ? 0 : 30;
+    var x = 0, v = cruise, hover = false, drag = false, on = false, lt = 0, px = 0, pt = 0, pv = 0, half = [1, 1];
+    function measure() { half = rows.map(function (r) { return r.scrollWidth / 2; }); }
+    function wrap(a, h) { return ((a % h) + h) % h; }
+    function place() {
+      rows[0].style.transform = "translateX(" + (-wrap(-x, half[0])).toFixed(1) + "px)";
+      if (rows[1]) rows[1].style.transform = "translateX(" + (-wrap(x, half[1])).toFixed(1) + "px)";
+    }
+    function loop(t) {
+      if (!on) return;
+      var dt = clamp((t - lt) / 1000, 0, .05); lt = t;
+      if (!drag) { v += ((hover ? 0 : cruise) - v) * Math.min(1, dt * 3.5); x -= v * dt; }
+      place(); requestAnimationFrame(loop);
+    }
+    measure(); place();
+    if (hasIO) new IntersectionObserver(function (es) {
+      var was = on; on = es[0].isIntersecting;
+      if (on && !was) { measure(); lt = performance.now(); requestAnimationFrame(loop); }
+    }).observe(m);
+    addEventListener("resize", measure);
+    m.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hover = true; });
+    m.addEventListener("pointerleave", function () { hover = false; });
+    m.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") return; drag = true; px = e.clientX; pt = e.timeStamp; pv = 0; m.classList.add("drag"); m.setPointerCapture(e.pointerId); });
+    m.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var dx = e.clientX - px, dt = Math.max(1, e.timeStamp - pt);
+      x += dx; pv = pv * .6 + (dx / dt * 1000) * .4; px = e.clientX; pt = e.timeStamp;
+    });
+    function end(e) { if (!drag) return; drag = false; m.classList.remove("drag"); v = e.timeStamp - pt > 90 ? 0 : clamp(-pv, -1600, 1600); }
+    m.addEventListener("pointerup", end); m.addEventListener("pointercancel", end);
+  })();
+
+  /* C12: a click in the closing section sends one ring out through the dots */
+  (function () {
+    if (reduce) return;
+    [].forEach.call(document.querySelectorAll(".end, #beta"), function (el) {
+      var id = 0;
+      el.addEventListener("pointerdown", function (e) {
+        var r = el.getBoundingClientRect(), t0 = performance.now(), far = Math.hypot(r.width, r.height);
+        el.style.setProperty("--cx", (e.clientX - r.left) + "px"); el.style.setProperty("--cy", (e.clientY - r.top) + "px");
+        cancelAnimationFrame(id);
+        (function step(t) {
+          var p = clamp((t - t0) / 1100, 0, 1), q = 1 - Math.pow(1 - p, 3);
+          el.style.setProperty("--rr", (q * far * .7).toFixed(1) + "px"); el.style.setProperty("--ra", (1 - p).toFixed(3));
+          if (p < 1) id = requestAnimationFrame(step);
+        })(t0);
+      }, { passive: true });
+    });
+  })();
+
+  /* C14: circle, then the line, then the note; plays once when the first screenshot is in view */
+  (function () {
+    var an = document.querySelector(".anno"); if (!an || reduce || !hasIO) return;
+    var c = an.querySelector(".an-c"), l = an.querySelector(".an-l"), n = an.querySelector(".an-n");
+    function pt(a) { var r = a * Math.PI / 180; return (50 + 90 * Math.sin(r)).toFixed(1) + "% " + (50 - 90 * Math.cos(r)).toFixed(1) + "%"; }
+    function wedge(a) { var p = ["50% 50%", pt(0)], q; for (q = 45; q < a; q += 45) p.push(pt(q)); p.push(pt(a)); return "polygon(" + p.join(",") + ")"; }
+    function ease(t) { return 1 - Math.pow(1 - clamp(t, 0, 1), 3); }
+    function show(p) {
+      var a = ease(p / .5), b = ease((p - .5) / .25), m = ease((p - .75) / .25);
+      c.style.clipPath = a >= 1 ? "none" : wedge(a * 372);
+      l.style.clipPath = "inset(" + ((1 - b) * 100).toFixed(1) + "% -4px -4px -4px)";
+      n.style.opacity = m; n.style.transform = "translateY(" + ((1 - m) * 8).toFixed(1) + "px)";
+    }
+    an.classList.add("wait");
+    seen(an, function () {
+      setTimeout(function () {
+        var t0 = performance.now(); show(0); an.classList.remove("wait");
+        (function step(t) { var p = (t - t0) / 1500; show(p); if (p < 1) requestAnimationFrame(step); })(t0);
+      }, 900);
+    }, .55);
+  })();
+})();
