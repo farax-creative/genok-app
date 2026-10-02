@@ -1205,13 +1205,18 @@ svg.ic { stroke-width: 1.6; }
 .home-line p { grid-column: 1 / -1; max-width: 640px; margin: 0; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5; color: var(--ink); }
 .home-beta { margin-top: 18px; }
 #beta .home-beta > .btn { padding: 0 18px; color: var(--btn-ink); text-decoration: none; }
+/* owner's picks on the hub (home-polish, 2026-10-03) */
+@media (max-width: 700px) { #pricing .cmptable { display: none; } }
+.home-close { padding-block: clamp(56px, 8vw, 96px); text-align: center; }
+.home-close h2 { margin: 0 0 20px; font-size: clamp(24px, 3.4vw, 36px); font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
+.home-close-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 0; }
 
 /* ---- footer in three columns ---- */
 .foot3 { display: grid; grid-template-columns: 1fr auto auto auto; gap: 16px 56px; align-items: start; padding-block: 28px 20px; }
 .foot3 > .brand { margin: 0; height: 24px; display: inline-flex; align-items: center; justify-self: start; }
 .foot3 > .brand .lockup { height: 20px; width: auto; }
-.f3-col h4 { margin: 0 0 14px; font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
-.f3-col a { display: block; padding: 3px 0; font-size: 13px; line-height: 20px; color: var(--ink-soft); transition: color .2s var(--ease); }
+.f3-col h4 { margin: 0 0 6px; font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.f3-col a { display: block; padding: 2px 0; font-size: 13px; line-height: 20px; color: var(--ink-soft); transition: color .2s var(--ease); }
 .f3-col a:hover { color: var(--ink); }
 .f3-col a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
 .f3-bottom a { color: inherit; }
@@ -1219,7 +1224,7 @@ svg.ic { stroke-width: 1.6; }
 @media (max-width: 640px) {
   .foot3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 12px; padding-block: 24px 16px; }
   .foot3 > .brand { grid-column: 1 / -1; }
-  .f3-col a { display: flex; align-items: center; min-height: 32px; padding: 0; }
+  .f3-col a { display: flex; align-items: center; min-height: 30px; padding: 0; }
 }
 @media (max-width: 360px) {
   .foot3 { grid-template-columns: repeat(3, auto); justify-content: space-between; }
