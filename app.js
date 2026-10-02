@@ -171,6 +171,15 @@
   const ONCE = !done.querySelector("[data-again]");
   const KEY = "genok-sent:" + location.pathname.split("/").pop().replace(/\.ko\.html$|\.html$/, "");
   const LABEL = btn.textContent, BUSY = KO ? "보내는 중…" : "Sending…";
+  // the loader is the ring mark from the header, so the path is not written twice
+  const ring = () => {
+    const src = document.querySelector("svg.lockup path"), NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "gf-ring"); svg.setAttribute("viewBox", "0 3.55 68.6 68.6"); svg.setAttribute("aria-hidden", "true");
+    if (src) { const p = src.cloneNode(); p.setAttribute("stroke", "currentColor"); svg.append(p); }
+    return svg;
+  };
+  form._ring = ring;
   const remember = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch (err) {} };
   const sentAt = () => { try { const t = Number(localStorage.getItem(KEY)); return t && Date.now() - t < 30 * 864e5 ? t : 0; } catch (err) { return 0; } };
   function showDone(mail, when) {
@@ -229,37 +238,32 @@
     e.preventDefault();
     msg.innerHTML = "";
     const firstBad = [...form.querySelectorAll(".gf-q")].map(check).find(Boolean);
-    if (firstBad) { firstBad.focus(); return; }
+    if (firstBad) { const more = firstBad.closest("details"); if (more) more.open = true; firstBad.focus(); return; }
     const action = form.getAttribute("action");
     if (!action) { msg.innerHTML = FAIL; return; }
     if (btn.disabled) return;
-    btn.disabled = true; btn.textContent = BUSY;
+    btn.disabled = true; btn.setAttribute("aria-busy", "true"); btn.textContent = BUSY; btn.prepend(ring());
     try {
       // The reply from Google is opaque here: only a network failure can be told apart.
-      if (form._attach) await form._attach.ready();   // an image may still be shrinking
       const data = new URLSearchParams(new FormData(form));
       // screenshots travel separately; the same id goes into the text so the two can be matched
       const att = form._attach && form._attach.count() ? form._attach : null;
-      const attId = att ? att.newId() : "";
       const area = form.querySelector("textarea");
-      if (att && area) data.set(area.name, data.get(area.name) + "\n[" + (KO ? "첨부 " : "Attachments ") + attId + "]");
+      if (att && area) data.set(area.name, data.get(area.name) + "\n[" + (KO ? "첨부 " : "Attachments ") + att.id() + "]");
       await fetch(action, { method: "POST", mode: "no-cors", body: data });
       const old = done.querySelector(".gf-att-fail"); if (old) old.remove();
-      const sent = !att || (await att.send(attId, (n, total) => {
-        msg.classList.add("gf-info");
-        msg.textContent = KO ? "이미지 올리는 중 " + n + "/" + total + ". 창을 닫지 마세요." : "Uploading images " + n + "/" + total + ". Please keep this window open.";
-      }));
-      msg.classList.remove("gf-info"); msg.textContent = "";
+      const sent = !att || (await att.finish());
       if (!sent) {
         const p = document.createElement("p"); p.className = "gf-att-fail";
         p.innerHTML = KO ? "글은 전달됐지만 이미지는 보내지 못했습니다. 이미지는 " + MAIL + "으로 보내 주세요." : "Your note went through, but the images did not. Please e-mail them to " + MAIL + ".";
         done.querySelector("h2").after(p);
       }
+      if (form._attach) form._attach.clear();
       const mail = form.querySelector('input[type="email"]');
       if (ONCE) remember();
       showDone(ONCE && mail ? mail.value.trim() : "", 0);
     } catch (err) { msg.innerHTML = FAIL; btn.disabled = false; }
-    btn.textContent = LABEL;
+    btn.textContent = LABEL; btn.removeAttribute("aria-busy");
   });
   form.addEventListener("input", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
   form.addEventListener("change", (e) => { const q = e.target.closest(".gf-q"); if (q && q.querySelector(".gf-err").textContent) check(q); });
@@ -271,6 +275,7 @@
   const again = done.querySelector("[data-again]");
   if (again) again.addEventListener("click", () => {
     form.reset(); if (form._attach) form._attach.clear(); form.querySelectorAll(".gf-other").forEach((f) => { f.hidden = true; f.disabled = true; });
+    form.querySelectorAll("details").forEach((d) => { d.open = false; });
     done.hidden = true; form.hidden = false; btn.disabled = false; form.querySelector("textarea, input").focus();
   });
 })();
@@ -291,16 +296,33 @@
 
 (function () {
   // Screenshots on the feedback page. Stays hidden until the Apps Script address is set.
+  // An image goes up as soon as it is added (user request 2026-10-03). One removed before sending
+  // is taken back off the server, and at send time the script is told which ones stay.
   const ATTACH_URL = "https://script.google.com/macros/s/AKfycbx94ACd-dlB8WQZi4GDW1UyKY87APCd5EZQ88swGMwDmF6aY-wmTHlxVymkFiUt0JO8/exec";
-  const MAX_FILES = 10, CHUNK = 3, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
+  const MAX_FILES = 10, MAX_SLOTS = 40, MAX_SIDE = 2560, MAX_BYTES = 1.5 * 1024 * 1024;
   const box = document.querySelector(".gf-att"), form = document.querySelector("form.gform");
   if (!box || !form || !ATTACH_URL) return;
   const KO = document.documentElement.lang === "ko";
-  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 10장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", del: "지우기" }
-               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 10 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", del: "Remove" };
-  const input = box.querySelector(".gf-att-in"), drop = box.querySelector(".gf-drop"), list = box.querySelector(".gf-thumbs"), msg = box.querySelector(".gf-att-msg");
-  const items = [];   // { blob, url, li }
+  const T = KO ? { type: "이미지 파일만 올릴 수 있습니다 (PNG, JPEG, WebP).", many: "최대 10장까지 올릴 수 있습니다.", big: "이 이미지는 줄여도 너무 큽니다. 일부만 잘라 올려 주세요.", bad: "이 이미지를 열지 못했습니다.", fail: "올리지 못한 이미지가 있습니다. 보낼 때 다시 올립니다.", del: "지우기" }
+               : { type: "Only image files can be attached (PNG, JPEG, WebP).", many: "You can attach up to 10 images.", big: "This image is too large even after shrinking. Please crop it.", bad: "This image could not be opened.", fail: "An image did not upload. It is tried again when you send.", del: "Remove" };
+  const input = box.querySelector(".gf-att-in"), list = box.querySelector(".gf-thumbs"), msg = box.querySelector(".gf-att-msg");
+  const items = [];   // { id, slot, url, li, blob, state: "busy" | "ok" | "fail", job }
+  let id = "", slots = 0, sending = false, left = false;
   box.hidden = false;
+
+  // one id per feedback: it names the files and is the only thing that lets a page remove them
+  const newId = () => "G" + [...crypto.getRandomValues(new Uint8Array(16))].map((b) => "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[b % 36]).join("");
+  // a text/plain body keeps this a simple cross-origin request
+  const post = async (body) => {
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 45000);
+    try {
+      const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body), signal: ctl.signal });
+      const out = await res.json();
+      return !!(out && out.ok);
+    } finally { clearTimeout(timer); }
+  };
+  const drop = (forId, nums) => post({ id: forId, drop: nums }).catch(() => {});   // a miss is caught by "keep" at send time
+  const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
 
   async function shrink(file) {
     const bmp = await createImageBitmap(file);
@@ -318,14 +340,42 @@
     return null;
   }
 
+  function setState(it, state) {
+    it.state = state;
+    it.li.classList.toggle("busy", state === "busy"); it.li.classList.toggle("fail", state === "fail");
+    const r = it.li.querySelector(".gf-ring");
+    if (state === "busy" && !r) it.li.querySelector("img").after(form._ring());
+    if (state !== "busy" && r) r.remove();
+  }
+
   function render(it) {
     const li = document.createElement("li");
     const img = document.createElement("img"); img.src = it.url; img.alt = "";
-    const size = document.createElement("small"); size.textContent = Math.max(1, Math.round(it.blob.size / 1024)) + " KB";
     const del = document.createElement("button"); del.type = "button"; del.setAttribute("aria-label", T.del);
     del.innerHTML = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
-    del.addEventListener("click", () => { URL.revokeObjectURL(it.url); items.splice(items.indexOf(it), 1); li.remove(); msg.textContent = ""; });
-    li.append(img, size, del); list.appendChild(li); it.li = li;
+    del.addEventListener("click", () => { remove(it); msg.textContent = ""; });
+    li.append(img, del); list.appendChild(li); it.li = li;
+    setState(it, "busy");
+  }
+
+  function remove(it) {
+    it.gone = true;
+    URL.revokeObjectURL(it.url);
+    const i = items.indexOf(it); if (i >= 0) items.splice(i, 1);
+    it.li.remove();
+    if (it.state === "ok") drop(it.id, [it.slot]);   // one still going up is removed when it lands
+  }
+
+  async function upload(it) {
+    setState(it, "busy");
+    let ok = false;
+    try {
+      const data = await b64(it.blob);
+      for (let n = 0; n < 2 && !ok; n++) { try { ok = await post({ id: it.id, start: it.slot - 1, files: [{ type: it.blob.type, data }] }); } catch (e) {} }   // one retry
+    } catch (e) {}
+    if (it.gone) { if (ok) drop(it.id, [it.slot]); return; }
+    setState(it, ok ? "ok" : "fail");
+    if (!ok) msg.textContent = T.fail;
   }
 
   let queue = Promise.resolve();
@@ -334,55 +384,70 @@
     msg.textContent = "";
     for (const f of files) {
       if (!/^image\/(png|jpeg|webp)$/.test(f.type)) { msg.textContent = T.type; continue; }
-      if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
+      if (items.length >= MAX_FILES || slots >= MAX_SLOTS) { msg.textContent = T.many; break; }
+      if (!id) id = newId();
+      // the thumbnail is on screen before the image is shrunk or sent
+      const it = { id, slot: ++slots, url: URL.createObjectURL(f) }; items.push(it); render(it);
       try {
         const blob = await shrink(f);
-        if (!blob) { msg.textContent = T.big; continue; }
-        if (items.length >= MAX_FILES) { msg.textContent = T.many; break; }
-        const it = { blob, url: URL.createObjectURL(blob) }; items.push(it); render(it);
-      } catch (e) { msg.textContent = T.bad; }
+        if (it.gone) continue;
+        if (!blob) { remove(it); msg.textContent = T.big; continue; }
+        it.blob = blob; it.job = upload(it);   // not waited for: the next image is shrunk while this one goes up
+      } catch (e) { if (!it.gone) remove(it); msg.textContent = T.bad; }
     }
   }
 
   box.querySelector(".gf-att-pick").addEventListener("click", () => input.click());
   input.addEventListener("change", () => { add([...input.files]); input.value = ""; });
-  drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
-  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
-  drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); add([...e.dataTransfer.files]); });
+  // the whole page takes a dropped image, so a near miss no longer opens the image in the tab
+  let depth = 0;
+  const hasFiles = (e) => !!e.dataTransfer && [...e.dataTransfer.types].includes("Files");
+  addEventListener("dragenter", (e) => { if (hasFiles(e) && !form.hidden) { depth++; document.body.classList.add("gf-over"); } });
+  addEventListener("dragleave", () => { if (--depth <= 0) { depth = 0; document.body.classList.remove("gf-over"); } });
+  addEventListener("dragover", (e) => { if (hasFiles(e)) e.preventDefault(); });
+  addEventListener("drop", (e) => {
+    if (!hasFiles(e)) return;
+    e.preventDefault(); depth = 0; document.body.classList.remove("gf-over");
+    if (!form.hidden) add([...e.dataTransfer.files]);
+  });
   document.addEventListener("paste", (e) => {
     if (form.hidden) return;
     const files = [...(e.clipboardData ? e.clipboardData.files : [])].filter((f) => f.type.startsWith("image/"));
     if (files.length) { e.preventDefault(); add(files); }
   });
 
-  const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+  // Leaving without sending takes the images back off the server. The script also clears unsent
+  // images after a day, so this is the fast path, not the only one.
+  addEventListener("pagehide", () => {
+    if (sending || !id || !items.length) return;
+    try { navigator.sendBeacon(ATTACH_URL, JSON.stringify({ id, keep: [] })); left = true; } catch (e) {}
+  });
+  // back from the page cache with the thumbnails still on screen: send them up again
+  addEventListener("pageshow", (e) => {
+    if (!e.persisted || !left) return;
+    left = false;
+    items.forEach((it) => { if (it.blob && slots < MAX_SLOTS) { it.slot = ++slots; it.job = upload(it); } });
+  });
 
   // used by the form's submit handler
   form._attach = {
-    ready: () => queue,
     count: () => items.length,
-    newId: () => "G" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(),
-    // Sent a few at a time so one request stays small. true only when the script answered ok for
-    // every part; a text/plain body keeps this a simple cross-origin request.
-    send: async (id, progress) => {
-      const all = items.slice();
-      const post = async (start, part) => {
-        const files = [];
-        for (const it of part) files.push({ type: it.blob.type, data: await b64(it.blob) });
-        const res = await fetch(ATTACH_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ id, start, files }) });
-        const out = await res.json();
-        return !!(out && out.ok);
-      };
-      for (let i = 0; i < all.length; i += CHUNK) {
-        if (progress) progress(i, all.length);
+    id: () => id,
+    // Waits for images still going up, tries failed ones once more, then tells the script which
+    // images belong to this feedback. true only when every image is up and the script said ok.
+    finish: async () => {
+      sending = true;
+      try {
+        await queue;
+        await Promise.all(items.map((it) => it.job));
+        for (const it of items.filter((x) => x.state === "fail")) await (it.job = upload(it));
+        if (items.some((it) => it.state !== "ok")) return false;
         let ok = false;
-        for (let n = 0; n < 2 && !ok; n++) { try { ok = await post(i, all.slice(i, i + CHUNK)); } catch (e) {} }   // one retry
-        if (!ok) return false;
-      }
-      if (progress) progress(all.length, all.length);
-      return true;
+        for (let n = 0; n < 2 && !ok; n++) { try { ok = await post({ id, keep: items.map((it) => it.slot), sent: true }); } catch (e) {} }
+        return ok;
+      } finally { sending = false; }
     },
-    clear: () => { items.splice(0).forEach((it) => { URL.revokeObjectURL(it.url); it.li.remove(); }); msg.textContent = ""; },
+    clear: () => { items.splice(0).forEach((it) => { it.gone = true; URL.revokeObjectURL(it.url); it.li.remove(); }); id = ""; slots = 0; msg.textContent = ""; },
   };
 })();
 
