@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0b0c">
 <meta name="robots" content="index,follow">
-<link rel="preload" href="assets/fonts/pretendard-site.7039564a.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.da336c11.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -108,7 +108,7 @@
       <p>The feature for viewing the same screen on a phone (Pro) connects only within the private network (tailnet) created with the user's own Tailscale account. The screen is not exposed to the internet, and the Company does not relay or view that connection. The processing of personal information arising from the use of Tailscale is governed by Tailscale's policy.</p>
 
       <h2 id="s4">4. License and Payment</h2>
-      <p>Keys issued directly by the Company (beta keys included) use a digital signature that is verified offline without connecting to a Company server, so no personal information is transmitted during activation. Once payment opens, keys received through a purchase are checked online with the payment processor (Polar), and the key and a device registration ID are sent to Polar for that check.</p>
+      <p>Beta keys and keys received through a purchase are issued through the merchant of record (Polar). The e-mail address you enter to get a key goes to Polar, which uses it to issue the key and send it to you. No card details are collected for a beta key. The App sends the key and a registration ID created by Polar to Polar's server when a key is applied, at most once every six hours while the App is running, and when a key is removed. It does not send the PC name, a hardware identifier, or account information. Spare keys issued directly by the Company use a digital signature that is verified offline, so nothing is transmitted.</p>
       <div class="callout">
         <p>Payment is not yet available. Once payment opens, a payment processor will handle payment methods such as card information, and the Company will not store card numbers. At that time, the items processed and the processor will be stated again on the checkout screen and in this Policy.</p>
       </div>
@@ -126,7 +126,7 @@
       <p>Unlike the app, the forms on this website receive the following, and only when you submit them.</p>
       <ul>
         <li><b>Launch notice</b>: your e-mail address and, if you chose one, your operating system. We use them for one e-mail when Genok opens and delete them within 30 days of sending it.</li>
-        <li><b>Beta application</b>: your e-mail address and the answers you choose (operating system, AI tools you use, what you make, where you check results). We use them only to send the installer and key and to run the beta, and delete them within 90 days of the beta ending.</li>
+        <li><b>Beta application</b>: your e-mail address and the answers you choose (operating system, AI tools you use, what you make, where you check results). We use them only to send the invitation e-mail and to run the beta, and delete them within 90 days of the beta ending.</li>
         <li><b>Feedback</b>: what you wrote and the app version, and your e-mail address only if you left one for a reply. We use them only to fix the product and to answer you, and delete them one year after we receive them.</li>
         <li><b>Support e-mail</b>: the e-mails you send to support@genok.app and the files you attach (diagnostic bundle, install log, screenshots). We use them only to answer you and fix the problem, and delete them one year after we receive them. A diagnostic bundle can contain folder paths that include your user name, and project names.</li>
       </ul>
@@ -139,6 +139,16 @@
         <li><b>Purpose</b>: storing and managing the answers</li>
         <li><b>Retention</b>: the same period given for each form above</li>
         <li><b>How to refuse</b>: do not submit the form. The App works the same without it, but you cannot receive the launch notice or a beta invitation.</li>
+      </ul>
+      <p>Getting and checking a license key moves the information below to Polar, the merchant of record.</p>
+      <ul>
+        <li><b>Recipient</b>: Polar Software Inc. (3500 South DuPont Highway, Dover, DE 19901, USA; contact: privacy@polar.sh)</li>
+        <li><b>Country</b>: United States</li>
+        <li><b>When and how</b>: when you get a key and when the App checks it, over an encrypted connection</li>
+        <li><b>Items</b>: the e-mail address you enter to get a key, the license key and the registration ID</li>
+        <li><b>Purpose</b>: issuing the key and sending it to you, checking the key</li>
+        <li><b>Retention</b>: as set out in Polar's privacy policy (polar.sh/legal/privacy)</li>
+        <li><b>How to refuse</b>: do not get a key, or do not enter it in the App. Features that need a key are then unavailable.</li>
       </ul>
       <p>This site also loads its fonts from Google Fonts, so your IP address reaches Google when a page opens.</p>
       <p>Ask us before then and we delete your answers and e-mails. Requests to see or correct your answers go to the same address: <a href="mailto:support@genok.app">support@genok.app</a></p>
