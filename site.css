@@ -1206,6 +1206,29 @@ svg.ic { stroke-width: 1.6; }
 .home-beta { margin-top: 18px; }
 #beta .home-beta > .btn { padding: 0 18px; color: var(--btn-ink); text-decoration: none; }
 
+/* ---- footer in three columns ---- */
+.foot3 { display: grid; grid-template-columns: 1fr auto auto auto; gap: 16px 56px; align-items: start; padding-block: 28px 20px; }
+.foot3 > .brand { margin: 0; height: 24px; display: inline-flex; align-items: center; justify-self: start; }
+.foot3 > .brand .lockup { height: 20px; width: auto; }
+.f3-col h4 { margin: 0 0 14px; font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.f3-col a { display: block; padding: 3px 0; font-size: 13px; line-height: 20px; color: var(--ink-soft); transition: color .2s var(--ease); }
+.f3-col a:hover { color: var(--ink); }
+.f3-col a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+.f3-bottom a { color: inherit; }
+.f3-bottom a:hover { color: var(--ink); }
+@media (max-width: 640px) {
+  .foot3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 12px; padding-block: 24px 16px; }
+  .foot3 > .brand { grid-column: 1 / -1; }
+  .f3-col a { display: flex; align-items: center; min-height: 32px; padding: 0; }
+}
+@media (max-width: 360px) {
+  .foot3 { grid-template-columns: repeat(3, auto); justify-content: space-between; }
+  .f3-col a { white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .f3-bottom { flex-direction: column; gap: 2px; }
+}
+
 /* ---- reading floor: 13px text, 40px tap height ---- */
 .label, .label .tag, .changelog .cv small, .foot-col h4, .foot-legal, .flow-tabs label i, .zoom-tip, .legal-toc h2,
 .acct-row .state, .soon-tag, .anno .an-n, .ww-label, .demo-cap, .yr-save { font-size: 13px !important; }
