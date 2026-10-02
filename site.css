@@ -1275,3 +1275,24 @@ svg.ic { stroke-width: 1.6; }
 .next-steps li:first-child i { background: var(--btn); border-color: var(--btn); color: var(--btn-ink); }
 .next-steps b { display: block; color: var(--ink); font-weight: 600; }
 .next-steps span { color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+
+/* ---- devlog: before/now cards ---- */
+.devlog h1 { text-wrap: balance; max-width: 20em; }
+.legal-head .updated a { color: var(--accent-soft); text-decoration: underline; text-underline-offset: 3px; }
+.dv-body h2 { font-size: 14px; font-weight: 500; color: var(--ink-soft); letter-spacing: .04em; margin: 36px 0 10px; }
+.dv-body h2:first-child { margin-top: 0; }
+.dv-body h2.dv-more { color: var(--accent); }
+.dv { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 8px; word-break: keep-all; overflow-wrap: anywhere; }
+.dv li { background: var(--surface); border-radius: 12px; padding: 10px 12px; min-width: 0; }
+.dv .h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.dv .h b { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); }
+.dv .v { font-size: 13px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 0 9px; white-space: nowrap; }
+.dv .b, .dv .a { font-size: 14px; line-height: 1.55; display: flex; gap: 8px; margin-top: 4px; }
+.dv .b { color: var(--ink-soft); }
+.dv .a { color: var(--ink); }
+.dv i { font-style: normal; font-size: 13px; flex: 0 0 auto; min-width: 24px; padding-top: 1px; color: var(--ink-soft); }
+.dv .a i { color: var(--accent); }
+.dv .m { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 6px; margin-top: 8px; }
+.dv .m figure { margin: 0; min-width: 0; }
+.dv .m img { display: block; width: 100%; height: auto; max-height: 160px; object-fit: contain; border-radius: 10px; background: var(--stage); }
+.dv .m figcaption { font-size: 13px; color: var(--ink-soft); margin-bottom: 4px; }
