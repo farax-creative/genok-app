@@ -69,7 +69,7 @@
       <p class="updated">Effective 2026-10-02</p>
     </div>
 
-    <div class="legal-sum"><ol><li><i>1</i><div><b>Stored only on your PC</b><span>Output, comments and settings are not sent to our servers.</span></div></li><li><i>2</i><div><b>We receive only what you send</b><span>Forms, feedback and support e-mail, deleted after a set period.</span></div></li><li><i>3</i><div><b>Keys are checked through Polar</b><span>Only the key and a registration number are sent. Your PC name and account details are not.</span></div></li></ol><p class="legal-sum-ref">This summary is for reference. The text below is what applies.</p></div>
+    <div class="legal-sum"><ol><li><i>1</i><div><b>Stored only on your PC</b><span>Output, comments and settings are not sent to our servers.</span></div></li><li><i>2</i><div><b>We receive only what you send</b><span>Forms, feedback and support email, deleted after a set period.</span></div></li><li><i>3</i><div><b>Keys are checked through Polar</b><span>Only the key and a registration ID are sent. Your PC name and account details are not.</span></div></li></ol><p class="legal-sum-ref">This summary is for convenience. The full text below is what applies.</p></div>
 
     <nav class="legal-toc" aria-label="Contents">
       <h2>Contents</h2>
@@ -79,7 +79,7 @@
         <li><a href="#s3">Viewing on a Phone</a></li>
         <li><a href="#s4">License and Payment</a></li>
         <li><a href="#s5">Update Checks</a></li>
-        <li><a href="#s6">Retention and Destruction</a></li>
+        <li><a href="#s6">Retention and Deletion</a></li>
         <li><a href="#s7">User Rights</a></li>
         <li><a href="#s-web">What the Website and Forms Collect</a></li>
         <li><a href="#s8">Privacy Officer</a></li>
@@ -89,11 +89,11 @@
     <div class="legal-body">
       <h2 id="s1">1. Summary</h2>
       <div class="callout">
-        <p>The Genok App stores output, comments, and settings only on the user's PC. Forms and support e-mails that the user sends are the exception and are described below. Output, comments, and settings are all in a folder on the user's PC and are not sent to a Company server. Even when viewing on a phone, only the user's own Tailscale private network is used.</p>
+        <p>The Genok App stores output, comments, and settings only on the user's PC. Forms and support emails that the user sends are the exception and are described below. Output, comments, and settings are all in a folder on the user's PC and are not sent to a Company server. Even when viewing on a phone, only the user's own Tailscale private network is used.</p>
       </div>
 
       <h2 id="s2">2. What We Collect and What We Do Not</h2>
-      <p>The App runs on the user's PC. By default its internal server opens only inside this PC (<code>127.0.0.1</code>); only when you turn on phone viewing does it also open on your own Tailscale private network. Because the Company operates no account server, the Company does not collect the user's output or comments.</p>
+      <p>The App runs on the user's PC. By default its internal server listens only on this PC (<code>127.0.0.1</code>). If you turn on phone viewing, it also listens on your own Tailscale private network. Because the Company operates no account server, the Company does not collect the user's output or comments.</p>
       <h3>What is stored on the PC</h3>
       <ul>
         <li>Output uploaded by sessions and its versions, the comments left, and App settings. All are kept in the <code>Documents\Genok</code> folder (or a folder the user specifies).</li>
@@ -110,15 +110,15 @@
       <p>The feature for viewing the same screen on a phone (Pro) connects only within the private network (tailnet) created with the user's own Tailscale account. The screen is not exposed to the internet, and the Company does not relay or view that connection. The processing of personal information arising from the use of Tailscale is governed by Tailscale's policy.</p>
 
       <h2 id="s4">4. License and Payment</h2>
-      <p>Beta keys and keys received through a purchase are issued through the merchant of record (Polar). The e-mail address you enter to get a key goes to Polar, which uses it to issue the key and send it to you. No card details are collected for a beta key. The App sends the key and a registration ID created by Polar to Polar's server when a key is applied, at most once every six hours while the App is running, and when a key is removed. It does not send the PC name, a hardware identifier, or account information. Spare keys issued directly by the Company use a digital signature that is verified offline, so nothing is transmitted.</p>
+      <p>Beta keys and keys received through a purchase are issued through the merchant of record (Polar). The email address you enter to get a key goes to Polar, which uses it to issue the key and send it to you. No card details are collected for a beta key. The App sends the key and a registration ID created by Polar to Polar's server when a key is applied, at most once every six hours while the App is running, and when a key is removed. It does not send the PC name, a hardware identifier, or account information. Spare keys issued directly by the Company use a digital signature that is verified offline, so nothing is transmitted.</p>
       <div class="callout">
         <p>Payment is not yet available. Once payment opens, a payment processor will handle payment methods such as card information, and the Company will not store card numbers. At that time, the items processed and the processor will be stated again on the checkout screen and in this Policy.</p>
       </div>
 
       <h2 id="s5">5. Update Checks</h2>
-      <p>The App may connect to a version information file (feed) to check whether a new version is available. No name or e-mail address is sent in this process. Connection data that accompanies ordinary network access, such as the IP address, does reach the other party's server.</p>
+      <p>The App may connect to a version information file (feed) to check whether a new version is available. No name or email address is sent in this process. Connection data that accompanies ordinary network access, such as the IP address, does reach the other party's server.</p>
 
-      <h2 id="s6">6. Retention and Destruction</h2>
+      <h2 id="s6">6. Retention and Deletion</h2>
       <p>Because the data is on the user's PC, the Company does not set a retention period. Uninstalling the App does not remove output or comments. To erase them, delete the App's data folder.</p>
 
       <h2 id="s7">7. User Rights</h2>
@@ -127,33 +127,33 @@
       <h2 id="s-web">8. What the Website and Forms Collect</h2>
       <p>Unlike the app, the forms on this website receive the following, and only when you submit them.</p>
       <ul>
-        <li><b>Launch notice</b>: your e-mail address and, if you chose one, your operating system. We use them for one e-mail when Genok opens and delete them within 30 days of sending it.</li>
-        <li><b>Beta application</b>: your e-mail address and the answers you choose (operating system, AI tools you use, what you make, where you check results). We use them only to send the invitation e-mail and to run the beta, and delete them within 90 days of the beta ending.</li>
-        <li><b>Feedback</b>: what you wrote and the app version, any screenshots you attached (up to 10 per feedback), and your e-mail address only if you left one for a reply. We use them only to fix the product and to answer you, and delete them one year after we receive them. Screenshots are deleted on the same day. A screenshot is uploaded as soon as you add it. One you remove before sending is taken out of our storage folder right away, and ones left unsent within a day; both are permanently deleted within 30 days after that. If a screenshot shows someone else's information or a password, cover it before attaching.</li>
-        <li><b>Support e-mail</b>: the e-mails you send to support@genok.app and the files you attach (diagnostic bundle, install log, screenshots). We use them only to answer you and fix the problem, and delete them one year after we receive them. A diagnostic bundle can contain folder paths that include your user name, and project names.</li>
+        <li><b>Launch notice</b>: your email address and, if you chose one, your operating system. We use them for one email when Genok opens and delete them within 30 days of sending it.</li>
+        <li><b>Beta application</b>: your name, email address and operating system. We use them only to send the invitation email and to run the beta, and delete them within 90 days of the beta ending.</li>
+        <li><b>Feedback</b>: what you wrote and the app version, any screenshots you attached (up to 10 per feedback), and your email address only if you left one for a reply. We use them only to fix the product and to answer you, and delete them one year after we receive them. Screenshots are deleted on the same day as the feedback they belong to. A screenshot is uploaded as soon as you add it. A screenshot you remove before sending leaves our storage folder right away; ones you never send leave within a day. Both are permanently deleted within 30 days after that. If a screenshot shows someone else's information or a password, cover it before attaching.</li>
+        <li><b>Support email</b>: the emails you send to support@genok.app and the files you attach (diagnostic bundle, install log, screenshots). We use them only to answer you and fix the problem, and delete them one year after we receive them. A diagnostic bundle can contain folder paths that include your user name, and project names.</li>
       </ul>
       <p>These answers are stored in Google's form service (Google Forms), and screenshots attached to feedback in Google Drive. Both are on servers outside Korea (an overseas transfer of personal information).</p>
       <ul>
         <li><b>Recipient</b>: Google LLC (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA)</li>
         <li><b>Country</b>: United States</li>
         <li><b>When and how</b>: when you submit a form, over an encrypted connection</li>
-        <li><b>Items</b>: what you entered in the forms above (e-mail address, the answers you chose, what you wrote, screenshots you attached)</li>
+        <li><b>Items</b>: what you entered in the forms above (email address, the answers you chose, what you wrote, screenshots you attached)</li>
         <li><b>Purpose</b>: storing and managing the answers</li>
         <li><b>Retention</b>: the same period given for each form above</li>
-        <li><b>How to refuse</b>: do not submit the form. The App works the same without it, but you cannot receive the launch notice or a beta invitation.</li>
+        <li><b>How to opt out</b>: do not submit the form. The App works the same without it, but you cannot receive the launch notice or a beta invitation.</li>
       </ul>
       <p>Getting and checking a license key moves the information below to Polar, the merchant of record.</p>
       <ul>
         <li><b>Recipient</b>: Polar Software Inc. (3500 South DuPont Highway, Dover, DE 19901, USA; contact: privacy@polar.sh)</li>
         <li><b>Country</b>: United States</li>
         <li><b>When and how</b>: when you get a key and when the App checks it, over an encrypted connection</li>
-        <li><b>Items</b>: the e-mail address you enter to get a key, the license key and the registration ID</li>
+        <li><b>Items</b>: the email address you enter to get a key, the license key and the registration ID</li>
         <li><b>Purpose</b>: issuing the key and sending it to you, checking the key</li>
         <li><b>Retention</b>: as set out in Polar's privacy policy (polar.sh/legal/privacy)</li>
-        <li><b>How to refuse</b>: do not get a key, or do not enter it in the App. Features that need a key are then unavailable.</li>
+        <li><b>How to opt out</b>: do not get a key, or do not enter it in the App. Features that need a key are then unavailable.</li>
       </ul>
       <p>This site also loads its fonts from Google Fonts, so your IP address reaches Google when a page opens.</p>
-      <p>Ask us before then and we delete your answers, e-mails and attached screenshots. Requests to see or correct your answers go to the same address: <a href="mailto:support@genok.app">support@genok.app</a></p>
+      <p>Ask us any time before those dates and we delete your answers, emails and attached screenshots. Requests to see or correct your answers go to the same address: <a href="mailto:support@genok.app">support@genok.app</a></p>
 
       <h2 id="s8">9. Privacy Officer</h2>
       <div class="callout">
