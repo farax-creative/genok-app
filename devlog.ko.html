@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>개발일지 - Genok</title>
+<meta name="description" content="Genok 개발일지. 새로 생긴 기능과 고친 것을 이전·지금으로 보여 줍니다.">
+<meta property="og:title" content="개발일지 - Genok">
+<meta property="og:description" content="Genok 개발일지. 새로 생긴 기능과 고친 것을 이전·지금으로 보여 줍니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://genok.app/devlog.ko.html">
+<meta property="og:image" content="https://genok.app/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f1012">
+<meta name="robots" content="index,follow">
+<link rel="preload" href="assets/fonts/pretendard-site.7d5ad9a6.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="canonical" href="https://genok.app/devlog.ko.html">
+<link rel="alternate" hreflang="ko" href="https://genok.app/devlog.ko.html">
+<meta property="og:locale" content="ko_KR">
+</head>
+<body>
+
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.ko.html" aria-label="Genok 홈">
+      <svg class="lockup" role="img" aria-label="Genok" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.0 76.3"><path d="M12.24 35.80L2.52 34.86M12.39 33.48L3.50 31.77M12.87 31.16L4.96 28.83M13.62 28.95L6.73 26.19M14.61 26.78L8.69 23.73M15.76 24.76L10.72 21.52M17.11 22.80L12.82 19.42M18.60 20.99L14.90 17.46M20.29 19.30L16.97 15.46M22.13 17.84L19.02 13.47M24.19 16.61L21.26 11.54M26.38 15.69L23.69 9.78M28.65 15.15L26.28 8.29M30.99 14.91L29.10 7.10M33.28 14.99L32.02 6.29M35.54 15.28L35.09 5.82M37.67 15.71L38.15 5.69M39.78 16.19L41.27 5.86M41.82 16.63L44.32 6.29M43.92 17.05L47.41 6.97M46.04 17.47L50.40 7.90M48.27 17.95L53.34 9.17M50.55 18.61L56.14 10.77M52.77 19.50L58.71 12.64M54.91 20.72L60.98 14.94M56.78 22.27L62.79 17.54M58.37 24.18L64.21 20.43M59.55 26.30L65.11 23.44M60.35 28.65L65.60 26.55M60.76 31.04L65.75 29.57M60.88 33.47L65.80 32.52M60.76 35.82L65.89 35.32M60.48 38.14L66.06 38.14M60.08 40.40L66.26 41.00M59.59 42.57L66.46 43.89M58.98 44.73L66.55 46.95M58.25 46.80L66.40 50.06M57.32 48.83L65.85 53.23M56.21 50.72L64.85 56.27M54.88 52.52L63.31 59.15M53.41 54.14L61.33 61.68M51.76 55.62L58.90 63.87M50.04 56.97L56.20 65.60M48.21 58.23L53.27 66.99M46.32 59.43L50.24 68.04M44.38 60.57L47.26 68.88M42.30 61.64L44.20 69.50M40.14 62.58L41.19 69.88M37.80 63.30L38.12 70.06M35.41 63.73L35.12 69.93M32.92 63.76L32.11 69.44M30.52 63.35L29.24 68.61M28.19 62.47L26.46 67.48M26.11 61.19L23.84 66.17M24.24 59.58L21.33 64.62M22.64 57.74L18.96 62.90M21.30 55.83L16.72 61.11M20.10 53.87L14.50 59.21M19.01 52.00L12.32 57.26M17.92 50.14L10.10 55.17M16.83 48.36L7.97 52.93M15.72 46.50L5.96 50.40M14.65 44.61L4.23 47.67M13.68 42.56L2.93 44.63M12.91 40.43L2.16 41.46M12.41 38.14L2.03 38.14" fill="none" stroke="#efe9dc" stroke-width="2.55" stroke-linecap="round"/><path d="M163.44 45.1Q162.27 45.25 160.29 45.57Q158.31 45.88 157.09 46.47Q155.63 47.2 155.02 48.54Q154.41 49.89 154.41 51.69V57.06Q154.41 62.92 154.48 64.97Q154.55 67.03 154.65 68.34Q148.16 71.27 141.71 72.84Q135.27 74.4 129.07 74.4Q122.43 74.4 116.27 71.91Q110.12 69.42 105.53 64.83Q100.89 60.19 98.16 53.55Q95.42 46.91 95.42 38.71Q95.42 30.79 98.04 24.03Q100.65 17.27 105.43 12.29Q110.07 7.41 116.49 4.7Q122.91 1.99 130.24 1.99Q136.1 1.99 140.44 3.4Q144.79 4.82 148.11 6.82L150.11 3.5H154.02L154.46 27.72H150.45Q149.43 23.71 147.91 19.83Q146.4 15.95 144.01 12.88Q141.62 9.8 138.17 7.97Q134.73 6.14 129.95 6.14Q124.72 6.14 120.62 8.26Q116.52 10.38 113.49 14.58Q110.51 18.64 108.9 24.69Q107.29 30.75 107.29 38.22Q107.29 44.81 108.88 50.64Q110.46 56.48 113.49 60.73Q116.52 65.07 121.06 67.56Q125.6 70.05 131.36 70.05Q135.66 70.05 139.2 68.73Q142.74 67.42 144.2 65.95Q144.59 63.41 144.62 60.82Q144.64 58.24 144.64 56.43V52.62Q144.64 50.57 144.08 48.98Q143.52 47.4 141.76 46.66Q140.15 45.93 137.39 45.57Q134.63 45.2 133.07 45.1V41.54H163.44ZM209.41 61.46Q206.39 67.22 201.31 70.64Q196.23 74.06 189.64 74.06Q183.83 74.06 179.46 72.01Q175.09 69.96 172.26 66.44Q169.42 62.92 168.03 58.24Q166.64 53.55 166.64 48.32Q166.64 43.64 168.13 39.12Q169.62 34.6 172.5 30.99Q175.28 27.52 179.41 25.4Q183.53 23.28 188.66 23.28Q193.94 23.28 197.7 24.94Q201.45 26.6 203.8 29.48Q206.04 32.21 207.14 35.92Q208.24 39.63 208.24 43.98V47.2H176.36Q176.36 51.94 177.26 55.79Q178.16 59.65 180.12 62.58Q182.02 65.41 185.1 67.05Q188.17 68.69 192.42 68.69Q196.77 68.69 199.92 66.66Q203.07 64.63 206 59.36ZM198.62 43.1Q198.62 40.37 198.16 37.24Q197.7 34.12 196.67 32.02Q195.55 29.77 193.59 28.35Q191.64 26.94 188.56 26.94Q183.44 26.94 180.04 31.21Q176.65 35.48 176.36 43.1ZM267.15 72.79H243.57V69.56Q244.69 69.47 246.04 69.37Q247.38 69.27 248.26 68.98Q249.62 68.54 250.28 67.44Q250.94 66.34 250.94 64.58V39.83Q250.94 34.7 248.53 31.92Q246.11 29.13 242.64 29.13Q240.05 29.13 237.91 29.94Q235.76 30.75 234.1 31.92Q232.49 33.04 231.53 34.33Q230.58 35.63 230.14 36.41V64.1Q230.14 65.76 230.83 66.83Q231.51 67.9 232.88 68.49Q233.9 68.98 235.1 69.22Q236.29 69.47 237.56 69.56V72.79H213.98V69.56Q215.1 69.47 216.3 69.37Q217.5 69.27 218.37 68.98Q219.74 68.54 220.4 67.44Q221.06 66.34 221.06 64.58V34.85Q221.06 33.19 220.35 31.8Q219.64 30.4 218.37 29.53Q217.45 28.94 216.18 28.67Q214.91 28.4 213.44 28.3V25.13L229.46 24.06L230.14 24.74V31.53H230.39Q231.56 30.36 233.32 28.72Q235.07 27.08 236.64 26.06Q238.44 24.89 240.93 24.11Q243.42 23.32 246.55 23.32Q253.48 23.32 256.83 27.65Q260.17 31.97 260.17 39.14V64.19Q260.17 65.9 260.76 66.95Q261.34 68 262.76 68.59Q263.93 69.08 264.79 69.27Q265.64 69.47 267.15 69.56ZM318.99 48.23Q318.99 53.3 317.37 58.21Q315.76 63.12 312.78 66.54Q309.42 70.44 304.97 72.35Q300.53 74.25 295.01 74.25Q290.42 74.25 286.27 72.52Q282.12 70.79 278.9 67.46Q275.72 64.19 273.84 59.48Q271.96 54.77 271.96 48.91Q271.96 37.63 278.53 30.45Q285.1 23.28 295.74 23.28Q305.85 23.28 312.42 30.09Q318.99 36.9 318.99 48.23ZM308.88 48.32Q308.88 44.66 308.15 40.58Q307.41 36.51 305.95 33.68Q304.39 30.65 301.85 28.82Q299.31 26.99 295.65 26.99Q291.89 26.99 289.23 28.84Q286.56 30.7 284.9 33.92Q283.34 36.9 282.71 40.71Q282.07 44.52 282.07 48.08Q282.07 52.77 282.83 56.75Q283.59 60.73 285.25 63.85Q286.91 66.98 289.42 68.76Q291.94 70.54 295.65 70.54Q301.75 70.54 305.31 64.63Q308.88 58.72 308.88 48.32ZM375.99 72.79H361.44Q357.63 67.27 353.29 60.97Q348.94 54.67 344.26 48.71L340.25 52.47V63.9Q340.25 65.66 340.89 66.81Q341.52 67.95 342.94 68.49Q344.11 68.98 345.18 69.22Q346.26 69.47 347.67 69.56V72.79H324.04V69.56Q325.16 69.47 326.38 69.34Q327.61 69.22 328.44 68.98Q329.8 68.54 330.49 67.44Q331.17 66.34 331.17 64.58V8.63Q331.17 6.82 330.41 5.23Q329.66 3.65 328.44 2.82Q327.41 2.04 325.24 1.79Q323.06 1.55 321.75 1.45V-1.68L339.57 -2.8L340.25 -2.07V48.86Q344.06 45.05 348.48 40.68Q352.9 36.31 355.93 32.89Q356.32 32.46 356.78 31.75Q357.24 31.04 357.24 30.6Q357.24 29.28 355.12 28.65Q353 28.01 351.04 27.77V24.64H372.23V27.67Q368.13 28.89 364.98 30.72Q361.83 32.55 360.17 34.02Q359 34.99 356.85 37.19Q354.7 39.39 350.85 42.95Q354.85 47.88 359.86 54.77Q364.86 61.65 367.16 64.73Q369.3 67.61 371.01 68.49Q372.72 69.37 375.99 69.56Z" fill="#efe9dc"/></svg>
+    </a>
+    <nav class="nav-links" aria-label="주요">
+      <a href="index.ko.html#see">기능</a>
+      <details class="nav-menu"><summary>활용</summary><div class="lang-pop"><a href="cases-3d.ko.html">3D·모션</a><a href="cases-web.ko.html">웹·디자인</a><a href="cases-docs.ko.html">문서·코드·데이터</a></div></details>
+      <a href="index.ko.html#pricing">가격</a>
+      <a href="index.ko.html#faq">FAQ</a>
+    </nav>
+    <details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="changelog.html" lang="en" hreflang="en">English</a><a href="devlog.ko.html" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
+    <a class="btn btn-primary nav-dl" href="download.ko.html"><span class="roll"><span>다운로드</span></span></a>
+    <button class="burger" id="burger" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="모바일" hidden>
+    <a href="index.ko.html#see">기능</a>
+    <a href="cases-3d.ko.html">활용 · 3D·모션</a>
+    <a href="cases-web.ko.html">활용 · 웹·디자인</a>
+    <a href="cases-docs.ko.html">활용 · 문서·코드·데이터</a>
+    <a href="index.ko.html#pricing">가격</a>
+    <a href="index.ko.html#faq">FAQ</a>
+    <a class="btn btn-primary btn-block" href="download.ko.html">다운로드</a>
+  </nav>
+</header>
+
+<main id="main" class="legal devlog">
+  <div class="wrap">
+    <div class="legal-head">
+      <h1>Codex 대화가 바로 이어지고, 결과 목록과 폰 연결이 새로워졌습니다</h1>
+      <p class="updated">개발일지 · 2026.10.03 · 0.1.65 → 0.1.68</p>
+    </div>
+    <div class="dv-body">
+      <h2>앱에 새로 생긴 기능</h2>
+      <ul class="dv">
+        <li><div class="h"><b>Codex 대화를 Genok 안에서 보내기</b><span class="v">0.1.66</span></div><div class="b"><i>이전</i>보내고 한참 뒤에야 반응이 보였습니다</div><div class="a"><i>지금</i>보내면 바로 답이 이어지고, 대화는 Codex의 app-server로 돌아갑니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n1-after.webp"><img alt="Codex 대화를 Genok 안에서 보내기" src="assets/devlog/2026-10-03/n1-after.webp" width="665" height="685" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>Codex 승인 요청을 채팅에서 처리</b><span class="v">0.1.66</span></div><div class="a">Codex가 "실행해도 되나요" 하고 물으면 채팅에 허용·거절 버튼이 뜹니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n2-after.webp"><img alt="Codex 승인 요청을 채팅에서 처리" src="assets/devlog/2026-10-03/n2-after.webp" width="665" height="685" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>행 크기 두 가지</b><span class="v">0.1.66</span></div><div class="a">큰 행과 작은 행을 머리의 토글로 바꿉니다. 작은 행은 한 줄에 이름과 얼굴이 들어갑니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n3-after.gif"><img alt="행 크기 두 가지" src="assets/devlog/2026-10-03/n3-after.gif" width="720" height="616" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>나눠 보기 최대 3칸 × 2줄</b><span class="v">0.1.66</span></div><div class="a">여러 세션을 한 화면에 나란히 봅니다. 열려 있는 행에는 표시가 붙습니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n4-after.webp"><img alt="나눠 보기 최대 3칸 × 2줄" src="assets/devlog/2026-10-03/n4-after.webp" width="800" height="567" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>채팅 진행 상태와 그림 크게 보기</b><span class="v">0.1.67</span></div><div class="b"><i>이전</i>보낸 줄 뒤에 무슨 일이 일어나는지 알 수 없었습니다</div><div class="a"><i>지금</i>보낸 줄 밑에 진행 상태가 실시간으로 뜨고, 그림은 누르면 앱 안에서 크게 열립니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n5-after.gif"><img alt="채팅 진행 상태와 그림 크게 보기" src="assets/devlog/2026-10-03/n5-after.gif" width="665" height="685" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>채팅 도구 3가지</b><span class="v">다음 빌드</span></div><div class="a">맥락·사용량 표시, 복사 버튼, 마지막에 보낸 줄 다시 불러오기</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n7-after.gif"><img alt="채팅 도구 3가지" src="assets/devlog/2026-10-03/n7-after.gif" width="665" height="685" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>결과 목록 정리</b><span class="v">다음 빌드</span></div><div class="b"><i>이전</i>새 결과와 열어본 결과가 섞여 있었습니다</div><div class="a"><i>지금</i>새것과 열어본 것을 나누고, 세션당 작업 항목을 하나로 하고, 누가 멈췄는지 보여 줍니다</div><div class="m"><figure><figcaption>이전</figcaption><a href="assets/devlog/2026-10-03/n8-before.webp"><img alt="결과 목록 정리 (이전)" src="assets/devlog/2026-10-03/n8-before.webp" width="800" height="580" loading="lazy" decoding="async"></a></figure><figure><figcaption>지금</figcaption><a href="assets/devlog/2026-10-03/n8-after.webp"><img alt="결과 목록 정리" src="assets/devlog/2026-10-03/n8-after.webp" width="800" height="580" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>결과 크게 보기</b><span class="v">다음 빌드</span></div><div class="a">결과를 확대해서 봅니다. 확대 설정은 모든 화면에서 같습니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n9-after.gif"><img alt="결과 크게 보기" src="assets/devlog/2026-10-03/n9-after.gif" width="530" height="331" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>여러 세션 한 번에 고르기</b><span class="v">다음 빌드</span></div><div class="a">행 메뉴에서 여러 세션을 골라 한꺼번에 다룹니다. 안 읽은 세션에는 표시가 붙습니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/n10-after.webp"><img alt="여러 세션 한 번에 고르기" src="assets/devlog/2026-10-03/n10-after.webp" width="470" height="745" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>폰 연결 한 번에</b><span class="v">다음 빌드</span></div><div class="b"><i>이전</i>연결을 켜면 두 번째 창이 또 떴습니다</div><div class="a"><i>지금</i>폰 연결 켜기가 한 번에 켜지고, 접속 설정은 한 단계씩 알아서 넘어갑니다</div><div class="m"><figure><figcaption>이전</figcaption><a href="assets/devlog/2026-10-03/n11-before.webp"><img alt="폰 연결 한 번에 (이전)" src="assets/devlog/2026-10-03/n11-before.webp" width="800" height="560" loading="lazy" decoding="async"></a></figure><figure><figcaption>지금</figcaption><a href="assets/devlog/2026-10-03/n11-after.gif"><img alt="폰 연결 한 번에" src="assets/devlog/2026-10-03/n11-after.gif" width="500" height="280" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>업데이트가 한 번에</b><span class="v">다음 빌드</span></div><div class="b"><i>이전</i>확인과 설치가 따로였습니다</div><div class="a"><i>지금</i>확인 버튼을 한 번 누르면 내려받기와 적용까지 이어집니다</div><div class="m"><figure><figcaption>이전</figcaption><a href="assets/devlog/2026-10-03/n12-before.webp"><img alt="업데이트가 한 번에 (이전)" src="assets/devlog/2026-10-03/n12-before.webp" width="420" height="230" loading="lazy" decoding="async"></a></figure><figure><figcaption>지금</figcaption><a href="assets/devlog/2026-10-03/n12-after.gif"><img alt="업데이트가 한 번에" src="assets/devlog/2026-10-03/n12-after.gif" width="420" height="230" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>첫 사용 안내</b><span class="v">다음 빌드</span></div><div class="b"><i>이전</i>복사·붙여넣기로 첫 대화를 시작해야 했습니다</div><div class="a"><i>지금</i>Genok 안에서 바로 첫 대화를 시작하고, 한 번에 한 단계씩 안내합니다</div><div class="m"><figure><figcaption>이전</figcaption><a href="assets/devlog/2026-10-03/n13-before.webp"><img alt="첫 사용 안내 (이전)" src="assets/devlog/2026-10-03/n13-before.webp" width="760" height="530" loading="lazy" decoding="async"></a></figure><figure><figcaption>지금</figcaption><a href="assets/devlog/2026-10-03/n13-after.gif"><img alt="첫 사용 안내" src="assets/devlog/2026-10-03/n13-after.gif" width="500" height="660" loading="lazy" decoding="async"></a></figure></div></li>
+      </ul>
+
+      <h2>앱에서 고친 것</h2>
+      <ul class="dv">
+        <li><div class="h"><b>Codex 보내기 속도</b><span class="v">0.1.67</span></div><div class="b"><i>이전</i>차례를 받은 뒤에야 답했습니다</div><div class="a"><i>지금</i>앱 서버가 차례를 받는 순간 답합니다</div></li>
+        <li><div class="h"><b>채팅 화면 흔들림</b><span class="v">0.1.66</span></div><div class="b"><i>이전</i>30초마다 화면이 새로 그려져 튀었습니다</div><div class="a"><i>지금</i>세션을 누를 때와 차례가 바뀔 때만 다시 그립니다</div></li>
+        <li><div class="h"><b>떠 있는 창</b><span class="v">0.1.66 · 다음 빌드</span></div><div class="b"><i>이전</i>화면 배율에 따라 깨지고, 빈 상자가 보였습니다</div><div class="a"><i>지금</i>배율을 맞추고, 빈 상자 없이 복원할 때 크기를 기억합니다</div><div class="m"><figure><a href="assets/devlog/2026-10-03/f3-after.webp"><img alt="떠 있는 창" src="assets/devlog/2026-10-03/f3-after.webp" width="630" height="165" loading="lazy" decoding="async"></a></figure></div></li>
+        <li><div class="h"><b>패널 움직임</b><span class="v">0.1.66</span></div><div class="b"><i>이전</i>패널이 옆에서 미끄러져 들어왔습니다</div><div class="a"><i>지금</i>제자리에 나타납니다. 목록이 저절로 바뀔 때도 미끄러지지 않습니다</div></li>
+        <li><div class="h"><b>세션 목록 기본 보기</b><span class="v">0.1.66</span></div><div class="b"><i>이전</i>펼쳐진 목록으로 열렸습니다</div><div class="a"><i>지금</i>폴더 보기와 큰 행으로 열립니다</div></li>
+        <li><div class="h"><b>결과 첫 탭</b><span class="v">0.1.67</span></div><div class="b"><i>이전</i>비어 있으면 다른 탭이 열렸습니다</div><div class="a"><i>지금</i>비어 있어도 항상 "확인 필요" 탭에서 엽니다</div></li>
+        <li><div class="h"><b>첫 실행·연결·동의 문구</b><span class="v">0.1.67 · 다음 빌드</span></div><div class="b"><i>이전</i>화면마다 여러 줄이었습니다</div><div class="a"><i>지금</i>한 줄만 두고 나머지는 접었습니다. 첫 실행은 한 화면에 결정 하나입니다</div></li>
+        <li><div class="h"><b>폰 채팅</b><span class="v">다음 빌드</span></div><div class="b"><i>이전</i>키보드가 올라오면 대화 공간이 좁았고, 갱신 때 화면이 튀었습니다</div><div class="a"><i>지금</i>대화에 공간을 더 주고 화면이 튀지 않습니다. 헤더는 한 줄입니다</div></li>
+        <li><div class="h"><b>Claude 모델 선택</b><span class="v">되돌림</span></div><div class="b"><i>이전</i>모델을 바꾸면 실행 중인 작업에 바로 적용하려 했습니다</div><div class="a"><i>지금</i>이전 방식으로 되돌려, 바꾼 모델은 다음 줄부터 적용됩니다</div></li>
+      </ul>
+
+      <h2 class="dv-more">그 밖에 바뀐 것</h2>
+      <h2>0.1.66</h2>
+      <ul class="dv">
+        <li><div class="h"><b>Codex 새 대화를 앱과 같은 방식으로</b></div><div class="b"><i>이전</i>Codex 앱 목록에 안 보임</div><div class="a"><i>지금</i>새 대화가 Codex 앱 목록에도 보임</div></li>
+        <li><div class="h"><b>연결 확인용 임시 폴더 숨김</b></div><div class="b"><i>이전</i>확인용 폴더가 세션·프로젝트로 끼어듦</div><div class="a"><i>지금</i>목록에 안 뜨고, 새 세션도 그 폴더에서 열리지 않음</div></li>
+        <li><div class="h"><b>연결 권한 한 번에 허용</b></div><div class="b"><i>이전</i>대화 중에 권한을 따로 물음</div><div class="a"><i>지금</i>연결 단계에서 에이전트별로 한 번에 허용</div></li>
+        <li><div class="h"><b>한 번에 허용해도 내가 끈 건 유지</b></div><div class="a"><i>지금</i>내가 꺼 둔 권한은 꺼진 채로 둠</div></li>
+        <li><div class="h"><b>허락 대신 허용으로 단어 통일</b></div><div class="b"><i>이전</i>허락 · 허용이 섞임</div><div class="a"><i>지금</i>앱 전체에서 허용</div></li>
+        <li><div class="h"><b>폴더 신뢰 실패 시 Claude Code에서 열기</b></div><div class="b"><i>이전</i>실패 문장만 보임</div><div class="a"><i>지금</i>그 폴더를 여는 버튼이 나옴</div></li>
+        <li><div class="h"><b>Claude 새 세션이 엉뚱한 폴더에서 열림</b></div><div class="b"><i>이전</i>작업용 임시 폴더에서 열리기도 함</div><div class="a"><i>지금</i>임시 폴더 대신 맞는 프로젝트에 묶임</div></li>
+        <li><div class="h"><b>새 세션은 마지막에 쓴 프로젝트에서</b></div><div class="a"><i>지금</i>폴더가 사라졌으면 건너뛰고 한 번 알려 줌</div></li>
+        <li><div class="h"><b>시작 거절 이유를 폴더와 함께 안내</b></div><div class="b"><i>이전</i>이유가 막연함</div><div class="a"><i>지금</i>폴더 이름과 다음 할 일을 한 번 알림</div></li>
+        <li><div class="h"><b>보내기 실패는 한 번만 알림</b></div><div class="b"><i>이전</i>같은 실패가 여러 번 뜸</div><div class="a"><i>지금</i>채팅 중엔 그 줄에, 아니면 토스트로 한 번</div></li>
+        <li><div class="h"><b>Codex 답이 오면 연결됨으로 표시</b></div><div class="b"><i>이전</i>Codex가 되는데 Claude만이라고 표시</div><div class="a"><i>지금</i>제목줄 표시가 실제와 맞음</div></li>
+        <li><div class="h"><b>세션 목록 보기: 폴더별 / 세션 제목</b></div><div class="a"><i>지금</i>위에 토글로 바로 바꿈</div></li>
+        <li><div class="h"><b>세션 제목 보기는 세션 이름으로 표시</b></div><div class="b"><i>이전</i>마지막으로 한 말이 제목처럼 보임</div><div class="a"><i>지금</i>세션 이름이 나옴, 말은 검색엔 남음</div></li>
+        <li><div class="h"><b>세션 순서가 상태로 안 바뀜</b></div><div class="b"><i>이전</i>상태에 따라 줄이 이리저리 이동</div><div class="a"><i>지금</i>순서 고정, 내 차례는 색으로만 표시</div></li>
+        <li><div class="h"><b>작업 중 세션에 흐르는 빛</b></div><div class="a"><i>지금</i>위쪽 선에 빛이 흐르고 민트색으로 표시</div></li>
+        <li><div class="h"><b>세션 줄을 끌어서 순서 바꾸기</b></div><div class="a"><i>지금</i>끌어서 원하는 자리에 놓음</div></li>
+        <li><div class="h"><b>채팅은 항상 최신 줄에서 열림</b></div><div class="b"><i>이전</i>읽던 위치·구분선에서 열림</div><div class="a"><i>지금</i>최신 줄에서 열리고 다시 그려도 위치 유지</div></li>
+        <li><div class="h"><b>맨 아래로 가는 둥근 버튼</b></div><div class="b"><i>이전</i>새 메시지 알약</div><div class="a"><i>지금</i>멀리 올라가면 버튼, 안 본 줄 수 표시</div></li>
+        <li><div class="h"><b>플로팅이 큰 회색 사각형으로 뜨던 것</b></div><div class="b"><i>이전</i>배율 다른 모니터에서 회색 사각형</div><div class="a"><i>지금</i>모니터마다 배율에 맞게 제대로 뜸</div></li>
+        <li><div class="h"><b>플로팅 눌렀을 때 세션 번호 토스트</b></div><div class="b"><i>이전</i>긴 세션 번호가 뜨고 별표가 붙음</div><div class="a"><i>지금</i>안 뜸, 생긴 별표도 정리</div></li>
+        <li><div class="h"><b>플로팅 알림이 블럭에 겹치던 것</b></div><div class="b"><i>이전</i>알림이 블럭을 가림</div><div class="a"><i>지금</i>블럭 아래 작은 한 줄로 표시</div></li>
+        <li><div class="h"><b>플로팅이 닫힐 때 빈 틀</b></div><div class="b"><i>이전</i>닫을 때 빈 틀이 남아 보임</div><div class="a"><i>지금</i>빈 틀 없이 닫힘</div></li>
+        <li><div class="h"><b>아이템 댓글 입력창 하단 고정</b></div><div class="b"><i>이전</i>상태줄 위에 떠 있고 댓글 카드처럼 보임</div><div class="a"><i>지금</i>칸 맨 아래에 붙고 색으로 구분</div></li>
+        <li><div class="h"><b>모델 메뉴·아이콘 고르기 다듬음</b></div><div class="a"><i>지금</i>메뉴와 아이콘 선택이 더 매끄러움</div></li>
+        <li><div class="h"><b>폰 메뉴 정렬</b></div><div class="b"><i>이전</i>메뉴 글자가 어긋남</div><div class="a"><i>지금</i>줄이 맞음</div></li>
+      </ul>
+      <h2>0.1.67</h2>
+      <ul class="dv">
+        <li><div class="h"><b>Codex 앱 목록에 없음 안내</b></div><div class="a"><i>지금</i>예전 방식 대화는 앱 목록에 안 뜬다고 알림</div></li>
+        <li><div class="h"><b>나눠 보기에 열린 세션 표시</b></div><div class="b"><i>이전</i>표시가 안 보임</div><div class="a"><i>지금</i>열린 줄에 짧은 선, 폴더는 점</div></li>
+        <li><div class="h"><b>제목의 이모지가 두 번 나옴</b></div><div class="b"><i>이전</i>얼굴과 제목에 이모지가 중복</div><div class="a"><i>지금</i>한 번만 나옴</div></li>
+        <li><div class="h"><b>확인 창에서 Enter</b></div><div class="b"><i>이전</i>마우스로 눌러야 함</div><div class="a"><i>지금</i>Enter가 주 버튼을 누름</div></li>
+        <li><div class="h"><b>결과물은 항상 확인 필요에서 열림</b></div><div class="b"><i>이전</i>비어 있으면 다른 탭에서 열림</div><div class="a"><i>지금</i>비어도 확인 필요 탭에서 열림</div></li>
+        <li><div class="h"><b>왼쪽 메뉴에 현재 화면 막대</b></div><div class="a"><i>지금</i>열린 화면 줄에 얇은 바</div></li>
+        <li><div class="h"><b>처음 켤 때·연결·권한 글 줄임</b></div><div class="b"><i>이전</i>설명이 길게 이어짐</div><div class="a"><i>지금</i>제목 한 줄과 설명 한 줄, 나머지는 접음</div></li>
+        <li><div class="h"><b>연결 설정 설명을 눌러서 보기</b></div><div class="b"><i>이전</i>마우스를 올려야 설명이 보임</div><div class="a"><i>지금</i>정보 버튼을 누르면 줄이 펼쳐짐</div></li>
+        <li><div class="h"><b>동의 창 문구 짧게</b></div><div class="b"><i>이전</i>제목과 이유가 길고 겹침</div><div class="a"><i>지금</i>짧고 완결된 문장, 나머지는 접음</div></li>
+        <li><div class="h"><b>업데이트 안내의 노트 접기</b></div><div class="b"><i>이전</i>노트가 펼쳐져 있음</div><div class="a"><i>지금</i>노트와 알려진 문제는 접힘</div></li>
+        <li><div class="h"><b>화면·창·메뉴가 제자리에서 나타남</b></div><div class="b"><i>이전</i>위로 솟거나 옆에서 밀려 들어옴</div><div class="a"><i>지금</i>제자리에서 살짝 나타남</div></li>
+        <li><div class="h"><b>폰 채팅이 옆에서 밀려 들어오지 않음</b></div><div class="b"><i>이전</i>옆에서 밀려 들어오고 다시 재생됨</div><div class="a"><i>지금</i>제자리에 나타나고 세션 바꿔도 안 재생</div></li>
+        <li><div class="h"><b>스스로 바뀐 목록은 움직임 없음</b></div><div class="b"><i>이전</i>자동으로 바뀌어도 줄이 움직임</div><div class="a"><i>지금</i>내가 한 일에만 움직임</div></li>
+        <li><div class="h"><b>새 세션이 목록에서 잠깐 사라지던 것</b></div><div class="b"><i>이전</i>새 줄이 사라졌다 다시 나타남</div><div class="a"><i>지금</i>사라지지 않음</div></li>
+        <li><div class="h"><b>세션 행 오른쪽 클릭 단축 글자</b></div><div class="a"><i>지금</i>메뉴 항목 옆 글자를 누르면 실행</div></li>
+        <li><div class="h"><b>안 읽은 세션 점과 읽음 표시</b></div><div class="a"><i>지금</i>점이 보이고 메뉴로 읽음·안 읽음 변경</div></li>
+        <li><div class="h"><b>오른쪽 클릭 뒤 화면이 두 번 그려짐</b></div><div class="b"><i>이전</i>페이지가 복사돼 겹침</div><div class="a"><i>지금</i>한 번만 그려짐</div></li>
+        <li><div class="h"><b>채팅·결과·설정 글 줄임</b></div><div class="b"><i>이전</i>설명이 길게 나옴</div><div class="a"><i>지금</i>한 줄만 보이고 더 보기로 펼침</div></li>
+        <li><div class="h"><b>휴지통 비우기 확인에 개수·크기</b></div><div class="b"><i>이전</i>무엇이 지워지는지 모호</div><div class="a"><i>지금</i>개수·크기·되돌림 가능 여부 표시</div></li>
+        <li><div class="h"><b>설정 레이아웃에 화면 그림</b></div><div class="b"><i>이전</i>스위치를 켜도 바뀐 게 안 보임</div><div class="a"><i>지금</i>켜고 끄면 그림 속 칸이 나타났다 사라짐</div></li>
+        <li><div class="h"><b>설정 썸네일 크기 미리보기</b></div><div class="a"><i>지금</i>크기마다 한 줄씩 보이고 고른 것이 켜짐</div></li>
+      </ul>
+      <h2>0.1.68 · 다음 빌드</h2>
+      <ul class="dv">
+        <li><div class="h"><b>영어 번역 전체</b></div><div class="b"><i>이전</i>영어 문구 1146개, 빠진 곳 많음</div><div class="a"><i>지금</i>2846개로 주요 화면 전부 영어로</div></li>
+        <li><div class="h"><b>영어 화면에서 한글 조사·날짜</b></div><div class="b"><i>이전</i>영어인데 이름 뒤에 한글 조사가 붙음</div><div class="a"><i>지금</i>영어 이름과 영어 날짜로 표시</div></li>
+        <li><div class="h"><b>새 세션 메뉴: 켜기·만들기·담당</b></div><div class="b"><i>이전</i>긴 메뉴</div><div class="a"><i>지금</i>세 줄로 짧게, 선 아이콘</div></li>
+        <li><div class="h"><b>말로 만들기</b></div><div class="a"><i>지금</i>하는 일을 한 줄 쓰면 이름·그룹·역할을 제안</div></li>
+        <li><div class="h"><b>제안이 안 될 때 내가 쓴 말 유지</b></div><div class="a"><i>지금</i>연결 없음·실패·시간 초과에도 그대로 열림</div></li>
+        <li><div class="h"><b>끝난 채팅에 이어서 하기 한 개</b></div><div class="b"><i>이전</i>버튼이 여러 개</div><div class="a"><i>지금</i>상태 옆에 이어서 하기 하나</div></li>
+        <li><div class="h"><b>세션 여러 개 한꺼번에 끝내기</b></div><div class="a"><i>지금</i>고른 켜진 세션을 한 번 묻고 끝냄</div></li>
+        <li><div class="h"><b>꺼진 부서를 켜서 대화 되살리기</b></div><div class="b"><i>이전</i>줄마다 켜기 버튼</div><div class="a"><i>지금</i>새 세션 옆 화살표에서 부서 찾아 켬</div></li>
+        <li><div class="h"><b>꺼진 부서의 지난 대화 목록</b></div><div class="a"><i>지금</i>최근 대화를 최신순으로 보여 주고 새로 시작도 가능</div></li>
+        <li><div class="h"><b>채팅 목록은 세션만</b></div><div class="b"><i>이전</i>꺼진 부서 접이식이 목록에 섞임</div><div class="a"><i>지금</i>목록과 검색에서 빠짐</div></li>
+        <li><div class="h"><b>채팅 목록은 맨 위 줄에서 열림</b></div><div class="b"><i>이전</i>서버가 준 첫 방이 열림</div><div class="a"><i>지금</i>보이는 맨 위 줄이 열림</div></li>
+        <li><div class="h"><b>목록 스크롤바 옆 버튼 안 가림</b></div><div class="b"><i>이전</i>새 세션 버튼이 스크롤바에 가려짐</div><div class="a"><i>지금</i>스크롤바 자리를 비워 둠</div></li>
+        <li><div class="h"><b>좁은 목록 머리글이 세 줄로 깨짐</b></div><div class="b"><i>이전</i>제목·토글이 세 줄로 갈라짐</div><div class="a"><i>지금</i>한두 줄에 정돈됨</div></li>
+        <li><div class="h"><b>좁은 목록에서 제목이 숨음</b></div><div class="b"><i>이전</i>제목이 숨음</div><div class="a"><i>지금</i>제목이 자기 줄을 차지함</div></li>
+        <li><div class="h"><b>폰 대화: 세션 목록이 먼저</b></div><div class="b"><i>이전</i>바로 한 채팅</div><div class="a"><i>지금</i>목록이 먼저, 최근 활동 순 한 종류</div></li>
+        <li><div class="h"><b>폰 목록 줄 밀기</b></div><div class="a"><i>지금</i>왼쪽은 메뉴 동작, 오른쪽은 숨기기와 되돌리기</div></li>
+        <li><div class="h"><b>폰 줄 밀기 동작 아이콘</b></div><div class="a"><i>지금</i>선 아이콘에 글씨, 이어서·읽음·숨김·끝내기</div></li>
+        <li><div class="h"><b>폰 가장자리 끌기</b></div><div class="a"><i>지금</i>왼쪽 가장자리로 목록, 오른쪽에서 채팅으로</div></li>
+        <li><div class="h"><b>폰 새 세션 떠 있는 버튼</b></div><div class="a"><i>지금</i>탭바 위 알약, 메뉴는 위로 열림</div></li>
+        <li><div class="h"><b>폰 채팅 메뉴에 PC 기능</b></div><div class="b"><i>이전</i>접힌 머리글에 변경 파일이 가려짐</div><div class="a"><i>지금</i>변경 파일·백그라운드 화면이 메뉴에 있음</div></li>
+        <li><div class="h"><b>폰에서는 확대·창 나눔 없음</b></div><div class="b"><i>이전</i>화면이 확대·튕김</div><div class="a"><i>지금</i>앱 화면은 확대 안 되고 결과는 확대 가능</div></li>
+        <li><div class="h"><b>폰 채팅 머리글 한 줄</b></div><div class="b"><i>이전</i>머리글이 여러 줄</div><div class="a"><i>지금</i>한 줄 머리글, 입력창 한 줄</div></li>
+        <li><div class="h"><b>폰 모델 팝오버를 아래 시트로</b></div><div class="b"><i>이전</i>작은 팝오버</div><div class="a"><i>지금</i>바닥에서 올라오는 시트와 사용량 막대</div></li>
+        <li><div class="h"><b>폰 채팅 시각·코드 복사</b></div><div class="b"><i>이전</i>모든 줄에 시각</div><div class="a"><i>지금</i>마지막 줄만 시각, 코드는 길게 눌러 복사</div></li>
+        <li><div class="h"><b>폰 키보드가 올라오면 대화 공간 확보</b></div><div class="b"><i>이전</i>키보드에 대화가 좁아짐</div><div class="a"><i>지금</i>상태·입력 줄 줄여 대화가 넓어짐</div></li>
+        <li><div class="h"><b>폰 탭바가 사라지던 것</b></div><div class="b"><i>이전</i>채팅을 닫으면 탭바가 안 돌아옴</div><div class="a"><i>지금</i>항상 돌아옴</div></li>
+        <li><div class="h"><b>폰 새 대화 버튼 모양</b></div><div class="b"><i>이전</i>폭 가득한 바</div><div class="a"><i>지금</i>작은 알약, 터치 영역 44px</div></li>
+        <li><div class="h"><b>폰 읽지 않은 줄이 세로로 깨짐</b></div><div class="b"><i>이전</i>아이콘·제목이 줄마다 갈라짐</div><div class="a"><i>지금</i>한 줄로 정돈, 읽음 표시 터치 44px</div></li>
+        <li><div class="h"><b>리포트 흰 바탕</b></div><div class="b"><i>이전</i>배경 없는 리포트가 읽기 힘듦</div><div class="a"><i>지금</i>흰 바탕 위에 보임</div></li>
+        <li><div class="h"><b>아이템 화면(PC) 높이 채움</b></div><div class="b"><i>이전</i>화면 안에 스크롤이 또 생김</div><div class="a"><i>지금</i>칸을 꽉 채우고 스크롤은 하나, 옆 패널 320px</div></li>
+        <li><div class="h"><b>아이템 화면 도구를 위에 겹침</b></div><div class="b"><i>이전</i>확대·너비 도구가 한 줄을 차지</div><div class="a"><i>지금</i>화면 위에 겹쳐 둠</div></li>
+        <li><div class="h"><b>아이템 화면(폰) 리포트 높이</b></div><div class="b"><i>이전</i>중첩 스크롤</div><div class="a"><i>지금</i>리포트 높이에 맞춤, 답변 n 버튼으로 질문 이동</div></li>
+        <li><div class="h"><b>아이템 옆 패널 접기</b></div><div class="b"><i>이전</i>칩과 파일 줄이 길게 나열</div><div class="a"><i>지금</i>더 보기 뒤로 접고 댓글 도구는 쓸 때 나타남</div></li>
+        <li><div class="h"><b>폰 터치 영역 44px</b></div><div class="b"><i>이전</i>일부 버튼이 작음</div><div class="a"><i>지금</i>카드·설정 탭·색·아이템 탭이 44px</div></li>
+        <li><div class="h"><b>12px 미만 글씨 없음</b></div><div class="b"><i>이전</i>사용량·태그·시각이 더 작음</div><div class="a"><i>지금</i>모두 12px 이상</div></li>
+        <li><div class="h"><b>설정 설명을 더 보기로</b></div><div class="b"><i>이전</i>모드·정보·라이선스가 길게 펼쳐짐</div><div class="a"><i>지금</i>더 보기를 누르면 열림</div></li>
+        <li><div class="h"><b>모델 선택이 일하는 세션에 적용</b></div><div class="b"><i>이전</i>골라도 예전 모델로 계속</div><div class="a"><i>지금</i>같은 대화 그대로 다시 시작해 새 모델 사용</div></li>
+        <li><div class="h"><b>질문에 답을 기다리는 작업에도 모델 적용</b></div><div class="b"><i>이전</i>물어보고 멈춘 작업엔 적용 안 됨</div><div class="a"><i>지금</i>쉬는 상태로 보고 적용</div></li>
+        <li><div class="h"><b>Codex 도구 호출은 짧은 표시로</b></div><div class="b"><i>이전</i>스크립트가 그대로 보임</div><div class="a"><i>지금</i>이름 — 한 줄 표시</div></li>
+        <li><div class="h"><b>Codex 앱 새 대화는 다시 열어야 보임 안내</b></div><div class="a"><i>지금</i>연결 화면과 첫 초안 아래에 한 번 안내</div></li>
+        <li><div class="h"><b>Codex 앱에서 열기 버튼 없앰</b></div><div class="b"><i>이전</i>대화에 열기 버튼</div><div class="a"><i>지금</i>버튼 삭제</div></li>
+        <li><div class="h"><b>플로팅 화면 바뀌어도 접근 가능</b></div><div class="b"><i>이전</i>화면 구성이 바뀌면 손이 안 닿는 곳에 남음</div><div class="a"><i>지금</i>원래 자리로 돌아오고 닿는 곳으로 가져옴</div></li>
+        <li><div class="h"><b>플로팅 작은 블럭 위치</b></div><div class="b"><i>이전</i>재시작하면 오른쪽 끝에서 밀림</div><div class="a"><i>지금</i>폭 기준으로 오른쪽 끝에 맞음</div></li>
+        <li><div class="h"><b>플로팅 핀이 키보드를 가져가지 않음</b></div><div class="b"><i>이전</i>핀을 누르면 키 입력을 뺏김</div><div class="a"><i>지금</i>뺏지 않고 실제로 떴는지 알려 줌</div></li>
+        <li><div class="h"><b>플로팅 미니 채팅</b></div><div class="b"><i>이전</i>모든 답에 더 보기</div><div class="a"><i>지금</i>잘린 답에만 더 보기, 메인으로 한 번에 복귀, 12px 이상</div></li>
+        <li><div class="h"><b>플로팅이 숨으면 멈춤</b></div><div class="b"><i>이전</i>숨어도 계속 갱신</div><div class="a"><i>지금</i>숨은 동안 갱신과 움직임을 멈춤</div></li>
+        <li><div class="h"><b>플로팅 크기 전환에도 채팅 위치 유지</b></div><div class="b"><i>이전</i>크기 바꾸면 위치를 잃음</div><div class="a"><i>지금</i>큰 두 크기 사이에서 유지, 크기 조절 모서리 14px</div></li>
+        <li><div class="h"><b>플로팅 블럭 크기 아이콘</b></div><div class="b"><i>이전</i>버튼이 비어 보임</div><div class="a"><i>지금</i>아이콘이 다시 그려짐</div></li>
+        <li><div class="h"><b>플로팅 끌기</b></div><div class="b"><i>이전</i>누른 자리와 어긋남</div><div class="a"><i>지금</i>누른 자리가 포인터 아래 유지</div></li>
+        <li><div class="h"><b>플로팅이 빈 상자나 앱 화면으로 뜨던 것</b></div><div class="b"><i>이전</i>빈 둥근 상자·메인 화면이 맨 위에 뜸</div><div class="a"><i>지금</i>한 번 다시 불러오고 안 되면 숨김</div></li>
+        <li><div class="h"><b>메인 창이 활성화마다 크기 바뀌던 것</b></div><div class="b"><i>이전</i>켤 때마다 크기가 변하고 최대화가 풀림</div><div class="a"><i>지금</i>최대화·최소화 상태 그대로</div></li>
+        <li><div class="h"><b>스토어용 MSIX 패키지</b></div><div class="a"><i>지금</i>스토어 버전 1.0.<번호>로 자동 변환</div></li>
+        <li><div class="h"><b>MSIX 점검 모드</b></div><div class="b"><i>이전</i>인자 없이 실행하면 진짜 빌드</div><div class="a"><i>지금</i>--check로 아무것도 안 만들고 점검</div></li>
+        <li><div class="h"><b>WebView2 없을 때 안내</b></div><div class="b"><i>이전</i>빈 창으로 조용히 실패</div><div class="a"><i>지금</i>안내 후 다운로드 페이지나 브라우저로 열기</div></li>
+        <li><div class="h"><b>스토어 설치의 로그인 시 시작</b></div><div class="a"><i>지금</i>시작 프로그램 설정 페이지를 여는 버튼</div></li>
+        <li><div class="h"><b>설정의 에이전트 연결을 한 줄씩</b></div><div class="b"><i>이전</i>단계가 길게 나열</div><div class="a"><i>지금</i>에이전트당 한 줄과 필요할 때만 버튼</div></li>
+        <li><div class="h"><b>에이전트 색 점 통일</b></div><div class="b"><i>이전</i>화면마다 모양이 다름</div><div class="a"><i>지금</i>이름 앞 같은 8px 점</div></li>
+        <li><div class="h"><b>설정 연결 단계는 다음 것만</b></div><div class="b"><i>이전</i>끝낸 단계도 나열</div><div class="a"><i>지금</i>다음 단계 하나와 나중에 링크</div></li>
+        <li><div class="h"><b>질문은 추천 답이 미리 골라짐</b></div><div class="b"><i>이전</i>고른 뒤 보내기</div><div class="a"><i>지금</i>열자마자 추천이 선택되고 보내기 가능</div></li>
+        <li><div class="h"><b>이어서 하기·숨기기 바로 실행</b></div><div class="b"><i>이전</i>물어본 뒤 실행</div><div class="a"><i>지금</i>한 번에 실행, 숨기면 되돌리기 토스트</div></li>
+        <li><div class="h"><b>세션 행 버튼은 글자만</b></div><div class="b"><i>이전</i>아이콘과 글자</div><div class="a"><i>지금</i>글자만</div></li>
+        <li><div class="h"><b>새 세션 시트</b></div><div class="b"><i>이전</i>에이전트 구분이 어렵고 좁은 창에서 잘림</div><div class="a"><i>지금</i>에이전트 색 점, 단순 아이콘, 기본 폴더 Genok</div></li>
+        <li><div class="h"><b>새 세션 알약이 좁은 목록에서 잘림</b></div><div class="b"><i>이전</i>잘림</div><div class="a"><i>지금</i>줄바꿈으로 보임</div></li>
+        <li><div class="h"><b>로딩 표시 하나로</b></div><div class="b"><i>이전</i>화면마다 다른 로딩 줄·뼈대</div><div class="a"><i>지금</i>가운데에서 숨 쉬는 로고 링 하나</div></li>
+        <li><div class="h"><b>홈 한 열로 정돈</b></div><div class="b"><i>이전</i>정보 열과 검색·날짜 등이 많음</div><div class="a"><i>지금</i>한 줄 인사, 카드 하나, 다음 세 개, 더 보기</div></li>
+        <li><div class="h"><b>넓은 화면에서 홈이 늘어나던 것</b></div><div class="b"><i>이전</i>3840 창에서 3264px로 늘어남</div><div class="a"><i>지금</i>최대 820px</div></li>
+        <li><div class="h"><b>사이드바 프로젝트 한 덩어리로</b></div><div class="b"><i>이전</i>그룹 제목과 숨은 메뉴·브라우저 열기 줄</div><div class="a"><i>지금</i>제목을 눌러 펼치고 기본은 닫힘, 폭 208px</div></li>
+        <li><div class="h"><b>접은 메뉴의 개수는 모서리 점</b></div><div class="b"><i>이전</i>숫자 알약이 아이콘을 가림</div><div class="a"><i>지금</i>모서리 점, 프로젝트 아이콘을 누르면 프로젝트가 열림</div></li>
+        <li><div class="h"><b>긴 메뉴에서도 로고 유지</b></div><div class="b"><i>이전</i>짧은 창에서 로고가 눌리고 아래 메뉴 못 감</div><div class="a"><i>지금</i>로고는 위에 고정, 메뉴는 스크롤</div></li>
+      </ul>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid foot3">
+      <a class="brand" href="index.ko.html"><svg class="lockup" role="img" aria-label="Genok" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 377.0 76.3"><path d="M12.24 35.80L2.52 34.86M12.39 33.48L3.50 31.77M12.87 31.16L4.96 28.83M13.62 28.95L6.73 26.19M14.61 26.78L8.69 23.73M15.76 24.76L10.72 21.52M17.11 22.80L12.82 19.42M18.60 20.99L14.90 17.46M20.29 19.30L16.97 15.46M22.13 17.84L19.02 13.47M24.19 16.61L21.26 11.54M26.38 15.69L23.69 9.78M28.65 15.15L26.28 8.29M30.99 14.91L29.10 7.10M33.28 14.99L32.02 6.29M35.54 15.28L35.09 5.82M37.67 15.71L38.15 5.69M39.78 16.19L41.27 5.86M41.82 16.63L44.32 6.29M43.92 17.05L47.41 6.97M46.04 17.47L50.40 7.90M48.27 17.95L53.34 9.17M50.55 18.61L56.14 10.77M52.77 19.50L58.71 12.64M54.91 20.72L60.98 14.94M56.78 22.27L62.79 17.54M58.37 24.18L64.21 20.43M59.55 26.30L65.11 23.44M60.35 28.65L65.60 26.55M60.76 31.04L65.75 29.57M60.88 33.47L65.80 32.52M60.76 35.82L65.89 35.32M60.48 38.14L66.06 38.14M60.08 40.40L66.26 41.00M59.59 42.57L66.46 43.89M58.98 44.73L66.55 46.95M58.25 46.80L66.40 50.06M57.32 48.83L65.85 53.23M56.21 50.72L64.85 56.27M54.88 52.52L63.31 59.15M53.41 54.14L61.33 61.68M51.76 55.62L58.90 63.87M50.04 56.97L56.20 65.60M48.21 58.23L53.27 66.99M46.32 59.43L50.24 68.04M44.38 60.57L47.26 68.88M42.30 61.64L44.20 69.50M40.14 62.58L41.19 69.88M37.80 63.30L38.12 70.06M35.41 63.73L35.12 69.93M32.92 63.76L32.11 69.44M30.52 63.35L29.24 68.61M28.19 62.47L26.46 67.48M26.11 61.19L23.84 66.17M24.24 59.58L21.33 64.62M22.64 57.74L18.96 62.90M21.30 55.83L16.72 61.11M20.10 53.87L14.50 59.21M19.01 52.00L12.32 57.26M17.92 50.14L10.10 55.17M16.83 48.36L7.97 52.93M15.72 46.50L5.96 50.40M14.65 44.61L4.23 47.67M13.68 42.56L2.93 44.63M12.91 40.43L2.16 41.46M12.41 38.14L2.03 38.14" fill="none" stroke="#efe9dc" stroke-width="2.55" stroke-linecap="round"/><path d="M163.44 45.1Q162.27 45.25 160.29 45.57Q158.31 45.88 157.09 46.47Q155.63 47.2 155.02 48.54Q154.41 49.89 154.41 51.69V57.06Q154.41 62.92 154.48 64.97Q154.55 67.03 154.65 68.34Q148.16 71.27 141.71 72.84Q135.27 74.4 129.07 74.4Q122.43 74.4 116.27 71.91Q110.12 69.42 105.53 64.83Q100.89 60.19 98.16 53.55Q95.42 46.91 95.42 38.71Q95.42 30.79 98.04 24.03Q100.65 17.27 105.43 12.29Q110.07 7.41 116.49 4.7Q122.91 1.99 130.24 1.99Q136.1 1.99 140.44 3.4Q144.79 4.82 148.11 6.82L150.11 3.5H154.02L154.46 27.72H150.45Q149.43 23.71 147.91 19.83Q146.4 15.95 144.01 12.88Q141.62 9.8 138.17 7.97Q134.73 6.14 129.95 6.14Q124.72 6.14 120.62 8.26Q116.52 10.38 113.49 14.58Q110.51 18.64 108.9 24.69Q107.29 30.75 107.29 38.22Q107.29 44.81 108.88 50.64Q110.46 56.48 113.49 60.73Q116.52 65.07 121.06 67.56Q125.6 70.05 131.36 70.05Q135.66 70.05 139.2 68.73Q142.74 67.42 144.2 65.95Q144.59 63.41 144.62 60.82Q144.64 58.24 144.64 56.43V52.62Q144.64 50.57 144.08 48.98Q143.52 47.4 141.76 46.66Q140.15 45.93 137.39 45.57Q134.63 45.2 133.07 45.1V41.54H163.44ZM209.41 61.46Q206.39 67.22 201.31 70.64Q196.23 74.06 189.64 74.06Q183.83 74.06 179.46 72.01Q175.09 69.96 172.26 66.44Q169.42 62.92 168.03 58.24Q166.64 53.55 166.64 48.32Q166.64 43.64 168.13 39.12Q169.62 34.6 172.5 30.99Q175.28 27.52 179.41 25.4Q183.53 23.28 188.66 23.28Q193.94 23.28 197.7 24.94Q201.45 26.6 203.8 29.48Q206.04 32.21 207.14 35.92Q208.24 39.63 208.24 43.98V47.2H176.36Q176.36 51.94 177.26 55.79Q178.16 59.65 180.12 62.58Q182.02 65.41 185.1 67.05Q188.17 68.69 192.42 68.69Q196.77 68.69 199.92 66.66Q203.07 64.63 206 59.36ZM198.62 43.1Q198.62 40.37 198.16 37.24Q197.7 34.12 196.67 32.02Q195.55 29.77 193.59 28.35Q191.64 26.94 188.56 26.94Q183.44 26.94 180.04 31.21Q176.65 35.48 176.36 43.1ZM267.15 72.79H243.57V69.56Q244.69 69.47 246.04 69.37Q247.38 69.27 248.26 68.98Q249.62 68.54 250.28 67.44Q250.94 66.34 250.94 64.58V39.83Q250.94 34.7 248.53 31.92Q246.11 29.13 242.64 29.13Q240.05 29.13 237.91 29.94Q235.76 30.75 234.1 31.92Q232.49 33.04 231.53 34.33Q230.58 35.63 230.14 36.41V64.1Q230.14 65.76 230.83 66.83Q231.51 67.9 232.88 68.49Q233.9 68.98 235.1 69.22Q236.29 69.47 237.56 69.56V72.79H213.98V69.56Q215.1 69.47 216.3 69.37Q217.5 69.27 218.37 68.98Q219.74 68.54 220.4 67.44Q221.06 66.34 221.06 64.58V34.85Q221.06 33.19 220.35 31.8Q219.64 30.4 218.37 29.53Q217.45 28.94 216.18 28.67Q214.91 28.4 213.44 28.3V25.13L229.46 24.06L230.14 24.74V31.53H230.39Q231.56 30.36 233.32 28.72Q235.07 27.08 236.64 26.06Q238.44 24.89 240.93 24.11Q243.42 23.32 246.55 23.32Q253.48 23.32 256.83 27.65Q260.17 31.97 260.17 39.14V64.19Q260.17 65.9 260.76 66.95Q261.34 68 262.76 68.59Q263.93 69.08 264.79 69.27Q265.64 69.47 267.15 69.56ZM318.99 48.23Q318.99 53.3 317.37 58.21Q315.76 63.12 312.78 66.54Q309.42 70.44 304.97 72.35Q300.53 74.25 295.01 74.25Q290.42 74.25 286.27 72.52Q282.12 70.79 278.9 67.46Q275.72 64.19 273.84 59.48Q271.96 54.77 271.96 48.91Q271.96 37.63 278.53 30.45Q285.1 23.28 295.74 23.28Q305.85 23.28 312.42 30.09Q318.99 36.9 318.99 48.23ZM308.88 48.32Q308.88 44.66 308.15 40.58Q307.41 36.51 305.95 33.68Q304.39 30.65 301.85 28.82Q299.31 26.99 295.65 26.99Q291.89 26.99 289.23 28.84Q286.56 30.7 284.9 33.92Q283.34 36.9 282.71 40.71Q282.07 44.52 282.07 48.08Q282.07 52.77 282.83 56.75Q283.59 60.73 285.25 63.85Q286.91 66.98 289.42 68.76Q291.94 70.54 295.65 70.54Q301.75 70.54 305.31 64.63Q308.88 58.72 308.88 48.32ZM375.99 72.79H361.44Q357.63 67.27 353.29 60.97Q348.94 54.67 344.26 48.71L340.25 52.47V63.9Q340.25 65.66 340.89 66.81Q341.52 67.95 342.94 68.49Q344.11 68.98 345.18 69.22Q346.26 69.47 347.67 69.56V72.79H324.04V69.56Q325.16 69.47 326.38 69.34Q327.61 69.22 328.44 68.98Q329.8 68.54 330.49 67.44Q331.17 66.34 331.17 64.58V8.63Q331.17 6.82 330.41 5.23Q329.66 3.65 328.44 2.82Q327.41 2.04 325.24 1.79Q323.06 1.55 321.75 1.45V-1.68L339.57 -2.8L340.25 -2.07V48.86Q344.06 45.05 348.48 40.68Q352.9 36.31 355.93 32.89Q356.32 32.46 356.78 31.75Q357.24 31.04 357.24 30.6Q357.24 29.28 355.12 28.65Q353 28.01 351.04 27.77V24.64H372.23V27.67Q368.13 28.89 364.98 30.72Q361.83 32.55 360.17 34.02Q359 34.99 356.85 37.19Q354.7 39.39 350.85 42.95Q354.85 47.88 359.86 54.77Q364.86 61.65 367.16 64.73Q369.3 67.61 371.01 68.49Q372.72 69.37 375.99 69.56Z" fill="#efe9dc"/></svg></a>
+      <div class="f3-col"><h4>제품</h4><a href="download.ko.html">다운로드</a><a href="changelog.ko.html">변경 내역</a></div>
+      <div class="f3-col"><h4>도움</h4><a href="start.ko.html">시작하기</a><a href="help.ko.html">도움말</a><a href="feedback.ko.html">의견 남기기</a></div>
+      <div class="f3-col"><h4>약관</h4><a href="privacy.ko.html">개인정보처리방침</a><a href="terms.ko.html">이용약관</a><a href="refund.ko.html">환불정책</a></div>
+    </div>
+    <details class="foot-biz biz-fold"><summary>사업자 정보</summary><div class="biz-body">
+      <p class="biz-line"><b>칼라스(Calars)</b><span class="biz-sep">·</span>대표 이수형<span class="biz-sep">·</span>사업자등록번호 465-03-02512</p>
+      <p class="biz-line">서울 마포구 모래내로3길 7, 1103호</p>
+      <p class="biz-line">연락처 <a href="mailto:support@genok.app">support@genok.app</a><span class="biz-sep">·</span>결제 대행사 Polar</p>
+    </div></details>
+    <div class="foot-bottom f3-bottom">
+      <span>© 2026 Genok · v0.1.67 · <a href="mailto:support@genok.app">support@genok.app</a></span>
+      <span class="foot-legal">Claude, Claude Code는 Anthropic의, OpenAI·Codex는 OpenAI의 상표이며 로고는 각 사의 자산입니다. Genok은 두 회사와 제휴하거나 후원받지 않습니다.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
