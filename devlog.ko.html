@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f1012">
 <meta name="robots" content="index,follow">
-<link rel="preload" href="assets/fonts/pretendard-site.7c8c5481.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.8b5b0fc0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -25,7 +25,9 @@
 <link rel="stylesheet" href="site.css">
 <script>document.documentElement.classList.add("js")</script>
 <link rel="canonical" href="https://genok.app/devlog.ko.html">
+<link rel="alternate" hreflang="en" href="https://genok.app/devlog.html">
 <link rel="alternate" hreflang="ko" href="https://genok.app/devlog.ko.html">
+<link rel="alternate" hreflang="x-default" href="https://genok.app/devlog.html">
 <meta property="og:locale" content="ko_KR">
 </head>
 <body>
@@ -43,7 +45,7 @@
       <a href="index.ko.html#pricing">가격</a>
       <a href="index.ko.html#faq">FAQ</a>
     </nav>
-    <details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="changelog.html" lang="en" hreflang="en">English</a><a href="devlog.ko.html" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
+    <details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg></summary><div class="lang-pop"><a href="devlog.html" lang="en" hreflang="en">English</a><a href="devlog.ko.html" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
     <a class="btn btn-primary nav-dl" href="download.ko.html"><span class="roll"><span>다운로드</span></span></a>
     <button class="burger" id="burger" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
@@ -165,7 +167,7 @@
         <li><div class="h"><b>목록 스크롤바 옆 버튼 안 가림</b></div><div class="b"><i>이전</i>새 세션 버튼이 스크롤바에 가려짐</div><div class="a"><i>지금</i>스크롤바 자리를 비워 둠</div></li>
         <li><div class="h"><b>좁은 목록 머리글이 세 줄로 깨짐</b></div><div class="b"><i>이전</i>제목·토글이 세 줄로 갈라짐</div><div class="a"><i>지금</i>한두 줄에 정돈됨</div></li>
         <li><div class="h"><b>좁은 목록에서 제목이 숨음</b></div><div class="b"><i>이전</i>제목이 숨음</div><div class="a"><i>지금</i>제목이 자기 줄을 차지함</div></li>
-        <li><div class="h"><b>폰 대화: 세션 목록이 먼저</b></div><div class="b"><i>이전</i>바로 한 채팅</div><div class="a"><i>지금</i>목록이 먼저, 최근 활동 순 한 종류</div></li>
+        <li><div class="h"><b>폰 대화: 세션 목록이 먼저</b></div><div class="b"><i>이전</i>바로 한 채팅</div><div class="a"><i>지금</i>목록이 먼저, 정렬은 최근 활동 순 하나</div></li>
         <li><div class="h"><b>폰 목록 줄 밀기</b></div><div class="a"><i>지금</i>왼쪽은 메뉴 동작, 오른쪽은 숨기기와 되돌리기</div></li>
         <li><div class="h"><b>폰 줄 밀기 동작 아이콘</b></div><div class="a"><i>지금</i>선 아이콘에 글씨, 이어서·읽음·숨김·끝내기</div></li>
         <li><div class="h"><b>폰 가장자리 끌기</b></div><div class="a"><i>지금</i>왼쪽 가장자리로 목록, 오른쪽에서 채팅으로</div></li>
@@ -202,10 +204,6 @@
         <li><div class="h"><b>플로팅 끌기</b></div><div class="b"><i>이전</i>누른 자리와 어긋남</div><div class="a"><i>지금</i>누른 자리가 포인터 아래 유지</div></li>
         <li><div class="h"><b>플로팅이 빈 상자나 앱 화면으로 뜨던 것</b></div><div class="b"><i>이전</i>빈 둥근 상자·메인 화면이 맨 위에 뜸</div><div class="a"><i>지금</i>한 번 다시 불러오고 안 되면 숨김</div></li>
         <li><div class="h"><b>메인 창이 활성화마다 크기 바뀌던 것</b></div><div class="b"><i>이전</i>켤 때마다 크기가 변하고 최대화가 풀림</div><div class="a"><i>지금</i>최대화·최소화 상태 그대로</div></li>
-        <li><div class="h"><b>스토어용 MSIX 패키지</b></div><div class="a"><i>지금</i>스토어 버전 1.0.<번호>로 자동 변환</div></li>
-        <li><div class="h"><b>MSIX 점검 모드</b></div><div class="b"><i>이전</i>인자 없이 실행하면 진짜 빌드</div><div class="a"><i>지금</i>--check로 아무것도 안 만들고 점검</div></li>
-        <li><div class="h"><b>WebView2 없을 때 안내</b></div><div class="b"><i>이전</i>빈 창으로 조용히 실패</div><div class="a"><i>지금</i>안내 후 다운로드 페이지나 브라우저로 열기</div></li>
-        <li><div class="h"><b>스토어 설치의 로그인 시 시작</b></div><div class="a"><i>지금</i>시작 프로그램 설정 페이지를 여는 버튼</div></li>
         <li><div class="h"><b>설정의 에이전트 연결을 한 줄씩</b></div><div class="b"><i>이전</i>단계가 길게 나열</div><div class="a"><i>지금</i>에이전트당 한 줄과 필요할 때만 버튼</div></li>
         <li><div class="h"><b>에이전트 색 점 통일</b></div><div class="b"><i>이전</i>화면마다 모양이 다름</div><div class="a"><i>지금</i>이름 앞 같은 8px 점</div></li>
         <li><div class="h"><b>설정 연결 단계는 다음 것만</b></div><div class="b"><i>이전</i>끝낸 단계도 나열</div><div class="a"><i>지금</i>다음 단계 하나와 나중에 링크</div></li>
@@ -240,7 +238,7 @@
       <p class="biz-line">연락처 <a href="mailto:support@genok.app">support@genok.app</a><span class="biz-sep">·</span>결제 대행사 Polar</p>
     </div></details>
     <div class="foot-bottom f3-bottom">
-      <span>© 2026 Genok · v0.1.67 · <a href="mailto:support@genok.app">support@genok.app</a></span>
+      <span>© 2026 Genok · v0.1.70 · <a href="mailto:support@genok.app">support@genok.app</a></span>
       <span class="foot-legal">Claude, Claude Code는 Anthropic의, OpenAI·Codex는 OpenAI의 상표이며 로고는 각 사의 자산입니다. Genok은 두 회사와 제휴하거나 후원받지 않습니다.</span>
     </div>
   </div>
