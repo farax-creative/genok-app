@@ -1068,7 +1068,7 @@ body.gf-over .gf-drop { border-color: var(--ink); background: var(--surface); }
 .typing .caret { display: inline-block; width: 7px; height: 1.05em; margin-left: 1px; vertical-align: -2px; background: var(--ink); animation: caret 1s steps(2) infinite; }
 @keyframes caret { 50% { opacity: 0; } }
 /* B7 screenshots open larger; a small label trails the cursor to say so */
-.shot img.zoomable { cursor: zoom-in; }
+.shot img.zoomable, a > img.zoomable { cursor: zoom-in; }
 .zoom-tip { position: fixed; left: 0; top: 0; z-index: 60; padding: 5px 10px; border-radius: 999px; background: var(--ink); color: var(--bg); font: 600 12px/1.3 var(--font-sans);
   white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s var(--ease); will-change: transform; }
 .zoom-tip.on { opacity: 1; }
