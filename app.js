@@ -690,7 +690,7 @@
   (function () {
     var imgs = document.querySelectorAll(".shot img");
     /* pictures that link straight to their own file (devlog) open in the same viewer instead of leaving the page */
-    var links = [].filter.call(document.querySelectorAll('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"]'), function (a) { return a.querySelector("img"); });
+    var links = [].filter.call(document.querySelectorAll('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"], a[href$=".avif"]'), function (a) { return a.querySelector("img"); });
     if (!imgs.length && !links.length) return;
     var tip = document.createElement("span"), x = 0, y = 0, tx = 0, ty = 0, raf = 0, open = null;
     tip.className = "zoom-tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = ko ? "크게 보기" : "View larger"; document.body.appendChild(tip);
@@ -708,7 +708,7 @@
       if (open) return;
       var d = document.createElement("button"), big = document.createElement("img"), r = img.getBoundingClientRect();
       d.type = "button"; d.className = "zoom"; d.setAttribute("aria-label", ko ? "닫기" : "Close"); d._from = from || img;
-      big.src = img.currentSrc || img.src; big.alt = img.alt;
+      big.src = (from && from.href) || img.currentSrc || img.src; big.alt = img.alt;
       big.style.transformOrigin = ((r.left + r.width / 2) / innerWidth * 100).toFixed(1) + "% " + ((r.top + r.height / 2) / innerHeight * 100).toFixed(1) + "%";
       d.appendChild(big); document.body.appendChild(d); open = d; tip.classList.remove("on");
       d.addEventListener("click", close); document.addEventListener("keydown", key);
