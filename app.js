@@ -688,7 +688,10 @@
 
   /* B7: click a screenshot to see it larger; the label trails the mouse with a little lag */
   (function () {
-    var imgs = document.querySelectorAll(".shot img"); if (!imgs.length) return;
+    var imgs = document.querySelectorAll(".shot img");
+    /* pictures that link straight to their own file (devlog) open in the same viewer instead of leaving the page */
+    var links = [].filter.call(document.querySelectorAll('a[href$=".webp"], a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"], a[href$=".avif"]'), function (a) { return a.querySelector("img"); });
+    if (!imgs.length && !links.length) return;
     var tip = document.createElement("span"), x = 0, y = 0, tx = 0, ty = 0, raf = 0, open = null;
     tip.className = "zoom-tip"; tip.setAttribute("aria-hidden", "true"); tip.textContent = ko ? "크게 보기" : "View larger"; document.body.appendChild(tip);
     function follow() { x += (tx - x) * .2; y += (ty - y) * .2; tip.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)"; raf = Math.abs(tx - x) + Math.abs(ty - y) > .3 ? requestAnimationFrame(follow) : 0; }
@@ -701,24 +704,31 @@
       setTimeout(function () { d.remove(); }, 220); if (d._from) d._from.focus();
     }
     function key(e) { if (e.key === "Escape") close(); else if (e.key === "Tab" && open) { e.preventDefault(); open.focus(); } /* focus stays on the open picture */ }
-    function show(img) {
+    function show(img, from) {
       if (open) return;
       var d = document.createElement("button"), big = document.createElement("img"), r = img.getBoundingClientRect();
-      d.type = "button"; d.className = "zoom"; d.setAttribute("aria-label", ko ? "닫기" : "Close"); d._from = img;
-      big.src = img.currentSrc || img.src; big.alt = img.alt;
+      d.type = "button"; d.className = "zoom"; d.setAttribute("aria-label", ko ? "닫기" : "Close"); d._from = from || img;
+      big.src = (from && from.href) || img.currentSrc || img.src; big.alt = img.alt;
       big.style.transformOrigin = ((r.left + r.width / 2) / innerWidth * 100).toFixed(1) + "% " + ((r.top + r.height / 2) / innerHeight * 100).toFixed(1) + "%";
       d.appendChild(big); document.body.appendChild(d); open = d; tip.classList.remove("on");
       d.addEventListener("click", close); document.addEventListener("keydown", key);
       requestAnimationFrame(function () { requestAnimationFrame(function () { d.classList.add("on"); d.focus(); }); });
     }
+    function hover(img) {
+      img.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { aim(e, true); tip.classList.add("on"); } });
+      img.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") aim(e); });
+      img.addEventListener("pointerleave", function () { tip.classList.remove("on"); });
+    }
+    links.forEach(function (a) {
+      var img = a.querySelector("img"); img.classList.add("zoomable"); hover(img);
+      a.addEventListener("click", function (e) { if (e.button || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return; e.preventDefault(); show(img, a); });
+    });
     imgs.forEach(function (img) {
       img.classList.add("zoomable"); img.tabIndex = 0; img.setAttribute("role", "button");
       img.setAttribute("aria-label", (img.alt ? img.alt + ". " : "") + (ko ? "크게 보기" : "View larger"));
       img.addEventListener("click", function () { show(img); });
       img.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(img); } });
-      img.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { aim(e, true); tip.classList.add("on"); } });
-      img.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse") aim(e); });
-      img.addEventListener("pointerleave", function () { tip.classList.remove("on"); });
+      hover(img);
     });
   })();
 })();
