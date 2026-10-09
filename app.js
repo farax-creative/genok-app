@@ -731,6 +731,16 @@
       hover(img);
     });
   })();
+
+  /* devlog: a date chip (or a link to a date) opens that day before the page scrolls to it */
+  (function () {
+    if (!document.querySelector(".dv-day")) return;
+    function openDay() {
+      var d = location.hash.length > 1 && document.getElementById(location.hash.slice(1));
+      if (d && d.tagName === "DETAILS") { d.open = true; d.scrollIntoView(); }
+    }
+    addEventListener("hashchange", openDay); openDay();
+  })();
 })();
 
 /* site motion, third set: a download button that leans to the cursor, scrambled tool names, a sheen on the wordmark,
