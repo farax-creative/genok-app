@@ -545,16 +545,20 @@
 })();
 
 (function () {
-  var v = document.getElementById('loopvid');
-  if (!v) return;
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
-  if (!('IntersectionObserver' in window)) { v.play(); return; }
-  new IntersectionObserver(function (es) {
+  var vids = document.querySelectorAll('#loopvid, video.autovid');
+  if (!vids.length) return;
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io = !still && 'IntersectionObserver' in window && new IntersectionObserver(function (es) {
     es.forEach(function (e) {
-      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      else v.pause();
+      if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+      else e.target.pause();
     });
-  }, { rootMargin: '300px' }).observe(v);
+  }, { rootMargin: '300px' });
+  vids.forEach(function (v) {
+    if (still) v.controls = true;
+    else if (io) io.observe(v);
+    else v.play();
+  });
 })();
 
 /* copy buttons on command boxes: clipboard first, text selection when the clipboard is not available */
