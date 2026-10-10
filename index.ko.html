@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- Fonts in <head> on purpose: a late JS-injected link causes layout shift. -->
 <!-- Pretendard is bundled locally (assets/fonts); its @font-face is in site.css. -->
-<link rel="preload" href="assets/fonts/pretendard-site.714afe88.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pretendard-site.3d742919.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
@@ -200,6 +200,39 @@
         <figure class="shot reveal">
           <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">버전 비교 · 밀기</span></div>
           <img src="assets/shots/compare.webp" width="1440" height="940" loading="lazy" alt="두 버전을 겹쳐 놓고 밀어서 비교하는 화면">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="board">
+    <div class="wrap grid split rev">
+      <div class="copy">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-layers"/></svg>보드</span>
+        <h2 class="rise"><span class="ln"><span>버전이 한 줄로 이어집니다.</span></span></h2>
+        <p>결과물마다 버전이 옆으로 놓이고, 그 사이에 반영한 지시 수가 적힙니다. 카드를 누르면 보드에서 바로 열립니다.</p>
+      </div>
+      <div class="media">
+        <figure class="shot reveal">
+          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">결과물 · 보드</span></div>
+          <video class="autovid" src="assets/video/board.mp4" poster="assets/video/board-poster.jpg"
+                 width="1440" height="900" muted loop playsinline preload="none" aria-label="보드에서 영상 카드에 마우스를 올리면 재생되고, 휠로 확대했다가 다시 줄이는 과정"></video>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="newproject">
+    <div class="wrap grid split">
+      <div class="copy">
+        <span class="label"><svg class="ic label-ic" aria-hidden="true"><use href="#i-messages"/></svg>프로젝트</span>
+        <h2 class="rise"><span class="ln"><span>맡길 일을 적으면 프로젝트가 됩니다.</span></span></h2>
+        <p>어떤 일을 맡길지 한 줄 적으면 이름·역할·묶음·폴더가 채워집니다. 고쳐서 만들기를 누릅니다.</p>
+      </div>
+      <div class="media">
+        <figure class="shot reveal">
+          <div class="shot-bar"><span class="lights"><i></i><i></i><i></i></span><span class="shot-title">프로젝트 만들기</span></div>
+          <img src="assets/shots/create.webp" width="1560" height="1000" loading="lazy" alt="프로젝트 만들기 창. 이모지와 이름, 역할, 묶음, 폴더 위치가 채워져 있다">
         </figure>
       </div>
     </div>
