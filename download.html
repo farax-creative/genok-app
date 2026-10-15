@@ -75,6 +75,11 @@
 .dl-card { transition: border-color .4s var(--ease); }
 .inv-demo { margin: 12px 0 0; font-size: 13px; color: var(--ink-dim); }
 .inv-demo b { color: var(--ink-soft); font-weight: 500; letter-spacing: .04em; }
+@media (min-width: 900px) { .dl-lead { align-self: center; } }
+.inv-swap > [data-off] { max-height: 0; overflow: hidden; }
+.inv-swap .gate-msg:empty { min-height: 0; margin: 0; }
+@media (max-width: 640px) { .inv-dl { flex-wrap: nowrap; justify-content: center; align-items: center; }
+  .changelog li > span:last-child { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } }
 @media (max-width: 420px) { .inv-orb { width: 84px; height: 84px; } .inv-n { font-size: 24px; } .inv-top { gap: 14px; } }
 @media (prefers-reduced-motion: reduce) {
   .inv-a, .inv-b, .inv-n, .inv-glow, .inv-title > * { transition: opacity .2s ease; }
@@ -159,7 +164,7 @@
           <a class="btn inv-dl" id="inv-dl" role="link" aria-disabled="true">
             <svg class="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
             <svg class="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
-            <span>Download for Windows</span><span class="inv-off">· Unlocks with a code</span>
+            <span>Download for Windows</span><span class="inv-off">· Needs a code</span>
           </a>
           <a class="dl-next" id="dl-next" href="/start" hidden><span><small>Downloading</small>See what to try first while it downloads</span><span aria-hidden="true">→</span></a>
           <p class="gate-wait">The installer isn't code-signed yet, so a blue “Windows protected your PC” window may appear. Choose <b>More info</b>, then <b>Run anyway</b>.</p>
